@@ -2049,6 +2049,7 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
   );
 }
 
+  
 function FooterEditor({columns,setColumns}){
   const update=(next)=>setColumns(next.map(c=>({...c,links:[...c.links]})));
   const setColHeading=(ci,v)=>{ const n=columns.map((c,i)=>i===ci?{...c,heading:v}:c); update(n); };
