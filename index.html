@@ -271,6 +271,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script type="text/babel">
 const { useState, useMemo, useEffect } = React;
 
@@ -385,6 +386,57 @@ function flabel(label, lang){
   const e=FOOTER_I18N[label]; return (e&&e[lang])||label;
 }
 const FOOTER_RIGHTS={pt:"Todos os direitos reservados.",en:"All rights reserved.",es:"Todos los derechos reservados.",he:"כל הזכויות שמורות.",fr:"Tous droits réservés."};
+
+// estatística de quiz de um curso, a partir dos resultados salvos (quizResults: lessonId->{correct,total})
+function courseQuizStats(course, quizResults){
+  let correct=0, total=0, hasQuiz=false;
+  allLessons(course).forEach(l=>{
+    const isQuiz = l.type==="quiz" || (l.quiz && l.quiz.length);
+    if(isQuiz){ hasQuiz=true; const r=quizResults && quizResults[l.id]; if(r){ correct+=r.correct; total+=r.total; } else if(l.quiz){ total+=l.quiz.length; } }
+  });
+  const pct = total>0 ? Math.round(correct/total*100) : null;
+  return { correct, total, pct, hasQuiz };
+}
+function isCourseComplete(course, enrollment){
+  const ls=allLessons(course); if(!ls.length) return false;
+  const done=(enrollment&&enrollment.done)||[];
+  return ls.every(l=>done.includes(l.id));
+}
+// elegível ao certificado: curso concluído E (sem quiz OU nota >= 80%)
+function certificateEligible(course, enrollment, quizResults){
+  if(!isCourseComplete(course, enrollment)) return false;
+  const s=courseQuizStats(course, quizResults);
+  if(!s.hasQuiz) return true;
+  return s.pct!=null && s.pct>=80;
+}
+// gera e baixa o certificado em PDF
+function generateCertificate({name, course, pct, date}){
+  if(!window.jspdf){ alert("Não foi possível gerar o PDF. Recarregue a página e tente de novo."); return; }
+  const { jsPDF }=window.jspdf;
+  const doc=new jsPDF({orientation:"landscape",unit:"pt",format:"a4"});
+  const W=doc.internal.pageSize.getWidth(), H=doc.internal.pageSize.getHeight();
+  doc.setFillColor(250,249,252); doc.rect(0,0,W,H,"F");
+  doc.setDrawColor(86,36,208); doc.setLineWidth(6); doc.rect(24,24,W-48,H-48);
+  doc.setLineWidth(1.5); doc.rect(38,38,W-76,H-76);
+  doc.setTextColor(86,36,208); doc.setFont("helvetica","bold"); doc.setFontSize(36);
+  doc.text("Certificado de Conclusão", W/2, 140, {align:"center"});
+  doc.setTextColor(90,95,98); doc.setFont("helvetica","normal"); doc.setFontSize(15);
+  doc.text("Este certificado é concedido a", W/2, 195, {align:"center"});
+  doc.setTextColor(25,25,25); doc.setFont("helvetica","bold"); doc.setFontSize(32);
+  doc.text(name||"Aluno(a)", W/2, 240, {align:"center"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(15); doc.setTextColor(90,95,98);
+  doc.text("por concluir com aproveitamento o curso", W/2, 285, {align:"center"});
+  doc.setFont("helvetica","bold"); doc.setFontSize(22); doc.setTextColor(86,36,208);
+  doc.text(course||"", W/2, 320, {align:"center", maxWidth:W-160});
+  doc.setFont("helvetica","normal"); doc.setFontSize(13); doc.setTextColor(90,95,98);
+  if(pct!=null) doc.text("Aproveitamento nos quizzes: "+pct+"%", W/2, 360, {align:"center"});
+  doc.text("Data: "+(date||""), W/2, 384, {align:"center"});
+  doc.setFont("helvetica","bold"); doc.setFontSize(24); doc.setTextColor(86,36,208);
+  doc.text("jewdemy", W/2, H-72, {align:"center"});
+  doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor(130,130,130);
+  doc.text("Cursos de estudos judaicos", W/2, H-54, {align:"center"});
+  doc.save("certificado-jewdemy.pdf");
+}
 
 // ---- Links do rodapé (editáveis na administração) ----
 // type: "page" (mostra conteúdo próprio) | "catalog" | "instrutor" | "admin"
@@ -543,17 +595,24 @@ function App(){
   const requireAuth = fn => user ? fn() : (setAuthOpen(true), showToast(t("loginToContinue")));
   const inCart=id=>cart.some(x=>x.id===id);
   const isEnrolled=id=>enrolled.some(e=>e.courseId===id);
+  const [quizResults,setQuizResults]=useState({}); // lessonId -> {correct,total}
+  const recordQuiz=async(lessonId,correct,total)=>{
+    setQuizResults(q=>({...q,[lessonId]:{correct,total}}));
+    if(SB && user) await SB.from("quiz_results").upsert({ user_id:user.id, lesson_id:lessonId, correct, total }, { onConflict:"user_id,lesson_id" });
+  };
   const loadEnrollments=async(uid)=>{
     if(!SB) return;
-    const [en,pr,ls]=await Promise.all([
+    const [en,pr,ls,qz]=await Promise.all([
       SB.from("enrollments").select("course_id").eq("user_id",uid),
       SB.from("lesson_progress").select("lesson_id").eq("user_id",uid),
       SB.from("lessons").select("id,course_id"),
+      SB.from("quiz_results").select("lesson_id,correct,total").eq("user_id",uid),
     ]);
     const lessonCourse={}; (ls.data||[]).forEach(l=>{ lessonCourse[l.id]=l.course_id; });
     const byCourse={}; (en.data||[]).forEach(e=>{ byCourse[e.course_id]=[]; });
     (pr.data||[]).forEach(p=>{ const cid=lessonCourse[p.lesson_id]; if(cid!=null){ (byCourse[cid]=byCourse[cid]||[]).push(p.lesson_id); } });
     setEnrolled(Object.keys(byCourse).map(cid=>({courseId:Number(cid), done:byCourse[cid]})));
+    const qr={}; (qz.data||[]).forEach(r=>{ qr[r.lesson_id]={correct:r.correct,total:r.total}; }); setQuizResults(qr);
   };
   const enroll=async(courseId)=>{
     if(isEnrolled(courseId)) return;
@@ -646,9 +705,10 @@ function App(){
     showToast(t("recoverSent"));
     return true;
   };
-  const doGoogleLogin=(email)=>{
-    showToast("Login com Google será ativado em breve.");
-    return false;
+  const doGoogleLogin=async()=>{
+    if(!SB){ showToast("Conexão indisponível"); return; }
+    const { error }=await SB.auth.signInWithOAuth({ provider:"google", options:{ redirectTo: window.location.origin } });
+    if(error) showToast(error.message||"Erro ao entrar com Google");
   };
   const loginAsInstructor=async(email,pw)=>{
     if(!SB){ showToast("Conexão indisponível"); return; }
@@ -675,6 +735,20 @@ function App(){
     try{ await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY, subject, from_name:"Site Jewdemy", ...data})}); return true; }catch(e){ return false; }
   };
   const submitContact=async(data)=>{ await sendToOwner("[Jewdemy] Formulário: Contato", {formulario:"Contato", nome:data.name, email:data.email, mensagem:data.message}); showToast("Mensagem enviada! Em breve entraremos em contato."); navTo("home"); };
+  const applyBulkDiscount=async(pct)=>{
+    const p=Math.max(0,Math.min(95,parseFloat(pct)||0));
+    const updated=courses.map(c=>{ const base=c.oldPrice&&c.oldPrice>0?c.oldPrice:c.price; const np=Math.round(base*(1-p/100)*100)/100; return {...c,oldPrice:base,price:np}; });
+    setCourses(updated);
+    if(SB){ for(const c of updated){ await SB.from("courses").update({ price:c.price, old_price:c.oldPrice }).eq("id",c.id); } }
+    showToast(`Desconto de ${p}% aplicado a todos os cursos.`);
+  };
+  const removeBulkDiscount=async()=>{
+    const updated=courses.map(c=>({...c, price:(c.oldPrice&&c.oldPrice>0?c.oldPrice:c.price), oldPrice:0}));
+    setCourses(updated);
+    if(SB){ for(const c of updated){ await SB.from("courses").update({ price:c.price, old_price:0 }).eq("id",c.id); } }
+    showToast("Descontos removidos.");
+  };
+  const loginGoogle=doGoogleLogin;
   const submitHelp=async(data)=>{ await sendToOwner("[Jewdemy] Formulário: Central de ajuda", {formulario:"Central de ajuda", nome:data.name, email:data.email, assunto:data.subject||"", mensagem:data.message}); showToast("Pedido enviado! Responderemos por e-mail."); };
   const logout=async()=>{ try{ if(SB) await SB.auth.signOut(); }catch(e){} setUser(null);setEnrolled([]);setCart([]);setWishlist([]);setMenuOpen(false);setAdminUnlocked(false);navTo("home");};
   const onFooterLink=(link)=>{
@@ -902,7 +976,8 @@ function App(){
       <Learn course={view.course} t={t} enrollment={enrolled.find(e=>e.courseId===view.course.id)}
         onBack={()=>navTo("aluno")} onToggle={toggleLesson}
         qa={qaByCourse[view.course.id]||[]} onAddQA={addQA}
-        chat={learnChatFor(view.course)} onChat={(text)=>learnSend(view.course,text)} userEmail={user?.email}/>
+        chat={learnChatFor(view.course)} onChat={(text)=>learnSend(view.course,text)} userEmail={user?.email}
+        quizResults={quizResults} onQuizScore={recordQuiz} studentName={user?.name}/>
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
       {toast && <div className="toast">{toast}</div>}</div>);
 
@@ -951,7 +1026,7 @@ function App(){
       : <StudentArea t={t} lang={lang} user={user} courses={courses} enrolled={enrolled} wishlist={wishlist}
           onOpenCourse={co=>setView({name:"learn",course:co})} onBrowse={goHome}
           onWishlistOpen={openCourse} onFav={toggleFav} onMessages={()=>setView({name:"messages"})}
-          onProfile={()=>setView({name:"profile"})}/>}
+          onProfile={()=>setView({name:"profile"})} quizResults={quizResults}/>}
       {cartOpen && <CartDrawer cart={cart} t={t} total={total} onClose={()=>setCartOpen(false)} onRemove={removeFromCart} onCheckout={user?checkout:()=>{setCartOpen(false);setAuthOpen(true);}}/>}
       {authOpen && <Auth t={t} onClose={()=>setAuthOpen(false)} onRegister={doRegister} onLogin={doLogin} onGoogle={doGoogleLogin} onRecover={recoverPassword}/>}
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
@@ -976,7 +1051,7 @@ function App(){
         onBatch={batchEmail} onDirectEmail={sendCustomEmail} onMessageStudent={adminMessageStudent}
         footerColumns={footerColumns} setFooterColumns={setFooterColumns}
         unlocked={adminUnlocked} setUnlocked={setAdminUnlocked} onDeleteUser={deleteUser}
-        adminTab={adminTab} setAdminTab={setAdminTab} moveCategory={moveCategory} instructorRequests={instructorRequests} onToggleActive={toggleCourseActive} onDeleteCourse={deleteCourse} onApproveRequest={approveRequest}
+        adminTab={adminTab} setAdminTab={setAdminTab} moveCategory={moveCategory} instructorRequests={instructorRequests} onToggleActive={toggleCourseActive} onDeleteCourse={deleteCourse} onApproveRequest={approveRequest} onBulkDiscount={applyBulkDiscount} onRemoveDiscount={removeBulkDiscount}
         banner={banner} setBanner={setBanner} design={design} setDesignField={setDesignField} helpContent={helpContent} onSaveHelp={saveHelp} onBack={goHome}/>
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
       {toast && <div className="toast">{toast}</div>}</div>);
@@ -1313,7 +1388,7 @@ function Detail({course,t,lang,onBack,onAdd,inCart,enrolled,onLearn,user,users,o
 }
 
 // ============ LEARN (player) ============
-function Learn({course,t,enrollment,onBack,onToggle,qa,onAddQA,chat,onChat,userEmail}){
+function Learn({course,t,enrollment,onBack,onToggle,qa,onAddQA,chat,onChat,userEmail,quizResults,onQuizScore,studentName}){
   const sections=courseSections(course);
   const flat=sections.flatMap(s=>s.lessons).filter(Boolean);
   const done=enrollment?.done||[];
@@ -1366,6 +1441,23 @@ function Learn({course,t,enrollment,onBack,onToggle,qa,onAddQA,chat,onChat,userE
     if(next) setCountdown(5);
   };
 
+  // detecta o fim de vídeos incorporados (Bunny via player.js) para concluir e avançar
+  const endedRef=React.useRef(()=>{});
+  endedRef.current=handleEnded;
+  useEffect(()=>{
+    const emb=videoEmbed(lesson&&lesson.video);
+    if(!emb || emb.kind!=="embed" || emb.provider!=="bunny") return;
+    const subscribe=()=>{ const ifr=document.querySelector(".video iframe");
+      if(ifr&&ifr.contentWindow){ try{ ifr.contentWindow.postMessage(JSON.stringify({context:"player.js",version:"0.0.11",method:"addEventListener",value:"ended",listener:"jd-ended"}),"*"); }catch(e){} } };
+    const onMsg=(e)=>{ if(typeof e.data!=="string") return; let d; try{ d=JSON.parse(e.data); }catch(_){ return; }
+      if(!d || d.context!=="player.js") return;
+      if(d.event==="ready") subscribe();
+      if(d.event==="ended") endedRef.current(); };
+    window.addEventListener("message", onMsg);
+    const t1=setTimeout(subscribe,1200), t2=setTimeout(subscribe,3000);
+    return ()=>{ window.removeEventListener("message", onMsg); clearTimeout(t1); clearTimeout(t2); };
+  },[lessonId, autoplay]);
+
   if(!flat.length || !lesson){
     return (<div className="panel" style={{maxWidth:700}}>
       <span className="back" onClick={onBack}>← {t("myCourses")}</span>
@@ -1409,7 +1501,7 @@ function Learn({course,t,enrollment,onBack,onToggle,qa,onAddQA,chat,onChat,userE
           {ltype==="quiz" &&
             <div className="player-meta">
               {(lesson.quiz&&lesson.quiz.length)
-                ? <Quiz quiz={lesson.quiz} t={t} onDone={()=>{ if(!done.includes(lesson.id)) onToggle(course.id,lesson.id); }}/>
+                ? <Quiz quiz={lesson.quiz} t={t} onDone={(correct,total)=>{ if(!done.includes(lesson.id)) onToggle(course.id,lesson.id); onQuizScore&&onQuizScore(lesson.id,correct,total); }}/>
                 : <p style={{color:"#6a6f73"}}>{t("noQuestions")}</p>}
             </div>}
           {ltype==="text" &&
@@ -1472,6 +1564,15 @@ function Learn({course,t,enrollment,onBack,onToggle,qa,onAddQA,chat,onChat,userE
             <div className="progress-bar"><i style={{width:pct+"%"}}></i></div>
             <span style={{fontSize:12,color:"#6a6f73"}}>{pct}% {t("completed")}</span>
           </div>
+          {pct===100 && (()=>{ const s=courseQuizStats(course,quizResults); const ok=certificateEligible(course,enrollment,quizResults);
+            return (<div style={{margin:"0 12px 14px",padding:14,borderRadius:10,background:ok?"#e6f4ec":"#fff4e6",border:"1px solid "+(ok?"#bfe3cc":"#ffd9a8")}}>
+              <div style={{fontWeight:800,fontSize:15,marginBottom:6}}>{ok?"🎉 Curso concluído!":"Curso concluído"}</div>
+              {s.hasQuiz && <div style={{fontSize:13,marginBottom:8}}>Sua nota nos quizzes: <b>{s.pct!=null?s.pct+"%":"—"}</b>{!ok && s.pct!=null && <span> (mínimo de 80% para o certificado)</span>}</div>}
+              {ok
+                ? <button className="btn-primary" style={{width:"100%"}} onClick={()=>generateCertificate({name:studentName,course:course.title,pct:s.hasQuiz?s.pct:null,date:new Date().toLocaleDateString("pt-BR")})}>📜 Baixar certificado (PDF)</button>
+                : (s.hasQuiz ? <div style={{fontSize:12,color:"#8a5a00"}}>Refaça os quizzes para atingir 80% e liberar o certificado.</div> : null)}
+            </div>);
+          })()}
           {sections.map((sec,si)=>(
             <div key={si}>
               {sec.title && <div className="sec-head">{sec.title}</div>}
@@ -1523,7 +1624,7 @@ function Quiz({quiz,t,onDone}){
           })}
         </div>))}
       {!submitted
-        ? <button className="btn-primary" onClick={()=>{setSubmitted(true); onDone&&onDone();}} disabled={Object.keys(answers).length<quiz.length}>{t("quizSubmit")}</button>
+        ? <button className="btn-primary" onClick={()=>{setSubmitted(true); onDone&&onDone(score,quiz.length);}} disabled={Object.keys(answers).length<quiz.length}>{t("quizSubmit")}</button>
         : <div style={{display:"flex",alignItems:"center",gap:14,flexWrap:"wrap"}}>
             <div style={{fontSize:18,fontWeight:800}}>{t("quizScore")}: {score}/{quiz.length} ({Math.round(score/quiz.length*100)}%)</div>
             <button className="btn-ghost" onClick={()=>{setAnswers({});setSubmitted(false);}}>{t("quizRetry")}</button>
@@ -1531,7 +1632,7 @@ function Quiz({quiz,t,onDone}){
     </div>
   );
 }
-function StudentArea({t,lang,user,courses,enrolled,wishlist,onOpenCourse,onBrowse,onWishlistOpen,onFav,onMessages,onProfile}){
+function StudentArea({t,lang,user,courses,enrolled,wishlist,onOpenCourse,onBrowse,onWishlistOpen,onFav,onMessages,onProfile,quizResults}){
   const [tab,setTab]=useState("courses");
   const list=enrolled.map(e=>({...courses.find(c=>c.id===e.courseId),enrollment:e})).filter(c=>c.id);
   const favList=courses.filter(co=>wishlist.includes(co.id));
@@ -1554,6 +1655,8 @@ function StudentArea({t,lang,user,courses,enrolled,wishlist,onOpenCourse,onBrows
               <h3>{co.title}</h3><div className="author">{co.author}</div>
               <div className="progress-bar" style={{marginTop:8}}><i style={{width:pct+"%"}}></i></div>
               <span style={{fontSize:12,color:"#6a6f73"}}>{pct}% {t("completed")}</span>
+              {certificateEligible(co,co.enrollment,quizResults) &&
+                <button className="btn-primary" style={{marginTop:10,width:"100%"}} onClick={(e)=>{ e.stopPropagation(); const s=courseQuizStats(co,quizResults); generateCertificate({name:user.name,course:co.title,pct:s.hasQuiz?s.pct:null,date:new Date().toLocaleDateString("pt-BR")}); }}>📜 Certificado</button>}
             </div>);
         })}</div>
         :<div className="empty"><p>{t("noMine")}</p><button className="btn-primary" style={{marginTop:14}} onClick={onBrowse}>{t("explore")}</button></div>)}
@@ -1865,7 +1968,8 @@ function Messages({threads,user,activeKey,onSelect,onSend,onBack,t}){
 }
 
 // ============ ADMIN ============
-function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,helpContent,onSaveHelp,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBack}){
+function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,helpContent,onSaveHelp,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBulkDiscount,onRemoveDiscount,onBack}){
+  const [discountPct,setDiscountPct]=useState("");
   const [code,setCode]=useState("");
   const tab=adminTab, setTab=setAdminTab;
   const [newCat,setNewCat]=useState("");
@@ -2080,6 +2184,15 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
           </div>
         : <div className="form-card">
             <h2 style={{fontSize:18,marginBottom:14}}>Cursos ({courses.length})</h2>
+            <div style={{background:"#faf9fc",border:"1px solid var(--line)",borderRadius:8,padding:12,marginBottom:16}}>
+              <div style={{fontWeight:700,marginBottom:8}}>Desconto geral (todos os cursos)</div>
+              <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
+                <input type="number" min="0" max="95" value={discountPct} onChange={e=>setDiscountPct(e.target.value)} placeholder="% ex.: 20" style={{width:120,padding:8,border:"1px solid var(--line)",borderRadius:4}}/>
+                <button className="btn-primary" onClick={()=>{ if(discountPct){ onBulkDiscount(discountPct); } }}>Aplicar desconto</button>
+                <button className="btn-ghost" onClick={()=>onRemoveDiscount()}>Remover descontos</button>
+              </div>
+              <div style={{fontSize:12,color:"#6a6f73",marginTop:6}}>O preço original vira "de" e o desconto vira o novo preço. "Remover" volta ao preço original.</div>
+            </div>
             <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>Título</th><th>Autor</th><th>Categoria</th><th>Nível</th><th>Idioma</th><th>Preço</th><th>Aulas</th><th>Ativo</th><th>Ações</th></tr></thead>
               <tbody>{courses.map(c=>(
                 <tr key={c.id}>
@@ -2453,7 +2566,7 @@ function Auth({t,onClose,onRegister,onLogin,onGoogle,onRecover}){
         <h2>{mode==="login"?t("loginTitle"):mode==="recover"?t("recoverTitle"):t("signupTitle")}</h2>
 
         {mode==="login" && <>
-          <button className="gbtn" onClick={()=>onGoogle("usuario.google@gmail.com")}>
+          <button className="gbtn" onClick={()=>onGoogle()}>
             <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.6 2.4 30.1 0 24 0 14.6 0 6.4 5.4 2.5 13.2l7.9 6.1C12.2 13.3 17.6 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.1 5.3-4.6 6.9l7.1 5.5c4.2-3.9 6.2-9.6 6.2-16.9z"/><path fill="#FBBC05" d="M10.4 28.3c-.5-1.4-.8-2.9-.8-4.3s.3-2.9.8-4.3l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.5 10.4l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.1 0 11.3-2 15-5.5l-7.1-5.5c-2 1.3-4.6 2.1-7.9 2.1-6.4 0-11.8-3.8-13.6-9.3l-7.9 6.1C6.4 42.6 14.6 48 24 48z"/></svg>
             {t("googleLogin")}
           </button>
