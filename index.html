@@ -444,6 +444,15 @@ function App(){
   const [banner,setBanner]=useState(null);
   const [design,setDesign]=useState({ logo:LOGO, primary:"#5624d0", heroTitle:"", heroSub:"", siteName:"Jewdemy" });
   const setDesignField=(k,v)=>setDesign(d=>({...d,[k]:v}));
+  const DEFAULT_HELP={ intro:"Encontre respostas rápidas ou envie sua dúvida.", faqs:[
+    {q:"Como me inscrevo em um curso?", a:"Crie sua conta gratuita, abra o curso desejado e clique em inscrever-se. Cursos gratuitos liberam o acesso na hora."},
+    {q:"Os cursos têm certificado?", a:"Em breve disponibilizaremos certificados de conclusão. Por enquanto, você acompanha seu progresso na sua área de aluno."},
+    {q:"Como me torno instrutor?", a:"No rodapé, clique em \"Seja um instrutor\" e envie seu pedido. Nossa equipe analisa e cria sua conta de instrutor."},
+    {q:"Esqueci minha senha, e agora?", a:"Na janela de login, clique em \"Esqueci minha senha\" e siga as instruções enviadas ao seu e-mail."},
+  ]};
+  const [helpContent,setHelpContent]=useState(DEFAULT_HELP);
+  const loadHelp=async()=>{ if(!SB) return; try{ const { data }=await SB.from("site_settings").select("help_content").eq("id",1).single(); if(data && data.help_content && Array.isArray(data.help_content.faqs)) setHelpContent(data.help_content); }catch(e){} };
+  const saveHelp=async(hc)=>{ setHelpContent(hc); if(SB){ const { error }=await SB.from("site_settings").update({ help_content:hc }).eq("id",1); if(error) showToast("Erro ao salvar: "+error.message); else showToast("Central de ajuda salva!"); } };
   const [fInstructor,setFInstructor]=useState("Todos");
   const [freeOnly,setFreeOnly]=useState(false);
   const [instructorRequests,setInstructorRequests]=useState([]);
@@ -487,7 +496,7 @@ function App(){
     return ()=>{ try{ sub.subscription.unsubscribe(); }catch(e){} };
   },[]);
   // carrega os cursos salvos no banco ao abrir o site (todos os visitantes)
-  useEffect(()=>{ loadCourses(); loadCategories(); },[]);
+  useEffect(()=>{ loadCourses(); loadCategories(); loadHelp(); },[]);
   // carrega as matrículas e o progresso do aluno
   useEffect(()=>{ if(user && user.role==="student") loadEnrollments(user.id); },[user]);
   // quem tem cargo "admin" no banco entra no painel sem precisar de código
@@ -653,6 +662,7 @@ function App(){
   const submitInstructorApplication=async(data)=>{
     if(SB){ const { error }=await SB.from("instructor_requests").insert({ name:data.name, email:data.email, area:data.area||"", experience:data.experience||"" });
       if(error){ showToast(error.message||"Erro ao enviar"); return; } }
+    await sendToOwner("[Jewdemy] Formulário: Pedido de instrutor", {formulario:"Pedido de instrutor", nome:data.name, email:data.email, area:data.area||"", experiencia:data.experience||""});
     showToast(t("applySuccess")); navTo("home");
   };
   const loadInstructorRequests=async()=>{ if(!SB) return; const { data }=await SB.from("instructor_requests").select("*").order("created_at",{ascending:false}); if(data) setInstructorRequests(data.map(r=>({id:r.id,name:r.name,email:r.email,area:r.area,experience:r.experience,approved:!!r.approved,at:new Date(r.created_at).toLocaleString()}))); };
@@ -664,8 +674,8 @@ function App(){
     if(!WEB3FORMS_KEY || WEB3FORMS_KEY.indexOf("COLE_SUA")>=0) return false;
     try{ await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY, subject, from_name:"Site Jewdemy", ...data})}); return true; }catch(e){ return false; }
   };
-  const submitContact=async(data)=>{ await sendToOwner("Novo contato — Jewdemy", {nome:data.name, email:data.email, mensagem:data.message}); showToast("Mensagem enviada! Em breve entraremos em contato."); navTo("home"); };
-  const submitHelp=async(data)=>{ await sendToOwner("Pedido de ajuda — Jewdemy", {nome:data.name, email:data.email, assunto:data.subject||"", mensagem:data.message}); showToast("Pedido enviado! Responderemos por e-mail."); };
+  const submitContact=async(data)=>{ await sendToOwner("[Jewdemy] Formulário: Contato", {formulario:"Contato", nome:data.name, email:data.email, mensagem:data.message}); showToast("Mensagem enviada! Em breve entraremos em contato."); navTo("home"); };
+  const submitHelp=async(data)=>{ await sendToOwner("[Jewdemy] Formulário: Central de ajuda", {formulario:"Central de ajuda", nome:data.name, email:data.email, assunto:data.subject||"", mensagem:data.message}); showToast("Pedido enviado! Responderemos por e-mail."); };
   const logout=async()=>{ try{ if(SB) await SB.auth.signOut(); }catch(e){} setUser(null);setEnrolled([]);setCart([]);setWishlist([]);setMenuOpen(false);setAdminUnlocked(false);navTo("home");};
   const onFooterLink=(link)=>{
     if(link.type==="free"){ goHome(); setFreeOnly(true); }
@@ -917,7 +927,7 @@ function App(){
 
   if(view.name==="help")
     return (<div onClick={()=>menuOpen&&setMenuOpen(false)}><Header {...headerProps}/>
-      <HelpCenter t={t} onSubmit={submitHelp} onBack={goHome}/>
+      <HelpCenter t={t} content={helpContent} onSubmit={submitHelp} onBack={goHome}/>
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
       {toast && <div className="toast">{toast}</div>}</div>);
 
@@ -967,7 +977,7 @@ function App(){
         footerColumns={footerColumns} setFooterColumns={setFooterColumns}
         unlocked={adminUnlocked} setUnlocked={setAdminUnlocked} onDeleteUser={deleteUser}
         adminTab={adminTab} setAdminTab={setAdminTab} moveCategory={moveCategory} instructorRequests={instructorRequests} onToggleActive={toggleCourseActive} onDeleteCourse={deleteCourse} onApproveRequest={approveRequest}
-        banner={banner} setBanner={setBanner} design={design} setDesignField={setDesignField} onBack={goHome}/>
+        banner={banner} setBanner={setBanner} design={design} setDesignField={setDesignField} helpContent={helpContent} onSaveHelp={saveHelp} onBack={goHome}/>
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
       {toast && <div className="toast">{toast}</div>}</div>);
 
@@ -1138,14 +1148,11 @@ function InstructorLogin({onLogin,onBack,t}){
 }
 
 // ============ CENTRAL DE AJUDA (FAQ + formulário) ============
-function HelpCenter({t,onSubmit,onBack}){
-  const faqs=[
-    {q:"Como me inscrevo em um curso?", a:"Crie sua conta gratuita, abra o curso desejado e clique em inscrever-se. Cursos gratuitos liberam o acesso na hora."},
-    {q:"Os cursos têm certificado?", a:"Em breve disponibilizaremos certificados de conclusão. Por enquanto, você acompanha seu progresso na sua área de aluno."},
-    {q:"Como me torno instrutor?", a:"No rodapé, clique em \"Seja um instrutor\" e envie seu pedido. Nossa equipe analisa e cria sua conta de instrutor."},
-    {q:"Esqueci minha senha, e agora?", a:"Na janela de login, clique em \"Esqueci minha senha\" e siga as instruções enviadas ao seu e-mail."},
-    {q:"Como acompanho meu progresso?", a:"Entre na sua conta e acesse \"Minha área\" — lá ficam seus cursos e o percentual concluído de cada um."},
+function HelpCenter({t,content,onSubmit,onBack}){
+  const faqs=(content&&Array.isArray(content.faqs)&&content.faqs.length)?content.faqs:[
+    {q:"Como me inscrevo em um curso?", a:"Crie sua conta gratuita, abra o curso desejado e clique em inscrever-se."},
   ];
+  const intro=(content&&content.intro)||t("helpIntro");
   const [open,setOpen]=useState(0);
   const [name,setName]=useState(""); const [email,setEmail]=useState(""); const [subject,setSubject]=useState(""); const [message,setMessage]=useState("");
   const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -1155,7 +1162,7 @@ function HelpCenter({t,onSubmit,onBack}){
     <div className="panel" style={{maxWidth:760,paddingTop:30}}>
       <span className="back" onClick={onBack} style={{margin:"0 0 16px"}}>← {t("back")}</span>
       <h1>{t("helpTitle")}</h1>
-      <p style={{color:"#6a6f73",marginBottom:18}}>{t("helpIntro")}</p>
+      <p style={{color:"#6a6f73",marginBottom:18}}>{intro}</p>
 
       <h2 style={{fontSize:18,margin:"6px 0 10px"}}>{t("faqTitle")}</h2>
       <div style={{marginBottom:26}}>
@@ -1858,7 +1865,7 @@ function Messages({threads,user,activeKey,onSelect,onSend,onBack,t}){
 }
 
 // ============ ADMIN ============
-function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBack}){
+function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,helpContent,onSaveHelp,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBack}){
   const [code,setCode]=useState("");
   const tab=adminTab, setTab=setAdminTab;
   const [newCat,setNewCat]=useState("");
@@ -1925,6 +1932,7 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
           <span className="admin-group-label">Design</span>
           <button className={tab==="design"?"on":""} onClick={()=>setTab("design")}>Design Site</button>
           <button className={tab==="footer"?"on":""} onClick={()=>setTab("footer")}>Rodapé</button>
+          <button className={tab==="help"?"on":""} onClick={()=>setTab("help")}>Central de ajuda</button>
         </div>
       </div>
 
@@ -2105,6 +2113,7 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
       {tab==="batch" && <BatchEmail onBatch={onBatch} emailTemplates={emailTemplates}/>}
 
       {tab==="footer" && <FooterEditor columns={footerColumns} setColumns={setFooterColumns}/>}
+      {tab==="help" && <HelpEditor content={helpContent} onSave={onSaveHelp}/>}
 
       {tab==="requests" &&
         <div className="form-card">
@@ -2145,6 +2154,42 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
 
       {showCreate && <CreateUserModal t={t} onClose={()=>setShowCreate(false)}
         onCreate={(u)=>{ if(onCreateUser(u)!==false) setShowCreate(false); }}/>}
+    </div>
+  );
+}
+
+function HelpEditor({content,onSave}){
+  const [intro,setIntro]=useState((content&&content.intro)||"");
+  const [faqs,setFaqs]=useState((content&&Array.isArray(content.faqs))?content.faqs.map(f=>({...f})):[]);
+  const setFaq=(i,k,v)=>setFaqs(fs=>fs.map((f,j)=>j===i?{...f,[k]:v}:f));
+  const addFaq=()=>setFaqs(fs=>[...fs,{q:"",a:""}]);
+  const removeFaq=(i)=>setFaqs(fs=>fs.filter((_,j)=>j!==i));
+  const moveFaq=(i,dir)=>setFaqs(fs=>{ const a=[...fs]; const j=i+dir; if(j<0||j>=a.length)return a; [a[i],a[j]]=[a[j],a[i]]; return a; });
+  const save=()=>onSave({ intro, faqs: faqs.filter(f=>f.q.trim()||f.a.trim()) });
+  return (
+    <div style={{maxWidth:760}}>
+      <h2 style={{fontSize:18,marginBottom:12}}>Central de ajuda</h2>
+      <div className="field">
+        <label>Texto de introdução</label>
+        <textarea rows="2" value={intro} onChange={e=>setIntro(e.target.value)} placeholder="Encontre respostas rápidas ou envie sua dúvida."></textarea>
+      </div>
+      <h3 style={{fontSize:15,margin:"16px 0 8px"}}>Perguntas e respostas</h3>
+      {faqs.map((f,i)=>(
+        <div key={i} style={{border:"1px solid var(--line)",borderRadius:8,padding:12,marginBottom:10}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
+            <strong style={{fontSize:13,color:"#6a6f73"}}>Pergunta {i+1}</strong>
+            <div style={{display:"flex",gap:6}}>
+              <button className="btn-ghost" onClick={()=>moveFaq(i,-1)} title="Subir">↑</button>
+              <button className="btn-ghost" onClick={()=>moveFaq(i,1)} title="Descer">↓</button>
+              <button className="btn-danger" onClick={()=>removeFaq(i)}>Remover</button>
+            </div>
+          </div>
+          <div className="field"><label>Pergunta</label><input value={f.q} onChange={e=>setFaq(i,"q",e.target.value)}/></div>
+          <div className="field"><label>Resposta</label><textarea rows="3" value={f.a} onChange={e=>setFaq(i,"a",e.target.value)}></textarea></div>
+        </div>
+      ))}
+      <button className="btn-ghost" onClick={addFaq}>+ Adicionar pergunta</button>
+      <div style={{marginTop:18}}><button className="btn-primary" onClick={save}>Salvar central de ajuda</button></div>
     </div>
   );
 }
