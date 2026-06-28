@@ -544,6 +544,8 @@ const [view,setView]=useState({name:“home”});
 const [cart,setCart]=useState([]);
 const [cartOpen,setCartOpen]=useState(false);
 const [user,setUser]=useState(null);
+const [viewAsStudent,setViewAsStudent]=useState(false);
+const effRole = user ? (viewAsStudent ? “student” : user.role) : null;
 const [authOpen,setAuthOpen]=useState(false);
 const [menuOpen,setMenuOpen]=useState(false);
 const [enrolled,setEnrolled]=useState([]);
@@ -585,7 +587,7 @@ return ()=>{ try{ sub.subscription.unsubscribe(); }catch(e){} };
 // carrega os cursos salvos no banco ao abrir o site (todos os visitantes)
 useEffect(()=>{ loadCourses(); loadCategories(); loadHelp(); },[]);
 // carrega as matrículas e o progresso do aluno
-useEffect(()=>{ if(user && user.role===“student”) loadEnrollments(user.id); },[user]);
+useEffect(()=>{ if(user) loadEnrollments(user.id); },[user]);
 // quem tem cargo “admin” no banco entra no painel sem precisar de código
 useEffect(()=>{ if(user && user.role===“admin”){ setAdminUnlocked(true); loadUsers(); loadInstructorRequests(); (async()=>{ await seedExamplesIfEmpty(); await loadCourses(); })(); } },[user]);
 useEffect(()=>{ try{ document.documentElement.style.setProperty(”–purple”, design.primary); }catch(e){} },[design.primary]);
@@ -681,13 +683,13 @@ setEnrolled(e=>[…e,{courseId,done:[]}]);
 setCourses(cs=>cs.map(c=>c.id===courseId?{…c,students:(c.students||0)+1}:c));
 if(SB && user){ const { error }=await SB.from(“enrollments”).insert({ user_id:user.id, course_id:courseId }); if(error) showToast(“Erro ao inscrever: “+error.message); }
 };
-const studentOnly=(fn)=>requireAuth(()=>{ if(user && user.role!==“student”){ showToast(“Esta ação é apenas para alunos.”); return; } fn(); });
+const studentOnly=(fn)=>requireAuth(()=>{ if(effRole!==“student”){ showToast(“Ative o "modo aluno" no menu para se inscrever em cursos.”); return; } fn(); });
 const addToCart=co=>studentOnly(()=>{ if(isEnrolled(co.id)){showToast(t(“haveCourse”));return;} if(!inCart(co.id))setCart([…cart,co]); setCartOpen(true); });
 const removeFromCart=id=>setCart(cart.filter(x=>x.id!==id));
 const total=cart.reduce((s,x)=>s+x.price,0);
 
 const checkout=async()=>{
-if(user && user.role!==“student”){ showToast(“Esta ação é apenas para alunos.”); return; }
+if(effRole!==“student”){ showToast(“Ative o "modo aluno" para se inscrever.”); return; }
 const toAdd = cart.filter(co=>!isEnrolled(co.id));
 for(const co of toAdd){ await enroll(co.id); sendEmail(“enroll”, user.email, {nome:user.name, curso:co.title}); }
 setCart([]); setCartOpen(false);
@@ -1023,7 +1025,7 @@ return arr.map(x=>x.key===key?{…x,messages:[…x.messages,{from:user.email,fro
 });
 };
 
-const headerProps={t,lang,setLang,user,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
+const headerProps={t,lang,setLang,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
 
 // Após o 1º acesso (ex.: Google), exige completar o cadastro antes de usar o site
 if(user && needsProfile)
@@ -1092,7 +1094,7 @@ return (<div onClick={()=>menuOpen&&setMenuOpen(false)}><Header {…headerProps}
 if(view.name===“aluno”)
 return (<div onClick={()=>menuOpen&&setMenuOpen(false)}><Header {…headerProps}/>
 {!user ? <Gate t={t} msg={t(“loginToContinue”)} onLogin={()=>setAuthOpen(true)}/>
-: user.role!==“student” ? <Gate t={t} msg={t(“studentOnly”)} onLogin={()=>navTo(“home”)} btn={t(“goToCatalog”)}/>
+: effRole!==“student” ? <Gate t={t} msg={t(“studentOnly”)} onLogin={()=>navTo(“home”)} btn={t(“goToCatalog”)}/>
 : <StudentArea t={t} lang={lang} user={user} courses={courses} enrolled={enrolled} wishlist={wishlist}
 onOpenCourse={co=>setView({name:“learn”,course:co})} onBrowse={goHome}
 onWishlistOpen={openCourse} onFav={toggleFav} onMessages={()=>setView({name:“messages”})}
@@ -1180,7 +1182,7 @@ return <div className=“panel” style={{textAlign:“center”,paddingTop:60}}
   </div>;
 }
 // ============ HEADER ============
-function Header({t,lang,setLang,user,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo,siteName}){
+function Header({t,lang,setLang,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo,siteName}){
   return (
     <header>
       <div className="logo" onClick={goHome}><img src={logo||LOGO} alt={siteName||"Jewdemy"}/></div>
@@ -1196,7 +1198,7 @@ function Header({t,lang,setLang,user,view,navTo,setView,goHome,setCartOpen,cart,
       <button className="icon-btn" onClick={()=>requireAuth(()=>setView({name:"messages"}))} title={t("messages")}>
         <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
       </button>
-      {(!user || user.role==="student") && <>
+      {(!user || (effRole||user.role)==="student") && <>
       <button className="icon-btn" onClick={()=>requireAuth(()=>{ navTo("aluno"); })} title={t("wishlist")}>
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.9-10-9.3C.4 8.4 2 5 5.2 5c2 0 3.3 1.1 4 2.1.7-1 2-2.1 4-2.1C16.4 5 18 8.4 17 11.7 16.5 13 15 15 12 21z" transform="translate(1.5,-1)"/></svg>
         {wishlist.length>0 && <span className="badge">{wishlist.length}</span>}
@@ -1230,6 +1232,10 @@ function Header({t,lang,setLang,user,view,navTo,setView,goHome,setCartOpen,cart,
                 {user.role==="admin" && <button className="sep" onClick={()=>{navTo("admin");setMenuOpen(false);}}>Administração</button>}
                 {user.role==="student" && <button className="sep" onClick={()=>{navTo("aluno");setMenuOpen(false);}}>{t("studentArea")}</button>}
                 {user.role==="instructor" && <button className="sep" onClick={()=>{navTo("instrutor");setMenuOpen(false);}}>{t("instructorArea")}</button>}
+                {user.role!=="student" && (viewAsStudent
+                  ? <button onClick={()=>{setViewAsStudent(false);setMenuOpen(false);goHome();}}>↩︎ Sair do modo aluno</button>
+                  : <button onClick={()=>{setViewAsStudent(true);setMenuOpen(false);navTo("aluno");}}>🎓 Entrar no modo aluno</button>)}
+                {viewAsStudent && <button onClick={()=>{navTo("aluno");setMenuOpen(false);}}>{t("studentArea")}</button>}
                 <button onClick={()=>{setView({name:"profile"});setMenuOpen(false);}}>{t("profile")}</button>
                 <button onClick={()=>{setView({name:"messages"});setMenuOpen(false);}}>{t("messages")}</button>
                 <button className="sep" onClick={logout}>{t("logout")}</button>
