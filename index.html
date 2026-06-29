@@ -636,8 +636,10 @@ function App(){
   },[view]);
 
   const canAccess = (co) => {
-    if(!user || user.role!=="student") return true;       // visitantes/instrutor/admin veem tudo
-    if(co.womenOnly && user.gender==="male") return false; // homens não acessam "somente mulheres"
+    if(!user) return true;                                  // visitantes veem tudo
+    if(user.role==="admin") return true;                    // admin vê todos os cursos, sempre
+    if(user.role!=="student") return true;                  // instrutor vê tudo
+    if(co.womenOnly && user.gender==="male") return false;  // homens não acessam "somente mulheres"
     if(user.isJewish===false && !co.openToNonJews) return false; // não-judeus só veem cursos abertos
     return true;
   };
@@ -647,7 +649,7 @@ function App(){
     (fLang==="Todos"||co.lang===fLang) &&
     (fInstructor==="Todos"||co.author===fInstructor) &&
     (!freeOnly || co.price===0) &&
-    co.active!==false &&
+    (co.active!==false || (user && user.role==="admin")) &&
     canAccess(co) &&
     (co.title.toLowerCase().includes(query.toLowerCase())||co.author.toLowerCase().includes(query.toLowerCase()))
   ),[query,cat,fLevel,fLang,fInstructor,freeOnly,courses,user]);
@@ -1473,8 +1475,6 @@ function Detail({course,t,lang,onBack,onAdd,inCart,enrolled,onLearn,user,users,o
                 {l.resources&&l.resources.length>0 && <div className="res">📎 {l.resources.length} recurso(s) para download</div>}
               </div>)}
           </div>))}</div>
-        <h2>{t("description")}</h2>
-        <p style={{color:"#3e4143"}}>{course.desc}</p>
         <h2>{t("instructorName")}</h2>
         <div style={{display:"flex",gap:16,alignItems:"flex-start",marginTop:6}}>
           <div className="avatar" style={{width:80,height:80,fontSize:26,flexShrink:0}}>
