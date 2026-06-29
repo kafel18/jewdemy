@@ -10,7 +10,10 @@
     --purple-dark:#401b9c; --amber:#e59819; --bg:#fff; --soft:#f7f9fa; --green:#1e7a46; --red:#c0392b;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.4}
+  body{font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.4;overflow-x:hidden}
+  html[dir="rtl"] .drawer{right:auto;left:0;box-shadow:4px 0 20px rgba(0,0,0,.15)}
+  html[dir="rtl"] .close-x{right:auto;left:16px}
+  html[dir="rtl"] body{text-align:right}
   a{color:inherit;text-decoration:none}
   button{font-family:inherit;cursor:pointer;border:none}
   input,textarea,select{font-family:inherit;font-size:14px}
@@ -1062,6 +1065,7 @@ function App(){
     });
   };
 
+  useEffect(()=>{ try{ document.documentElement.dir = (lang==="he"?"rtl":"ltr"); document.documentElement.lang = lang; }catch(e){} },[lang]);
   useEffect(()=>{ if(activeLangs.length && !activeLangs.includes(lang)) setLang(activeLangs[0]); },[activeLangs]);
   const headerProps={t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
 
