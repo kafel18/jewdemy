@@ -500,7 +500,9 @@ const PAGE_VIEWS = ["home","aluno","instrutor","admin"];
 
 function App(){
   const [lang,setLang]=useState("pt");
-  const t = k => (I18N[lang]&&I18N[lang][k]) || I18N.pt[k] || k;
+  const [activeLangs,setActiveLangs]=useState(["pt","en","es","he","fr"]);
+  const [tOverrides,setTOverrides]=useState({});
+  const t = k => (tOverrides[lang]&&tOverrides[lang][k]) || (I18N[lang]&&I18N[lang][k]) || (tOverrides.pt&&tOverrides.pt[k]) || I18N.pt[k] || k;
 
   const [categories,setCategories]=useState(INITIAL_CATEGORIES);
   const [courses,setCourses]=useState(INITIAL_COURSES);
@@ -526,8 +528,35 @@ function App(){
   ]};
   const [helpContent,setHelpContent]=useState(DEFAULT_HELP);
   const [homeSections,setHomeSections]=useState({ mostWatched:[], suggested:[] });
-  const loadHome=async()=>{ if(!SB) return; try{ const { data }=await SB.from("site_settings").select("home_sections").eq("id",1).single(); if(data && data.home_sections && (data.home_sections.mostWatched||data.home_sections.suggested)) setHomeSections({ mostWatched:data.home_sections.mostWatched||[], suggested:data.home_sections.suggested||[] }); }catch(e){} };
-  const saveHome=async(hs)=>{ setHomeSections(hs); if(SB){ const { error }=await SB.from("site_settings").update({ home_sections:hs }).eq("id",1); if(error) showToast("Erro ao salvar: "+error.message); else showToast("Página inicial salva!"); } };
+  const loadHome=async()=>{ if(!SB) return; try{
+    const { data }=await SB.from("site_settings").select("design,banner,home_sections,active_langs,translations").eq("id",1).single();
+    if(data){
+      if(data.design && (data.design.logo||data.design.primary||data.design.heroTitle||data.design.siteName)) setDesign(d=>({...d,...data.design}));
+      if(data.banner) setBanner(data.banner);
+      if(data.home_sections && (data.home_sections.mostWatched||data.home_sections.suggested)) setHomeSections({ mostWatched:data.home_sections.mostWatched||[], suggested:data.home_sections.suggested||[] });
+      if(Array.isArray(data.active_langs) && data.active_langs.length) setActiveLangs(data.active_langs);
+      if(data.translations && typeof data.translations==="object") setTOverrides(data.translations);
+    }
+  }catch(e){} };
+  const saveSite=async(over={})=>{ if(!SB) return;
+    const payload={
+      design: over.design||design,
+      banner: ('banner' in over)?over.banner:banner,
+      home_sections: over.home_sections||homeSections,
+    };
+    if('active_langs' in over) payload.active_langs=over.active_langs;
+    if('translations' in over) payload.translations=over.translations;
+    const { error }=await SB.from("site_settings").update(payload).eq("id",1);
+    if(error) showToast("Erro ao salvar: "+error.message); else showToast("Salvo!");
+  };
+  const saveDesign=async()=>{ await saveSite(); };
+  const saveHome=async(payload)=>{
+    const hs={ mostWatched:payload.mostWatched||[], suggested:payload.suggested||[] };
+    const newDesign={...design, heroTitle:payload.heroTitle||"", heroSub:payload.heroSub||""};
+    setHomeSections(hs); setBanner(payload.banner||null); setDesign(newDesign);
+    await saveSite({ design:newDesign, banner:payload.banner||null, home_sections:hs });
+  };
+  const saveLangs=async(langs,overrides)=>{ setActiveLangs(langs); setTOverrides(overrides); await saveSite({ active_langs:langs, translations:overrides }); };
   const loadHelp=async()=>{ if(!SB) return; try{ const { data }=await SB.from("site_settings").select("help_content").eq("id",1).single(); if(data && data.help_content && Array.isArray(data.help_content.faqs)) setHelpContent(data.help_content); }catch(e){} };
   const saveHelp=async(hc)=>{ setHelpContent(hc); if(SB){ const { error }=await SB.from("site_settings").update({ help_content:hc }).eq("id",1); if(error) showToast("Erro ao salvar: "+error.message); else showToast("Central de ajuda salva!"); } };
   const [fInstructor,setFInstructor]=useState("Todos");
@@ -1033,7 +1062,8 @@ function App(){
     });
   };
 
-  const headerProps={t,lang,setLang,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
+  useEffect(()=>{ if(activeLangs.length && !activeLangs.includes(lang)) setLang(activeLangs[0]); },[activeLangs]);
+  const headerProps={t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
 
   // Após o 1º acesso (ex.: Google), exige completar o cadastro antes de usar o site
   if(user && needsProfile)
@@ -1132,7 +1162,7 @@ function App(){
         footerColumns={footerColumns} setFooterColumns={setFooterColumns}
         unlocked={adminUnlocked} setUnlocked={setAdminUnlocked} onDeleteUser={deleteUser}
         adminTab={adminTab} setAdminTab={setAdminTab} moveCategory={moveCategory} instructorRequests={instructorRequests} onToggleActive={toggleCourseActive} onDeleteCourse={deleteCourse} onApproveRequest={approveRequest} onBulkDiscount={applyBulkDiscount} onRemoveDiscount={removeBulkDiscount}
-        banner={banner} setBanner={setBanner} design={design} setDesignField={setDesignField} helpContent={helpContent} onSaveHelp={saveHelp} homeSections={homeSections} onSaveHome={saveHome} onBack={goHome}/>
+        banner={banner} setBanner={setBanner} design={design} setDesignField={setDesignField} onSaveDesign={saveDesign} helpContent={helpContent} onSaveHelp={saveHelp} homeSections={homeSections} onSaveHome={saveHome} activeLangs={activeLangs} tOverrides={tOverrides} onSaveLangs={saveLangs} onBack={goHome}/>
       <Footer columns={footerColumns} onLink={onFooterLink} lang={lang}/>
       {toast && <div className="toast">{toast}</div>}</div>);
 
@@ -1200,7 +1230,7 @@ function Gate({t,msg,onLogin,btn}){
   </div>;
 }
 // ============ HEADER ============
-function Header({t,lang,setLang,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo,siteName}){
+function Header({t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo,siteName}){
   return (
     <header>
       <div className="logo" onClick={goHome}><img src={logo||LOGO} alt={siteName||"Jewdemy"}/></div>
@@ -1211,7 +1241,7 @@ function Header({t,lang,setLang,user,effRole,viewAsStudent,setViewAsStudent,view
       {user?.role==="student" && <button className="nav-link hide-sm" onClick={()=>navTo("aluno")}>{t("myCourses")}</button>}
       {user?.role==="instructor" && <button className="nav-link hide-sm" onClick={()=>navTo("instrutor")}>{t("teach")}</button>}
       <select className="lang-sel" value={lang} onChange={e=>setLang(e.target.value)}>
-        <option value="pt">PT</option><option value="en">EN</option><option value="es">ES</option><option value="he">עב</option><option value="fr">FR</option>
+        {(activeLangs||["pt","en","es","he","fr"]).map(l=>{ const N={pt:"PT",en:"EN",es:"ES",he:"עב",fr:"FR"}; return <option key={l} value={l}>{N[l]||l.toUpperCase()}</option>; })}
       </select>
       <button className="icon-btn" onClick={()=>requireAuth(()=>setView({name:"messages"}))} title={t("messages")}>
         <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/></svg>
@@ -2111,7 +2141,7 @@ function Messages({threads,user,activeKey,onSelect,onSend,onBack,t}){
 }
 
 // ============ ADMIN ============
-function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,onTestEmail,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,helpContent,onSaveHelp,homeSections,onSaveHome,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBulkDiscount,onRemoveDiscount,onBack}){
+function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,blockUser,editUser,onCreateUser,courses,editCourse,emailTemplates,setEmailTemplates,sentEmails,onBatch,onDirectEmail,onMessageStudent,onTestEmail,footerColumns,setFooterColumns,unlocked,setUnlocked,onDeleteUser,banner,setBanner,design,setDesignField,onSaveDesign,helpContent,onSaveHelp,homeSections,onSaveHome,activeLangs,tOverrides,onSaveLangs,adminTab,setAdminTab,instructorRequests,onToggleActive,onDeleteCourse,onApproveRequest,onBulkDiscount,onRemoveDiscount,onBack}){
   const [discountPct,setDiscountPct]=useState("");
   const [code,setCode]=useState("");
   const tab=adminTab, setTab=setAdminTab;
@@ -2182,6 +2212,10 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
           <button className={tab==="footer"?"on":""} onClick={()=>setTab("footer")}>Rodapé</button>
           <button className={tab==="help"?"on":""} onClick={()=>setTab("help")}>Central de ajuda</button>
         </div>
+        <div className="admin-group">
+          <span className="admin-group-label">Configurações</span>
+          <button className={tab==="langs"?"on":""} onClick={()=>setTab("langs")}>Idiomas e traduções</button>
+        </div>
       </div>
 
       {tab==="cats" &&
@@ -2217,19 +2251,7 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
           </div>
 
           <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Banner da página inicial</h2>
-            <div style={{borderRadius:8,overflow:"hidden",marginBottom:14,background:"linear-gradient(120deg,#2d2f31,"+design.primary+")",minHeight:120,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff"}}>
-              {banner? <img src={banner} alt="" style={{width:"100%",maxHeight:220,objectFit:"cover"}}/> : <span>Sem banner — usando o gradiente padrão</span>}
-            </div>
-            <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-              <label className="btn-primary" style={{cursor:"pointer"}}>Escolher imagem
-                <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const f2=e.target.files[0]; if(f2){const r=new FileReader(); r.onload=()=>setBanner(r.result); r.readAsDataURL(f2);}}}/></label>
-              {banner && <button className="btn-danger" onClick={()=>setBanner(null)}>Remover banner</button>}
-            </div>
-          </div>
-
-          <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Aparência</h2>
+            <h2 style={{fontSize:18,marginBottom:14}}>Cores</h2>
             <div className="field"><label>Cor principal do site</label>
               <div style={{display:"flex",alignItems:"center",gap:12}}>
                 <input type="color" value={design.primary} onChange={e=>setDesignField("primary",e.target.value)} style={{width:54,height:38,border:"1px solid var(--line)",borderRadius:6,padding:2,cursor:"pointer"}}/>
@@ -2244,28 +2266,11 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
             </div>
           </div>
 
-          <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Textos da página inicial</h2>
-            <div className="field"><label>Título do destaque <span className="hint">(deixe vazio p/ usar o padrão)</span></label>
-              <input value={design.heroTitle} onChange={e=>setDesignField("heroTitle",e.target.value)} placeholder={t("heroTitle")}/></div>
-            <div className="field"><label>Subtítulo do destaque</label>
-              <textarea rows="2" value={design.heroSub} onChange={e=>setDesignField("heroSub",e.target.value)} placeholder={t("heroSub")}></textarea></div>
-          </div>
+          <button className="btn-primary" onClick={onSaveDesign}>Salvar design</button>
         </div>}
 
-      {tab==="home" &&
-        <div className="form-card">
-          <h2 style={{fontSize:18,marginBottom:14}}>Banner da página inicial</h2>
-          <div style={{borderRadius:8,overflow:"hidden",marginBottom:14,background:"linear-gradient(120deg,#2d2f31,#5624d0)",minHeight:140,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff"}}>
-            {banner? <img src={banner} alt="" style={{width:"100%",maxHeight:240,objectFit:"cover"}}/> : <span>Sem banner — usando o gradiente padrão</span>}
-          </div>
-          <div style={{display:"flex",gap:10}}>
-            <label className="btn-primary" style={{cursor:"pointer"}}>Escolher imagem
-              <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const f=e.target.files[0]; if(f){const r=new FileReader(); r.onload=()=>setBanner(r.result); r.readAsDataURL(f);}}}/></label>
-            {banner && <button className="btn-danger" onClick={()=>setBanner(null)}>Remover banner</button>}
-          </div>
-          <p style={{fontSize:12,color:"#6a6f73",marginTop:10}}>A imagem aparece como fundo do destaque na página inicial.</p>
-        </div>}
+      {tab==="home" && <HomeEditor courses={courses} sections={homeSections} banner={banner} heroTitle={design.heroTitle} heroSub={design.heroSub} onSave={onSaveHome}/>}
+      {tab==="langs" && <LangEditor activeLangs={activeLangs} tOverrides={tOverrides} onSave={onSaveLangs}/>}
 
       {tab==="students" &&
         <div className="form-card">
@@ -2371,7 +2376,6 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
 
       {tab==="footer" && <FooterEditor columns={footerColumns} setColumns={setFooterColumns}/>}
       {tab==="help" && <HelpEditor content={helpContent} onSave={onSaveHelp}/>}
-      {tab==="home" && <HomeEditor courses={courses} sections={homeSections} onSave={onSaveHome}/>}
 
       {tab==="requests" &&
         <div className="form-card">
@@ -2433,16 +2437,90 @@ function HomePicker({title,courses,list,setList}){
     </div>
   );
 }
-function HomeEditor({courses,sections,onSave}){
+function HomeEditor({courses,sections,banner,heroTitle,heroSub,onSave}){
   const [mw,setMw]=useState((sections&&sections.mostWatched)||[]);
   const [sg,setSg]=useState((sections&&sections.suggested)||[]);
+  const [bnr,setBnr]=useState(banner||null);
+  const [hT,setHT]=useState(heroTitle||"");
+  const [hS,setHS]=useState(heroSub||"");
   return (
     <div style={{maxWidth:760}}>
       <h2 style={{fontSize:18,marginBottom:6}}>Página inicial</h2>
-      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>Escolha quais cursos aparecem em cada seção da página inicial. Se deixar vazio, a seção não aparece.</p>
+      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>Personalize o banner, os textos de destaque e os cursos exibidos na página inicial.</p>
+
+      <div className="form-card">
+        <h3 style={{fontSize:15,marginBottom:10}}>Banner do destaque</h3>
+        <div style={{borderRadius:8,overflow:"hidden",marginBottom:12,background:"linear-gradient(120deg,#2d2f31,#5624d0)",minHeight:140,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff"}}>
+          {bnr? <img src={bnr} alt="" style={{width:"100%",maxHeight:240,objectFit:"cover"}}/> : <span>Sem banner — usando o gradiente padrão</span>}
+        </div>
+        <div style={{display:"flex",gap:10}}>
+          <label className="btn-primary" style={{cursor:"pointer"}}>Escolher imagem
+            <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const f=e.target.files[0]; if(f){const r=new FileReader(); r.onload=()=>setBnr(r.result); r.readAsDataURL(f);}}}/></label>
+          {bnr && <button className="btn-danger" onClick={()=>setBnr(null)}>Remover banner</button>}
+        </div>
+      </div>
+
+      <div className="form-card">
+        <h3 style={{fontSize:15,marginBottom:10}}>Textos do destaque</h3>
+        <div className="field"><label>Título <span className="hint">(deixe vazio p/ usar o padrão)</span></label>
+          <input value={hT} onChange={e=>setHT(e.target.value)} placeholder="Aprenda qualquer coisa, no seu ritmo"/></div>
+        <div className="field"><label>Subtítulo</label>
+          <textarea rows="2" value={hS} onChange={e=>setHS(e.target.value)} placeholder="Cursos de Torá, Halachá, Talmud..."></textarea></div>
+      </div>
+
       <HomePicker title="🔥 Mais assistidos" courses={courses} list={mw} setList={setMw}/>
       <HomePicker title="✨ Sugeridos para você" courses={courses} list={sg} setList={setSg}/>
-      <button className="btn-primary" onClick={()=>onSave({ mostWatched:mw, suggested:sg })}>Salvar página inicial</button>
+      <button className="btn-primary" onClick={()=>onSave({ mostWatched:mw, suggested:sg, banner:bnr, heroTitle:hT, heroSub:hS })}>Salvar página inicial</button>
+    </div>
+  );
+}
+
+function LangEditor({activeLangs,tOverrides,onSave}){
+  const ALL=[{c:"pt",n:"Português"},{c:"en",n:"English"},{c:"es",n:"Español"},{c:"he",n:"עברית"},{c:"fr",n:"Français"}];
+  const [active,setActive]=useState(activeLangs&&activeLangs.length?activeLangs:["pt","en","es","he","fr"]);
+  const [editLang,setEditLang]=useState("pt");
+  const [ov,setOv]=useState(JSON.parse(JSON.stringify(tOverrides||{})));
+  const [q,setQ]=useState("");
+  const base=(typeof I18N!=="undefined"&&I18N[editLang])||{};
+  const keys=Object.keys((typeof I18N!=="undefined"&&I18N.pt)||{}).filter(k=>{ const cur=(ov[editLang]&&ov[editLang][k])||base[k]||k; return !q || k.toLowerCase().includes(q.toLowerCase()) || String(cur).toLowerCase().includes(q.toLowerCase()); });
+  const toggle=(c)=> setActive(active.includes(c)?active.filter(x=>x!==c):[...active,c]);
+  const setVal=(k,v)=> setOv(o=>{ const n={...o, [editLang]:{...(o[editLang]||{})}}; if(v===""||v===(base[k]||"")) { delete n[editLang][k]; } else { n[editLang][k]=v; } return n; });
+  return (
+    <div style={{maxWidth:820}}>
+      <h2 style={{fontSize:18,marginBottom:6}}>Idiomas e traduções</h2>
+      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>Escolha os idiomas disponíveis no site e edite os textos de cada idioma.</p>
+
+      <div className="form-card">
+        <h3 style={{fontSize:15,marginBottom:10}}>Idiomas ativos</h3>
+        <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
+          {ALL.map(l=>(
+            <label key={l.c} style={{display:"flex",gap:8,alignItems:"center",fontSize:14,cursor:"pointer"}}>
+              <input type="checkbox" checked={active.includes(l.c)} onChange={()=>toggle(l.c)}/> {l.n}
+            </label>
+          ))}
+        </div>
+        {active.length===0 && <p style={{color:"#b91c1c",fontSize:13,marginTop:8}}>Selecione ao menos um idioma.</p>}
+      </div>
+
+      <div className="form-card">
+        <h3 style={{fontSize:15,marginBottom:10}}>Editar traduções</h3>
+        <div style={{display:"flex",gap:10,marginBottom:12,flexWrap:"wrap"}}>
+          <select value={editLang} onChange={e=>setEditLang(e.target.value)} style={{padding:9,border:"1px solid var(--line)",borderRadius:6}}>
+            {ALL.map(l=><option key={l.c} value={l.c}>{l.n}</option>)}
+          </select>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Buscar texto..." style={{flex:1,minWidth:160,padding:9,border:"1px solid var(--line)",borderRadius:6}}/>
+        </div>
+        <div style={{maxHeight:420,overflow:"auto",border:"1px solid var(--line)",borderRadius:8}}>
+          {keys.map(k=>{ const val=(ov[editLang]&&ov[editLang][k]!==undefined)?ov[editLang][k]:(base[k]||""); return (
+            <div key={k} style={{display:"flex",gap:10,alignItems:"center",padding:"6px 10px",borderBottom:"1px solid var(--line)"}}>
+              <span style={{width:140,flexShrink:0,fontSize:11,color:"#6a6f73",fontFamily:"monospace",overflow:"hidden",textOverflow:"ellipsis"}}>{k}</span>
+              <input value={val} onChange={e=>setVal(k,e.target.value)} style={{flex:1,padding:7,border:"1px solid var(--line)",borderRadius:5,fontSize:13}}/>
+            </div>); })}
+        </div>
+        <p style={{fontSize:12,color:"#6a6f73",marginTop:8}}>Deixe igual ao padrão para não sobrescrever. As alterações valem para todos os visitantes.</p>
+      </div>
+
+      <button className="btn-primary" disabled={active.length===0} onClick={()=>onSave(active,ov)}>Salvar idiomas e traduções</button>
     </div>
   );
 }
@@ -2615,12 +2693,12 @@ function EditModal({target,categories,t,lang,onClose,onSave}){
   const isUser=target.type==="user";
   const d=target.data;
   const [f,setF]=useState(isUser
-    ? {name:d.name,email:d.email,phone:d.phone||"",city:d.city||"",community:d.community||"",role:d.role,password:d.password||"",gender:d.gender||"",isJewish:(d.isJewish===true?"yes":d.isJewish===false?"no":"")}
+    ? {name:d.name,email:d.email,phone:d.phone||"",city:d.city||"",community:d.community||"",role:d.role,password:d.password||"",gender:d.gender||"",isJewish:(d.isJewish===true?"yes":d.isJewish===false?"no":""),photo:d.photo||""}
     : {title:d.title,author:d.author,cat:d.cat,level:d.level,lang:d.lang,price:String(d.price),old:String(d.old),desc:d.desc});
   const set=(k,v)=>setF({...f,[k]:v});
   const emailOk=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const save=()=>{
-    if(isUser){ if(!emailOk(f.email)){alert(t("errEmail"));return;} if(f.phone && f.phone.replace(/[^\d]/g,"").length<8){alert(t("errPhone"));return;} onSave({name:f.name,email:f.email,phone:f.phone.replace(/[^\d]/g,""),city:f.city,community:f.community,role:f.role,password:f.password,gender:f.gender||null,isJewish:f.isJewish==="yes"?true:f.isJewish==="no"?false:null}); }
+    if(isUser){ if(!emailOk(f.email)){alert(t("errEmail"));return;} if(f.phone && f.phone.replace(/[^\d]/g,"").length<8){alert(t("errPhone"));return;} onSave({name:f.name,email:f.email,phone:f.phone.replace(/[^\d]/g,""),city:f.city,community:f.community,role:f.role,password:f.password,gender:f.gender||null,isJewish:f.isJewish==="yes"?true:f.isJewish==="no"?false:null,photo:f.photo}); }
     else { if(isNaN(parseFloat(f.price))){alert(t("errRequired"));return;} onSave({title:f.title,author:f.author,cat:f.cat,level:f.level,lang:f.lang,price:parseFloat(f.price)||0,old:parseFloat(f.old)||0,desc:f.desc}); }
   };
   return (
@@ -2629,6 +2707,15 @@ function EditModal({target,categories,t,lang,onClose,onSave}){
         <button className="close-x" style={{position:"absolute",top:12,right:16}} onClick={onClose}>×</button>
         <h2>{isUser?"Editar usuário":"Editar curso"}</h2>
         {isUser ? <>
+          <div className="field"><label>Foto</label>
+            <div style={{display:"flex",alignItems:"center",gap:12}}>
+              {f.photo ? <img src={f.photo} alt="" style={{width:56,height:56,borderRadius:"50%",objectFit:"cover"}}/>
+                       : <div style={{width:56,height:56,borderRadius:"50%",background:"#5624d0",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700}}>{(f.name||"?")[0]}</div>}
+              <label className="btn-ghost" style={{cursor:"pointer"}}>Trocar foto
+                <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const ph=e.target.files[0]; if(ph){const r=new FileReader(); r.onload=()=>set("photo",r.result); r.readAsDataURL(ph);}}}/></label>
+              {f.photo && <button className="btn-danger" style={{padding:"4px 10px"}} onClick={()=>set("photo","")}>Remover</button>}
+            </div>
+          </div>
           <div className="field"><label>Nome</label><input value={f.name} onChange={e=>set("name",e.target.value)}/></div>
           <div className="field"><label>Email</label><input value={f.email} onChange={e=>set("email",e.target.value)}/></div>
           <div className="field"><label>{t("passwordLbl")}</label><input value={f.password} onChange={e=>set("password",e.target.value)} placeholder="(senha)"/></div>
