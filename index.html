@@ -1425,6 +1425,7 @@ function Detail({course,t,lang,onBack,onAdd,inCart,enrolled,onLearn,user,users,o
   const sections=courseSections(course);
   const instUser=(users||[]).find(u=>u.name===course.author);
   const bio=course.authorBio || (instUser&&instUser.bio) || "";
+  const intro = course.introVideo ? videoEmbed(course.introVideo) : null;
   return (
     <div>
       <span className="back" onClick={onBack}>← {t("all")}</span>
@@ -1438,7 +1439,17 @@ function Detail({course,t,lang,onBack,onAdd,inCart,enrolled,onLearn,user,users,o
             <button className="btn-ghost" style={{marginTop:12}} onClick={onMessage}>✉ {t("messages")} — {course.author}</button>}
         </div>
         <div className="buy-box">
-          <div className="thumb" style={{background:color,marginBottom:16}}>{course.thumb?<img src={course.thumb} alt=""/>:course.title[0]}</div>
+          {intro ? (
+            <div style={{position:"relative",width:"100%",aspectRatio:"16/9",background:"#000",borderRadius:8,overflow:"hidden",marginBottom:16}}>
+              {intro.kind==="embed"
+                ? <iframe src={intro.src} title="Apresentação" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{position:"absolute",inset:0,width:"100%",height:"100%",border:0}}></iframe>
+                : intro.kind==="file"
+                  ? <video src={intro.src} controls style={{position:"absolute",inset:0,width:"100%",height:"100%"}}/>
+                  : <a href={intro.src} target="_blank" rel="noopener noreferrer" style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff",textDecoration:"none",fontWeight:700}}>▶ Assistir prévia</a>}
+            </div>
+          ) : (
+            <div className="thumb" style={{background:color,marginBottom:16}}>{course.thumb?<img src={course.thumb} alt=""/>:course.title[0]}</div>
+          )}
           {enrolled ? (<>
             <p style={{fontWeight:700,marginBottom:12,color:"var(--green)"}}>✓ {t("haveCourse")}</p>
             <button className="btn-cart" onClick={onLearn}>{t("goCourse")}</button>
@@ -1450,17 +1461,6 @@ function Detail({course,t,lang,onBack,onAdd,inCart,enrolled,onLearn,user,users,o
         </div>
       </div></div>
       <div className="detail-body">
-        {course.introVideo && (()=>{ const emb=videoEmbed(course.introVideo); if(!emb) return null;
-          return (<div style={{marginBottom:24}}>
-            <h2>Vídeo de apresentação</h2>
-            <div style={{position:"relative",width:"100%",maxWidth:720,aspectRatio:"16/9",background:"#000",borderRadius:10,overflow:"hidden"}}>
-              {emb.kind==="embed"
-                ? <iframe src={emb.src} title="Apresentação" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{position:"absolute",inset:0,width:"100%",height:"100%",border:0}}></iframe>
-                : emb.kind==="file"
-                  ? <video src={emb.src} controls style={{position:"absolute",inset:0,width:"100%",height:"100%"}}/>
-                  : <div style={{padding:20,color:"#fff"}}><a href={emb.src} target="_blank" rel="noopener noreferrer" style={{color:"#fff"}}>▶ Abrir vídeo</a></div>}
-            </div>
-          </div>); })()}
         <h2>{t("willLearn")}</h2>
         <ul className="learn-list">{course.learn.map((l,i)=><li key={i}>{l}</li>)}</ul>
         <h2>{t("content")}</h2>
@@ -2302,7 +2302,7 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
               <button className="btn-primary" onClick={()=>setShowCreate(true)}>+ Criar conta</button>
             </div>
           </div>
-          {instructors.length===0? <p style={{color:"#6a6f73"}}>Nenhum instrutor/admin cadastrado. Use “Criar conta” para adicionar.</p> :
+          {instructors.length===0? <p style={{color:"#6a6f73"}}>Nenhum instrutor/admin cadastrado. Use "Criar conta" para adicionar.</p> :
           <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Telefone</th><th>Status</th><th>Ações</th></tr></thead>
             <tbody>{instructors.map(u=>(
               <tr key={u.id}>
@@ -2493,7 +2493,7 @@ function FooterEditor({columns,setColumns}){
   const removeColumn=(ci)=>update(columns.filter((_,i)=>i!==ci));
   return (
     <div>
-      <p style={{color:"#6a6f73",marginBottom:14,fontSize:14}}>Edite as colunas e os links do rodapé. Links do tipo “Página” abrem uma página própria com o conteúdo que você escrever (ex.: Política de privacidade). Os tipos Catálogo, Instrutor e Administração levam às respectivas áreas.</p>
+      <p style={{color:"#6a6f73",marginBottom:14,fontSize:14}}>Edite as colunas e os links do rodapé. Links do tipo "Página" abrem uma página própria com o conteúdo que você escrever (ex.: Política de privacidade). Os tipos Catálogo, Instrutor e Administração levam às respectivas áreas.</p>
       {columns.map((col,ci)=>(
         <div className="form-card" key={col.id}>
           <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:12}}>
