@@ -509,7 +509,7 @@ function App(){
   const t = k => (tOverrides[lang]&&tOverrides[lang][k]) || (I18N[lang]&&I18N[lang][k]) || (tOverrides.pt&&tOverrides.pt[k]) || I18N.pt[k] || k;
 
   const [categories,setCategories]=useState(INITIAL_CATEGORIES);
-  const [courses,setCourses]=useState(INITIAL_COURSES);
+  const [courses,setCourses]=useState([]);
   const [users,setUsers]=useState([]);
   const [emailTemplates,setEmailTemplates]=useState({
     welcome:{subject:"Bem-vindo à Jewdemy!", body:"Olá {nome}, que bom ter você na Jewdemy. Bons estudos!"},
@@ -943,19 +943,8 @@ function App(){
     }
   };
   const seedExamplesIfEmpty=async()=>{
-    if(!SB) return;
-    const { data:existing }=await SB.from("courses").select("id").limit(1);
-    if(existing && existing.length) return;
-    for(const ex of INITIAL_COURSES){
-      const { data:row }=await SB.from("courses").insert({
-        author_id:null, author_name:ex.author||"", author_bio:ex.authorBio||"",
-        title:ex.title, category:ex.cat, level:ex.level, lang:ex.lang,
-        price:ex.price, old_price:ex.old, description:ex.desc, learn:ex.learn||[],
-        thumb:ex.thumb||null, women_only:!!ex.womenOnly, open_to_non_jews:!!ex.openToNonJews,
-        active:ex.active!==false, students:ex.students||0
-      }).select().single();
-      if(row) await saveStructure(row.id, courseSections(ex));
-    }
+    // Desativado: não cria mais cursos de exemplo automaticamente.
+    return;
   };
 
   const toggleCourseActive=async(id)=>{
