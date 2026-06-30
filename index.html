@@ -2372,13 +2372,13 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
               <div className="field"><label>{t("bodyLbl")} <span className="hint">{t("useNameCourseHint")}</span></label>
                 <textarea rows="3" value={tpl.body} onChange={e=>updateTpl(key,"body",e.target.value)}></textarea></div>
             </div>))}
-          <NewTemplate onAdd={(label,subject,body)=>{
+          <NewTemplate t={t} onAdd={(label,subject,body)=>{
             const key="tpl_"+Date.now();
             setEmailTemplates(t=>({...t,[key]:{label,subject,body}}));
           }}/>
         </div>}
 
-      {tab==="batch" && <BatchEmail onBatch={onBatch} emailTemplates={emailTemplates} onTestEmail={onTestEmail}/>}
+      {tab==="batch" && <BatchEmail t={t} onBatch={onBatch} emailTemplates={emailTemplates} onTestEmail={onTestEmail}/>}
 
       {tab==="footer" && <FooterEditor t={t} columns={footerColumns} setColumns={setFooterColumns}/>}
       {tab==="help" && <HelpEditor t={t} content={helpContent} onSave={onSaveHelp}/>}
@@ -2611,7 +2611,7 @@ function FooterEditor({t,columns,setColumns}){
   );
 }
 
-function NewTemplate({onAdd}){
+function NewTemplate({t,onAdd}){
   const [label,setLabel]=useState(""); const [subject,setSubject]=useState(""); const [body,setBody]=useState("");
   return (
     <div className="form-card" style={{borderStyle:"dashed"}}>
@@ -2625,7 +2625,7 @@ function NewTemplate({onAdd}){
   );
 }
 
-function BatchEmail({onBatch,emailTemplates,onTestEmail}){
+function BatchEmail({t,onBatch,emailTemplates,onTestEmail}){
   const [recipients,setRecipients]=useState("all");
   const [oneEmail,setOneEmail]=useState("");
   const [subject,setSubject]=useState("");
