@@ -296,11 +296,11 @@ const mapProfile = (p, email) => p ? ({
 const LOGO = "data:image/png;base64,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";
 // ============ i18n ============
 const I18N = {
-  pt:{"search": "O que você quer aprender?", "myCourses": "Meus cursos", "teach": "Ensinar", "login": "Entrar", "logout": "Sair", "wishlist": "Favoritos", "messages": "Mensagens", "profile": "Meu perfil", "admin": "Administração", "heroTitle": "Aprenda qualquer coisa, no seu ritmo", "heroSub": "Cursos de Torá, Halachá, Talmud, história, hebraico e muito mais. Acesso vitalício.", "featured": "Cursos em destaque", "results": "Resultados para", "noCourses": "Nenhum curso encontrado.", "category": "Categoria", "level": "Nível", "language": "Idioma", "all": "Todos", "instructorFilter": "Instrutor", "addCart": "Adicionar ao carrinho", "inCart": "Já está no carrinho", "buyNow": "Comprar agora", "haveCourse": "Você já tem este curso", "goCourse": "Ir para o curso", "willLearn": "O que você vai aprender", "content": "Conteúdo do curso", "description": "Descrição", "students": "alunos inscritos", "createdBy": "Criado por", "cart": "Carrinho", "empty": "Seu carrinho está vazio.", "total": "Total", "checkout": "Finalizar compra", "loginToContinue": "Faça login para continuar", "beginner": "Iniciante", "intermediate": "Intermediário", "advanced": "Avançado", "markDone": "Marcar como concluída", "markUndone": "Marcar como não concluída", "courseContent": "Conteúdo do curso", "completed": "concluído", "resources": "Recursos para download", "explore": "Explorar cursos", "noMine": "Você ainda não tem cursos.", "back": "Voltar", "catalog": "Catálogo", "studentArea": "Área do aluno", "instructorArea": "Área do instrutor", "createCourse": "Criar curso", "newCourse": "Criar novo curso", "saveChanges": "Salvar alterações", "publishCourse": "Publicar curso", "title": "Título", "priceLbl": "Preço (R$)", "oldPriceLbl": "Preço antigo (R$)", "onePerLine": "(um por linha)", "sectionsLessons": "Seções e aulas", "lessonTitle": "Título da aula", "duration": "Duração", "videoLbl": "Vídeo", "quizLbl": "Quiz", "resourcesLbl": "Recursos", "addLesson": "+ Adicionar aula", "section": "Seção", "addSection": "+ Adicionar seção", "removeSection": "Remover seção", "sectionTitle": "Título da seção (opcional)", "coverImage": "Imagem de capa (thumbnail)", "chooseImage": "Escolher imagem", "remove": "Remover", "noCover": "sem capa", "name": "Nome", "phone": "Telefone", "cityLbl": "Cidade onde mora", "communityLbl": "Qual comunidade você frequenta?", "changePhoto": "Trocar foto", "noConversations": "Nenhuma conversa ainda.", "writeMessage": "Escreva uma mensagem...", "send": "Enviar", "nextLesson": "Próxima aula →", "studentQuestions": "Perguntas dos alunos (Q&A)", "askPlaceholder": "Faça uma pergunta sobre o curso...", "ask": "Perguntar", "noQuestions": "Ainda não há perguntas. Seja o primeiro!", "instructorAnswer": "Resposta do instrutor:", "chatWith": "Conversa direta com o instrutor", "firstMessage": "Envie a primeira mensagem.", "currentLesson": "Aula atual:", "instLoginTitle": "Área do instrutor", "instLoginSub": "Acesso exclusivo para instrutores. Use o e-mail e senha da sua conta de instrutor.", "enterAsInstructor": "Entrar como instrutor", "instAccountsNote": "As contas de instrutor são criadas pela administração.", "studentOnly": "Esta área é exclusiva para alunos.", "instructorOnly": "Esta área é exclusiva para instrutores.", "goToCatalog": "Ir ao catálogo", "noPublished": "Você ainda não publicou cursos.", "quizSubmit": "Enviar respostas", "quizScore": "Sua nota", "quizCorrect": "Resposta correta", "quizRetry": "Refazer quiz", "addQuestion": "+ Adicionar pergunta", "question": "Pergunta", "correctAnswer": "Resposta correta", "students2": "alunos", "lessons2": "aulas", "loginTitle": "Entrar na Jewdemy", "signupTitle": "Criar conta de aluno", "emailLbl": "Email", "passwordLbl": "Senha", "googleLogin": "Entrar com Google", "orEmail": "— ou com e-mail —", "createAccount": "Criar conta", "noAccount": "Não tem conta?", "signupLink": "Cadastre-se", "haveAccount": "Já tem conta?", "loginLink": "Entrar", "areYouJewish": "Você é judeu?", "yes": "Sim", "no": "Não", "optional": "(opcional)", "gender": "Gênero", "male": "Masculino", "female": "Feminino", "womenOnly": "Somente para mulheres", "openToNonJews": "Aberto para não-judeus", "instructorName": "Instrutor", "applyTitle": "Quero ser instrutor", "applyIntro": "Preencha o formulário abaixo para solicitar tornar-se instrutor. Nossa equipe entrará em contato.", "applyArea": "Área de ensino", "applyExperience": "Experiência e qualificações", "applySubmit": "Enviar pedido", "applySuccess": "Pedido enviado! Entraremos em contato.","contactTitle":"Fale conosco","contactIntro":"Envie sua mensagem e entraremos em contato.","contactMessage":"Mensagem","lessonType":"Tipo de aula","textLbl":"Texto","freeCourses":"Cursos gratuitos","forgotPassword":"Esqueci minha senha","recoverTitle":"Recuperar senha","recoverIntro":"Digite seu e-mail e enviaremos instruções para recuperar sua senha.","recoverSubmit":"Enviar","recoverSent":"E-mail de recuperação enviado!","recoverNotFound":"Nenhuma conta com esse e-mail.","errEmail":"E-mail inválido.","errPhone":"Telefone inválido (use apenas números).","errPassword":"A senha deve ter ao menos 6 caracteres.","errRequired":"Preencha todos os campos.","exportStudents":"Exportar alunos (CSV)","exportInstructors":"Exportar instrutores (CSV)","active":"Ativo","inactive":"Inativo","courseActive":"Curso ativo","helpTitle":"Central de ajuda","helpIntro":"Encontre respostas rápidas ou envie sua dúvida.","faqTitle":"Perguntas frequentes","helpFormTitle":"Precisa de mais ajuda? Fale conosco","subject":"Assunto","completeProfileTitle":"Complete seu cadastro","completeProfileIntro":"Para continuar, precisamos de algumas informações suas."},
-  en:{"search": "What do you want to learn?", "myCourses": "My courses", "teach": "Teach", "login": "Log in", "logout": "Log out", "wishlist": "Wishlist", "messages": "Messages", "profile": "My profile", "admin": "Admin", "heroTitle": "Learn anything, at your own pace", "heroSub": "Courses on Torah, Halacha, Talmud, history, Hebrew and more. Lifetime access.", "featured": "Featured courses", "results": "Results for", "noCourses": "No courses found.", "category": "Category", "level": "Level", "language": "Language", "all": "All", "instructorFilter": "Instructor", "addCart": "Add to cart", "inCart": "Already in cart", "buyNow": "Buy now", "haveCourse": "You already own this course", "goCourse": "Go to course", "willLearn": "What you'll learn", "content": "Course content", "description": "Description", "students": "students enrolled", "createdBy": "Created by", "cart": "Cart", "empty": "Your cart is empty.", "total": "Total", "checkout": "Checkout", "loginToContinue": "Log in to continue", "beginner": "Beginner", "intermediate": "Intermediate", "advanced": "Advanced", "markDone": "Mark as complete", "markUndone": "Mark as incomplete", "courseContent": "Course content", "completed": "completed", "resources": "Downloadable resources", "explore": "Explore courses", "noMine": "You don't have any courses yet.", "back": "Back", "catalog": "Catalog", "studentArea": "Student area", "instructorArea": "Instructor area", "createCourse": "Create course", "newCourse": "Create new course", "saveChanges": "Save changes", "publishCourse": "Publish course", "title": "Title", "priceLbl": "Price (R$)", "oldPriceLbl": "Old price (R$)", "onePerLine": "(one per line)", "sectionsLessons": "Sections and lessons", "lessonTitle": "Lesson title", "duration": "Duration", "videoLbl": "Video", "quizLbl": "Quiz", "resourcesLbl": "Resources", "addLesson": "+ Add lesson", "section": "Section", "addSection": "+ Add section", "removeSection": "Remove section", "sectionTitle": "Section title (optional)", "coverImage": "Cover image (thumbnail)", "chooseImage": "Choose image", "remove": "Remove", "noCover": "no cover", "name": "Name", "phone": "Phone", "cityLbl": "City where you live", "communityLbl": "Which community do you attend?", "changePhoto": "Change photo", "noConversations": "No conversations yet.", "writeMessage": "Write a message...", "send": "Send", "nextLesson": "Next lesson →", "studentQuestions": "Student questions (Q&A)", "askPlaceholder": "Ask a question about the course...", "ask": "Ask", "noQuestions": "No questions yet. Be the first!", "instructorAnswer": "Instructor's answer:", "chatWith": "Direct chat with the instructor", "firstMessage": "Send the first message.", "currentLesson": "Current lesson:", "instLoginTitle": "Instructor area", "instLoginSub": "Instructors only. Use the email and password of your instructor account.", "enterAsInstructor": "Log in as instructor", "instAccountsNote": "Instructor accounts are created by the administration.", "studentOnly": "This area is for students only.", "instructorOnly": "This area is for instructors only.", "goToCatalog": "Go to catalog", "noPublished": "You haven't published any courses yet.", "quizSubmit": "Submit answers", "quizScore": "Your score", "quizCorrect": "Correct answer", "quizRetry": "Retake quiz", "addQuestion": "+ Add question", "question": "Question", "correctAnswer": "Correct answer", "students2": "students", "lessons2": "lessons", "loginTitle": "Log in to Jewdemy", "signupTitle": "Create student account", "emailLbl": "Email", "passwordLbl": "Password", "googleLogin": "Log in with Google", "orEmail": "— or with email —", "createAccount": "Create account", "noAccount": "No account?", "signupLink": "Sign up", "haveAccount": "Already have an account?", "loginLink": "Log in", "areYouJewish": "Are you Jewish?", "yes": "Yes", "no": "No", "optional": "(optional)", "gender": "Gender", "male": "Male", "female": "Female", "womenOnly": "Women only", "openToNonJews": "Open to non-Jews", "instructorName": "Instructor", "applyTitle": "Become an instructor", "applyIntro": "Fill out the form below to apply to become an instructor. Our team will contact you.", "applyArea": "Teaching area", "applyExperience": "Experience and qualifications", "applySubmit": "Submit request", "applySuccess": "Request sent! We'll be in touch.","contactTitle":"Contact us","contactIntro":"Send us your message and we will get back to you.","contactMessage":"Message","lessonType":"Lesson type","textLbl":"Text","freeCourses":"Free courses","forgotPassword":"Forgot my password","recoverTitle":"Recover password","recoverIntro":"Enter your email and we will send instructions to recover your password.","recoverSubmit":"Send","recoverSent":"Recovery email sent!","recoverNotFound":"No account with that email.","errEmail":"Invalid email.","errPhone":"Invalid phone (digits only).","errPassword":"Password must be at least 6 characters.","errRequired":"Please fill in all fields.","exportStudents":"Export students (CSV)","exportInstructors":"Export instructors (CSV)","active":"Active","inactive":"Inactive","courseActive":"Course active","helpTitle":"Help center","helpIntro":"Find quick answers or send us your question.","faqTitle":"Frequently asked questions","helpFormTitle":"Need more help? Contact us","subject":"Subject","completeProfileTitle":"Complete your profile","completeProfileIntro":"To continue, we need a few details from you."},
-  es:{"search": "¿Qué quieres aprender?", "myCourses": "Mis cursos", "teach": "Enseñar", "login": "Entrar", "logout": "Salir", "wishlist": "Favoritos", "messages": "Mensajes", "profile": "Mi perfil", "admin": "Administración", "heroTitle": "Aprende cualquier cosa, a tu ritmo", "heroSub": "Cursos de Torá, Halajá, Talmud, historia, hebreo y más. Acceso de por vida.", "featured": "Cursos destacados", "results": "Resultados para", "noCourses": "No se encontraron cursos.", "category": "Categoría", "level": "Nivel", "language": "Idioma", "all": "Todos", "instructorFilter": "Instructor", "addCart": "Añadir al carrito", "inCart": "Ya está en el carrito", "buyNow": "Comprar ahora", "haveCourse": "Ya tienes este curso", "goCourse": "Ir al curso", "willLearn": "Lo que aprenderás", "content": "Contenido del curso", "description": "Descripción", "students": "estudiantes inscritos", "createdBy": "Creado por", "cart": "Carrito", "empty": "Tu carrito está vacío.", "total": "Total", "checkout": "Finalizar compra", "loginToContinue": "Inicia sesión para continuar", "beginner": "Principiante", "intermediate": "Intermedio", "advanced": "Avanzado", "markDone": "Marcar como completada", "markUndone": "Marcar como no completada", "courseContent": "Contenido del curso", "completed": "completado", "resources": "Recursos descargables", "explore": "Explorar cursos", "noMine": "Aún no tienes cursos.", "back": "Volver", "catalog": "Catálogo", "studentArea": "Área del estudiante", "instructorArea": "Área del instructor", "createCourse": "Crear curso", "newCourse": "Crear nuevo curso", "saveChanges": "Guardar cambios", "publishCourse": "Publicar curso", "title": "Título", "priceLbl": "Precio (R$)", "oldPriceLbl": "Precio anterior (R$)", "onePerLine": "(uno por línea)", "sectionsLessons": "Secciones y lecciones", "lessonTitle": "Título de la lección", "duration": "Duración", "videoLbl": "Video", "quizLbl": "Quiz", "resourcesLbl": "Recursos", "addLesson": "+ Añadir lección", "section": "Sección", "addSection": "+ Añadir sección", "removeSection": "Eliminar sección", "sectionTitle": "Título de la sección (opcional)", "coverImage": "Imagen de portada", "chooseImage": "Elegir imagen", "remove": "Eliminar", "noCover": "sin portada", "name": "Nombre", "phone": "Teléfono", "cityLbl": "Ciudad donde vives", "communityLbl": "¿Qué comunidad frecuentas?", "changePhoto": "Cambiar foto", "noConversations": "Aún no hay conversaciones.", "writeMessage": "Escribe un mensaje...", "send": "Enviar", "nextLesson": "Siguiente lección →", "studentQuestions": "Preguntas de los estudiantes (Q&A)", "askPlaceholder": "Haz una pregunta sobre el curso...", "ask": "Preguntar", "noQuestions": "Aún no hay preguntas. ¡Sé el primero!", "instructorAnswer": "Respuesta del instructor:", "chatWith": "Chat directo con el instructor", "firstMessage": "Envía el primer mensaje.", "currentLesson": "Lección actual:", "instLoginTitle": "Área del instructor", "instLoginSub": "Solo instructores. Usa el correo y la contraseña de tu cuenta de instructor.", "enterAsInstructor": "Entrar como instructor", "instAccountsNote": "Las cuentas de instructor se crean desde la administración.", "studentOnly": "Esta área es exclusiva para estudiantes.", "instructorOnly": "Esta área es exclusiva para instructores.", "goToCatalog": "Ir al catálogo", "noPublished": "Aún no has publicado cursos.", "quizSubmit": "Enviar respuestas", "quizScore": "Tu nota", "quizCorrect": "Respuesta correcta", "quizRetry": "Rehacer quiz", "addQuestion": "+ Añadir pregunta", "question": "Pregunta", "correctAnswer": "Respuesta correcta", "students2": "estudiantes", "lessons2": "lecciones", "loginTitle": "Entrar en Jewdemy", "signupTitle": "Crear cuenta de estudiante", "emailLbl": "Correo", "passwordLbl": "Contraseña", "googleLogin": "Entrar con Google", "orEmail": "— o con correo —", "createAccount": "Crear cuenta", "noAccount": "¿No tienes cuenta?", "signupLink": "Regístrate", "haveAccount": "¿Ya tienes cuenta?", "loginLink": "Entrar", "areYouJewish": "¿Eres judío?", "yes": "Sí", "no": "No", "optional": "(opcional)", "gender": "Género", "male": "Masculino", "female": "Femenino", "womenOnly": "Solo para mujeres", "openToNonJews": "Abierto a no judíos", "instructorName": "Instructor", "applyTitle": "Quiero ser instructor", "applyIntro": "Completa el formulario para solicitar ser instructor. Nuestro equipo te contactará.", "applyArea": "Área de enseñanza", "applyExperience": "Experiencia y calificaciones", "applySubmit": "Enviar solicitud", "applySuccess": "¡Solicitud enviada! Te contactaremos.","contactTitle":"Contáctanos","contactIntro":"Envíanos tu mensaje y te responderemos.","contactMessage":"Mensaje","lessonType":"Tipo de lección","textLbl":"Texto","freeCourses":"Cursos gratuitos","forgotPassword":"Olvidé mi contraseña","recoverTitle":"Recuperar contraseña","recoverIntro":"Ingresa tu correo y te enviaremos instrucciones para recuperar tu contraseña.","recoverSubmit":"Enviar","recoverSent":"¡Correo de recuperación enviado!","recoverNotFound":"No hay cuenta con ese correo.","errEmail":"Correo inválido.","errPhone":"Teléfono inválido (solo números).","errPassword":"La contraseña debe tener al menos 6 caracteres.","errRequired":"Completa todos los campos.","exportStudents":"Exportar estudiantes (CSV)","exportInstructors":"Exportar instructores (CSV)","active":"Activo","inactive":"Inactivo","courseActive":"Curso activo","helpTitle":"Centro de ayuda","helpIntro":"Encuentra respuestas rápidas o envíanos tu duda.","faqTitle":"Preguntas frecuentes","helpFormTitle":"¿Necesitas más ayuda? Contáctanos","subject":"Asunto","completeProfileTitle":"Completa tu registro","completeProfileIntro":"Para continuar, necesitamos algunos datos tuyos."},
-  he:{"search": "מה תרצה ללמוד?", "myCourses": "הקורסים שלי", "teach": "ללמד", "login": "כניסה", "logout": "יציאה", "wishlist": "מועדפים", "messages": "הודעות", "profile": "הפרופיל שלי", "admin": "ניהול", "heroTitle": "למד כל דבר, בקצב שלך", "heroSub": "קורסים בתורה, הלכה, תלמוד, היסטוריה, עברית ועוד. גישה לכל החיים.", "featured": "קורסים מומלצים", "results": "תוצאות עבור", "noCourses": "לא נמצאו קורסים.", "category": "קטגוריה", "level": "רמה", "language": "שפה", "all": "הכול", "instructorFilter": "מרצה", "addCart": "הוסף לעגלה", "inCart": "כבר בעגלה", "buyNow": "קנה עכשיו", "haveCourse": "הקורס כבר שלך", "goCourse": "מעבר לקורס", "willLearn": "מה תלמד", "content": "תוכן הקורס", "description": "תיאור", "students": "תלמידים רשומים", "createdBy": "נוצר על ידי", "cart": "עגלה", "empty": "העגלה ריקה.", "total": "סך הכול", "checkout": "לתשלום", "loginToContinue": "התחבר כדי להמשיך", "beginner": "מתחיל", "intermediate": "בינוני", "advanced": "מתקדם", "markDone": "סמן כהושלם", "markUndone": "בטל סימון השלמה", "courseContent": "תוכן הקורס", "completed": "הושלם", "resources": "קבצים להורדה", "explore": "עיין בקורסים", "noMine": "אין לך עדיין קורסים.", "back": "חזרה", "catalog": "קטלוג", "studentArea": "אזור התלמיד", "instructorArea": "אזור המרצה", "createCourse": "צור קורס", "newCourse": "צור קורס חדש", "saveChanges": "שמור שינויים", "publishCourse": "פרסם קורס", "title": "כותרת", "priceLbl": "מחיר (R$)", "oldPriceLbl": "מחיר קודם (R$)", "onePerLine": "(אחד בכל שורה)", "sectionsLessons": "מקטעים ושיעורים", "lessonTitle": "כותרת השיעור", "duration": "משך", "videoLbl": "וידאו", "quizLbl": "מבחן", "resourcesLbl": "קבצים", "addLesson": "+ הוסף שיעור", "section": "מקטע", "addSection": "+ הוסף מקטע", "removeSection": "הסר מקטע", "sectionTitle": "כותרת המקטע (רשות)", "coverImage": "תמונת שער", "chooseImage": "בחר תמונה", "remove": "הסר", "noCover": "אין תמונה", "name": "שם", "phone": "טלפון", "cityLbl": "עיר מגורים", "communityLbl": "לאיזו קהילה אתה משתייך?", "changePhoto": "החלף תמונה", "noConversations": "אין עדיין שיחות.", "writeMessage": "כתוב הודעה...", "send": "שלח", "nextLesson": "השיעור הבא →", "studentQuestions": "שאלות תלמידים (Q&A)", "askPlaceholder": "שאל שאלה על הקורס...", "ask": "שאל", "noQuestions": "אין עדיין שאלות. היה הראשון!", "instructorAnswer": "תשובת המרצה:", "chatWith": "צ'אט ישיר עם המרצה", "firstMessage": "שלח את ההודעה הראשונה.", "currentLesson": "השיעור הנוכחי:", "instLoginTitle": "אזור המרצה", "instLoginSub": "למרצים בלבד. השתמש באימייל ובסיסמה של חשבון המרצה שלך.", "enterAsInstructor": "כניסה כמרצה", "instAccountsNote": "חשבונות מרצה נוצרים על ידי ההנהלה.", "studentOnly": "אזור זה מיועד לתלמידים בלבד.", "instructorOnly": "אזור זה מיועד למרצים בלבד.", "goToCatalog": "לקטלוג", "noPublished": "עדיין לא פרסמת קורסים.", "quizSubmit": "שלח תשובות", "quizScore": "הציון שלך", "quizCorrect": "תשובה נכונה", "quizRetry": "נסה שוב", "addQuestion": "+ הוסף שאלה", "question": "שאלה", "correctAnswer": "תשובה נכונה", "students2": "תלמידים", "lessons2": "שיעורים", "loginTitle": "כניסה ל-Jewdemy", "signupTitle": "יצירת חשבון תלמיד", "emailLbl": "אימייל", "passwordLbl": "סיסמה", "googleLogin": "כניסה עם Google", "orEmail": "— או עם אימייל —", "createAccount": "צור חשבון", "noAccount": "אין לך חשבון?", "signupLink": "הרשמה", "haveAccount": "יש לך חשבון?", "loginLink": "כניסה", "areYouJewish": "האם אתה יהודי?", "yes": "כן", "no": "לא", "optional": "(רשות)", "gender": "מגדר", "male": "זכר", "female": "נקבה", "womenOnly": "לנשים בלבד", "openToNonJews": "פתוח ללא-יהודים", "instructorName": "מרצה", "applyTitle": "אני רוצה להיות מרצה", "applyIntro": "מלא את הטופס כדי לבקש להפוך למרצה. הצוות שלנו ייצור איתך קשר.", "applyArea": "תחום הוראה", "applyExperience": "ניסיון והסמכות", "applySubmit": "שלח בקשה", "applySuccess": "הבקשה נשלחה! ניצור איתך קשר.","contactTitle":"צור קשר","contactIntro":"שלח לנו הודעה ונחזור אליך.","contactMessage":"הודעה","lessonType":"סוג שיעור","textLbl":"טקסט","freeCourses":"קורסים חינם","forgotPassword":"שכחתי סיסמה","recoverTitle":"שחזור סיסמה","recoverIntro":"הזן את האימייל שלך ונשלח הוראות לשחזור הסיסמה.","recoverSubmit":"שלח","recoverSent":"אימייל שחזור נשלח!","recoverNotFound":"אין חשבון עם אימייל זה.","errEmail":"אימייל לא תקין.","errPhone":"טלפון לא תקין (ספרות בלבד).","errPassword":"הסיסמה חייבת להכיל לפחות 6 תווים.","errRequired":"מלא את כל השדות.","exportStudents":"ייצוא תלמידים (CSV)","exportInstructors":"ייצוא מרצים (CSV)","active":"פעיל","inactive":"לא פעיל","courseActive":"קורס פעיל","helpTitle":"מרכז עזרה","helpIntro":"מצא תשובות מהירות או שלח שאלה.","faqTitle":"שאלות נפוצות","helpFormTitle":"צריך עוד עזרה? צור קשר","subject":"נושא","completeProfileTitle":"השלמת ההרשמה","completeProfileIntro":"כדי להמשיך, נצטרך כמה פרטים."},
-  fr:{"search": "Que voulez-vous apprendre ?", "myCourses": "Mes cours", "teach": "Enseigner", "login": "Connexion", "logout": "Déconnexion", "wishlist": "Favoris", "messages": "Messages", "profile": "Mon profil", "admin": "Administration", "heroTitle": "Apprenez tout, à votre rythme", "heroSub": "Cours de Torah, Halakha, Talmud, histoire, hébreu et plus. Accès à vie.", "featured": "Cours en vedette", "results": "Résultats pour", "noCourses": "Aucun cours trouvé.", "category": "Catégorie", "level": "Niveau", "language": "Langue", "all": "Tous", "instructorFilter": "Formateur", "addCart": "Ajouter au panier", "inCart": "Déjà dans le panier", "buyNow": "Acheter", "haveCourse": "Vous avez déjà ce cours", "goCourse": "Aller au cours", "willLearn": "Ce que vous apprendrez", "content": "Contenu du cours", "description": "Description", "students": "étudiants inscrits", "createdBy": "Créé par", "cart": "Panier", "empty": "Votre panier est vide.", "total": "Total", "checkout": "Paiement", "loginToContinue": "Connectez-vous pour continuer", "beginner": "Débutant", "intermediate": "Intermédiaire", "advanced": "Avancé", "markDone": "Marquer comme terminé", "markUndone": "Marquer comme non terminé", "courseContent": "Contenu du cours", "completed": "terminé", "resources": "Ressources téléchargeables", "explore": "Explorer les cours", "noMine": "Vous n'avez pas encore de cours.", "back": "Retour", "catalog": "Catalogue", "studentArea": "Espace étudiant", "instructorArea": "Espace formateur", "createCourse": "Créer un cours", "newCourse": "Créer un nouveau cours", "saveChanges": "Enregistrer", "publishCourse": "Publier le cours", "title": "Titre", "priceLbl": "Prix (R$)", "oldPriceLbl": "Ancien prix (R$)", "onePerLine": "(un par ligne)", "sectionsLessons": "Sections et leçons", "lessonTitle": "Titre de la leçon", "duration": "Durée", "videoLbl": "Vidéo", "quizLbl": "Quiz", "resourcesLbl": "Ressources", "addLesson": "+ Ajouter une leçon", "section": "Section", "addSection": "+ Ajouter une section", "removeSection": "Supprimer la section", "sectionTitle": "Titre de la section (facultatif)", "coverImage": "Image de couverture", "chooseImage": "Choisir une image", "remove": "Supprimer", "noCover": "sans couverture", "name": "Nom", "phone": "Téléphone", "cityLbl": "Ville où vous vivez", "communityLbl": "Quelle communauté fréquentez-vous ?", "changePhoto": "Changer la photo", "noConversations": "Aucune conversation.", "writeMessage": "Écrivez un message...", "send": "Envoyer", "nextLesson": "Leçon suivante →", "studentQuestions": "Questions des étudiants (Q&A)", "askPlaceholder": "Posez une question sur le cours...", "ask": "Demander", "noQuestions": "Aucune question pour l'instant. Soyez le premier !", "instructorAnswer": "Réponse du formateur :", "chatWith": "Discussion directe avec le formateur", "firstMessage": "Envoyez le premier message.", "currentLesson": "Leçon actuelle :", "instLoginTitle": "Espace formateur", "instLoginSub": "Formateurs uniquement. Utilisez l'email et le mot de passe de votre compte formateur.", "enterAsInstructor": "Se connecter comme formateur", "instAccountsNote": "Les comptes formateurs sont créés par l'administration.", "studentOnly": "Cet espace est réservé aux étudiants.", "instructorOnly": "Cet espace est réservé aux formateurs.", "goToCatalog": "Aller au catalogue", "noPublished": "Vous n'avez pas encore publié de cours.", "quizSubmit": "Envoyer les réponses", "quizScore": "Votre note", "quizCorrect": "Bonne réponse", "quizRetry": "Refaire le quiz", "addQuestion": "+ Ajouter une question", "question": "Question", "correctAnswer": "Bonne réponse", "students2": "étudiants", "lessons2": "leçons", "loginTitle": "Connexion à Jewdemy", "signupTitle": "Créer un compte étudiant", "emailLbl": "Email", "passwordLbl": "Mot de passe", "googleLogin": "Se connecter avec Google", "orEmail": "— ou par email —", "createAccount": "Créer un compte", "noAccount": "Pas de compte ?", "signupLink": "S'inscrire", "haveAccount": "Vous avez déjà un compte ?", "loginLink": "Connexion", "areYouJewish": "Êtes-vous juif ?", "yes": "Oui", "no": "Non", "optional": "(facultatif)", "gender": "Genre", "male": "Masculin", "female": "Féminin", "womenOnly": "Femmes uniquement", "openToNonJews": "Ouvert aux non-juifs", "instructorName": "Formateur", "applyTitle": "Devenir formateur", "applyIntro": "Remplissez le formulaire pour demander à devenir formateur. Notre équipe vous contactera.", "applyArea": "Domaine d'enseignement", "applyExperience": "Expérience et qualifications", "applySubmit": "Envoyer la demande", "applySuccess": "Demande envoyée ! Nous vous contacterons.","contactTitle":"Contactez-nous","contactIntro":"Envoyez votre message et nous vous répondrons.","contactMessage":"Message","lessonType":"Type de leçon","textLbl":"Texte","freeCourses":"Cours gratuits","forgotPassword":"Mot de passe oublié","recoverTitle":"Récupérer le mot de passe","recoverIntro":"Entrez votre email et nous vous enverrons les instructions.","recoverSubmit":"Envoyer","recoverSent":"Email de récupération envoyé !","recoverNotFound":"Aucun compte avec cet email.","errEmail":"Email invalide.","errPhone":"Téléphone invalide (chiffres uniquement).","errPassword":"Le mot de passe doit comporter au moins 6 caractères.","errRequired":"Veuillez remplir tous les champs.","exportStudents":"Exporter étudiants (CSV)","exportInstructors":"Exporter formateurs (CSV)","active":"Actif","inactive":"Inactif","courseActive":"Cours actif","helpTitle":"Centre d'aide","helpIntro":"Trouvez des réponses rapides ou envoyez votre question.","faqTitle":"Questions fréquentes","helpFormTitle":"Besoin d'aide ? Contactez-nous","subject":"Sujet","completeProfileTitle":"Complétez votre profil","completeProfileIntro":"Pour continuer, nous avons besoin de quelques informations."},
+  pt:{"search": "O que você quer aprender?", "myCourses": "Meus cursos", "teach": "Ensinar", "login": "Entrar", "logout": "Sair", "wishlist": "Favoritos", "messages": "Mensagens", "profile": "Meu perfil", "admin": "Administração", "heroTitle": "Aprenda qualquer coisa, no seu ritmo", "heroSub": "Cursos de Torá, Halachá, Talmud, história, hebraico e muito mais. Acesso vitalício.", "featured": "Cursos em destaque", "results": "Resultados para", "noCourses": "Nenhum curso encontrado.", "category": "Categoria", "level": "Nível", "language": "Idioma", "all": "Todos", "instructorFilter": "Instrutor", "addCart": "Adicionar ao carrinho", "inCart": "Já está no carrinho", "buyNow": "Comprar agora", "haveCourse": "Você já tem este curso", "goCourse": "Ir para o curso", "willLearn": "O que você vai aprender", "content": "Conteúdo do curso", "description": "Descrição", "students": "alunos inscritos", "createdBy": "Criado por", "cart": "Carrinho", "empty": "Seu carrinho está vazio.", "total": "Total", "checkout": "Finalizar compra", "loginToContinue": "Faça login para continuar", "beginner": "Iniciante", "intermediate": "Intermediário", "advanced": "Avançado", "markDone": "Marcar como concluída", "markUndone": "Marcar como não concluída", "courseContent": "Conteúdo do curso", "completed": "concluído", "resources": "Recursos para download", "explore": "Explorar cursos", "noMine": "Você ainda não tem cursos.", "back": "Voltar", "catalog": "Catálogo", "studentArea": "Área do aluno", "instructorArea": "Área do instrutor", "createCourse": "Criar curso", "newCourse": "Criar novo curso", "saveChanges": "Salvar alterações", "publishCourse": "Publicar curso", "title": "Título", "priceLbl": "Preço (R$)", "oldPriceLbl": "Preço antigo (R$)", "onePerLine": "(um por linha)", "sectionsLessons": "Seções e aulas", "lessonTitle": "Título da aula", "duration": "Duração", "videoLbl": "Vídeo", "quizLbl": "Quiz", "resourcesLbl": "Recursos", "addLesson": "+ Adicionar aula", "section": "Seção", "addSection": "+ Adicionar seção", "removeSection": "Remover seção", "sectionTitle": "Título da seção (opcional)", "coverImage": "Imagem de capa (thumbnail)", "chooseImage": "Escolher imagem", "remove": "Remover", "noCover": "sem capa", "name": "Nome", "phone": "Telefone", "cityLbl": "Cidade onde mora", "communityLbl": "Qual comunidade você frequenta?", "changePhoto": "Trocar foto", "noConversations": "Nenhuma conversa ainda.", "writeMessage": "Escreva uma mensagem...", "send": "Enviar", "nextLesson": "Próxima aula →", "studentQuestions": "Perguntas dos alunos (Q&A)", "askPlaceholder": "Faça uma pergunta sobre o curso...", "ask": "Perguntar", "noQuestions": "Ainda não há perguntas. Seja o primeiro!", "instructorAnswer": "Resposta do instrutor:", "chatWith": "Conversa direta com o instrutor", "firstMessage": "Envie a primeira mensagem.", "currentLesson": "Aula atual:", "instLoginTitle": "Área do instrutor", "instLoginSub": "Acesso exclusivo para instrutores. Use o e-mail e senha da sua conta de instrutor.", "enterAsInstructor": "Entrar como instrutor", "instAccountsNote": "As contas de instrutor são criadas pela administração.", "studentOnly": "Esta área é exclusiva para alunos.", "instructorOnly": "Esta área é exclusiva para instrutores.", "goToCatalog": "Ir ao catálogo", "noPublished": "Você ainda não publicou cursos.", "quizSubmit": "Enviar respostas", "quizScore": "Sua nota", "quizCorrect": "Resposta correta", "quizRetry": "Refazer quiz", "addQuestion": "+ Adicionar pergunta", "question": "Pergunta", "correctAnswer": "Resposta correta", "students2": "alunos", "lessons2": "aulas", "loginTitle": "Entrar na Jewdemy", "signupTitle": "Criar conta de aluno", "emailLbl": "Email", "passwordLbl": "Senha", "googleLogin": "Entrar com Google", "orEmail": "— ou com e-mail —", "createAccount": "Criar conta", "noAccount": "Não tem conta?", "signupLink": "Cadastre-se", "haveAccount": "Já tem conta?", "loginLink": "Entrar", "areYouJewish": "Você é judeu?", "yes": "Sim", "no": "Não", "optional": "(opcional)", "gender": "Gênero", "male": "Masculino", "female": "Feminino", "womenOnly": "Somente para mulheres", "openToNonJews": "Aberto para não-judeus", "instructorName": "Instrutor", "applyTitle": "Quero ser instrutor", "applyIntro": "Preencha o formulário abaixo para solicitar tornar-se instrutor. Nossa equipe entrará em contato.", "applyArea": "Área de ensino", "applyExperience": "Experiência e qualificações", "applySubmit": "Enviar pedido", "applySuccess": "Pedido enviado! Entraremos em contato.","contactTitle":"Fale conosco","contactIntro":"Envie sua mensagem e entraremos em contato.","contactMessage":"Mensagem","lessonType":"Tipo de aula","textLbl":"Texto","freeCourses":"Cursos gratuitos","forgotPassword":"Esqueci minha senha","recoverTitle":"Recuperar senha","recoverIntro":"Digite seu e-mail e enviaremos instruções para recuperar sua senha.","recoverSubmit":"Enviar","recoverSent":"E-mail de recuperação enviado!","recoverNotFound":"Nenhuma conta com esse e-mail.","errEmail":"E-mail inválido.","errPhone":"Telefone inválido (use apenas números).","errPassword":"A senha deve ter ao menos 6 caracteres.","errRequired":"Preencha todos os campos.","exportStudents":"Exportar alunos (CSV)","exportInstructors":"Exportar instrutores (CSV)","active":"Ativo","inactive":"Inativo","courseActive":"Curso ativo","helpTitle":"Central de ajuda","helpIntro":"Encontre respostas rápidas ou envie sua dúvida.","faqTitle":"Perguntas frequentes","helpFormTitle":"Precisa de mais ajuda? Fale conosco","subject":"Assunto","completeProfileTitle":"Complete seu cadastro","completeProfileIntro":"Para continuar, precisamos de algumas informações suas.","admTitle":"Administração","gCourses":"Cursos","gUsers":"Usuários","gEmails":"E-mails","gDesign":"Design","gSettings":"Configurações","tabCourses":"Cursos","tabCategories":"Categorias","tabStudents":"Alunos","tabInstructors":"Instrutores / Admin","tabRequests":"Pedidos de instrutor","tabTemplates":"Modelos","tabSend":"Enviar","tabSent":"Enviados","tabDesignSite":"Design Site","tabHomePage":"Página inicial","tabFooter":"Rodapé","tabHelpCenter":"Central de ajuda","tabLangs":"Idiomas e traduções","manageCats":"Gerenciar categorias","newCatPh":"Nova categoria","addBtn":"Adicionar","bulkDiscount":"Desconto geral (todos os cursos)","applyDiscountBtn":"Aplicar desconto","removeDiscountsBtn":"Remover descontos","discountHint2":"O preço original vira o preço \"de\" e o desconto vira o novo preço.","thAuthor":"Autor","thCategory":"Categoria","thPrice":"Preço","thLessons":"Aulas","thActive":"Ativo","thActions":"Ações","editCourseBtn":"Editar curso","deleteBtn":"Apagar","backToCourses":"← Voltar à lista de cursos","editingPrefix":"Editando","saveChangesBtn":"Salvar alterações","coursesWord":"Cursos","thTitle":"Título","thLevelH":"Nível","thLangH":"Idioma","siteLogo":"Logo do site","changeLogo":"Trocar logo","restoreDefault":"Restaurar padrão","colorsLbl":"Cores","mainColor":"Cor principal do site","restoreWord":"Restaurar","saveDesignBtn":"Salvar design","errNeedTitle":"Dê um título ao curso","errNeedLesson":"Adicione ao menos uma aula com título","phCourseTitle":"Ex.: Introdução ao Talmud","authorBioLbl":"Descrição do instrutor","authorBioHint":"(aparece na página do curso)","introVideoLbl":"Vídeo introdutório","introVideoHint":"(YouTube/Vimeo/Bunny — aparece só na apresentação do curso)","videoLinkLbl":"Link do vídeo (YouTube, Vimeo ou MP4)","videoLinkHint":"Cole o link do vídeo. Para cursos gratuitos, recomendamos YouTube.","optionWord":"Opção","phTopics":"Tópico 1\nTópico 2","noStudents":"Nenhum aluno cadastrado ainda.","thName":"Nome","thPhone":"Telefone","thCity":"Cidade","thCommunity":"Comunidade","thJewish":"Judeu?","thStatus":"Status","blockedWord":"Bloqueado","activeWord":"Ativo","editBtn":"Editar","messageBtn":"Mensagem","unblockBtn":"Desbloquear","blockBtn":"Bloquear","confirmDeleteUser":"Apagar esta conta permanentemente?","instructorsAdmins":"Instrutores / Administradores","createAccountBtn":"+ Criar conta","noInstructors":"Nenhum instrutor/admin cadastrado. Use o botão Criar conta para adicionar.","thType":"Tipo","roleAdmin":"Administrador","roleInstructor":"Instrutor","reqTitle":"Pedidos para virar instrutor","noRequests":"Nenhum pedido recebido ainda.","areaLbl":"Área","reqApproved":"✓ Pedido aprovado — conta criada","createInstructorBtn":"Criar conta de instrutor","sentTitle":"E-mails enviados","noSent":"Nenhum e-mail enviado ainda.","toWord":"para","emailToPrefix":"E-mail para","msgToPrefix":"Mensagem para","newTplTitle":"+ Criar novo modelo de e-mail","tplName":"Nome do modelo","tplNamePh":"Ex.: Promoção, Lembrete...","bodyLbl":"Corpo","useNameHint":"(use {nome})","fillAll":"Preencha todos os campos","addTplBtn":"Adicionar modelo","batchTitle":"Criar e enviar e-mail em massa","testHint":"Antes de enviar para todos, faça um teste (envia para o seu e-mail e mostra o erro, se houver).","testBtn":"Enviar e-mail de teste para mim","contentLbl":"Conteúdo","freeText":"Texto livre","tplPrefix":"Modelo","recipientsLbl":"Destinatários","recAll":"Todos os usuários","recStudents":"Apenas alunos","recInstructors":"Apenas instrutores","recOne":"Um usuário específico","recipientEmail":"E-mail do destinatário","msgLbl":"Mensagem","usePersonalizeHint":"(use {nome} para personalizar)","fillSubjBody":"Preencha assunto e mensagem","invalidRecipient":"E-mail do destinatário inválido","sendEmailBtn":"Enviar e-mail","fillNameEmailPw":"Preencha nome, email e senha","createAccountTitle":"Criar conta","welcomeTplLabel":"Boas-vindas","enrollTplLabel":"Inscrição em curso","welcomeTplFull":"Boas-vindas (ao se inscrever no site)","deleteTplBtn":"Apagar modelo","useNameCourseHint":"(use {nome} e {curso})","editUserTitle":"Editar usuário","editCourseTitle":"Editar curso","photoLbl":"Foto","roleStudent":"Aluno","saveWord":"Salvar","oldPriceShort":"Preço antigo","pwPh":"(senha)","forLabel":"Para","introText":"Texto de introdução","faqsTitle":"Perguntas e respostas","answerWord":"Resposta","moveUp":"Subir","moveDown":"Descer","saveHelpBtn":"Salvar central de ajuda","footerIntro":"Edite as colunas e os links do rodapé. Links do tipo Página abrem uma página própria com o conteúdo que você escrever. Os tipos Catálogo, Instrutor e Administração levam às respectivas áreas.","newLink":"Novo link","newColumn":"Nova coluna","removeColumn":"Remover coluna","linkText":"Texto do link","ownPage":"Página própria","pageContent":"Conteúdo da página","addLinkBtn":"+ Adicionar link","addColumnBtn":"+ Adicionar coluna","homeIntro":"Personalize o banner, os textos de destaque e os cursos exibidos na página inicial.","bannerTitle":"Banner do destaque","removeBanner":"Remover banner","noBanner":"Sem banner — usando o gradiente padrão","heroTextsTitle":"Textos do destaque","leaveEmptyHint":"(deixe vazio p/ usar o padrão)","subtitleLbl":"Subtítulo","mostWatchedTitle":"🔥 Mais assistidos","suggestedTitle":"✨ Sugeridos para você","saveHomeBtn":"Salvar página inicial","selectedSuffix":"selecionado(s)","noCoursesAvail":"Nenhum curso disponível.","langsIntro":"Escolha os idiomas disponíveis no site e edite os textos de cada idioma.","activeLangsTitle":"Idiomas ativos","selectOneLang":"Selecione ao menos um idioma.","editTransTitle":"Editar traduções","searchTextPh":"Buscar texto...","transHint":"Deixe igual ao padrão para não sobrescrever. As alterações valem para todos os visitantes.","saveLangsBtn":"Salvar idiomas e traduções","adminRestricted":"Esta área é restrita a administradores. Faça login com uma conta de administrador para acessar."},
+  en:{"search": "What do you want to learn?", "myCourses": "My courses", "teach": "Teach", "login": "Log in", "logout": "Log out", "wishlist": "Wishlist", "messages": "Messages", "profile": "My profile", "admin": "Admin", "heroTitle": "Learn anything, at your own pace", "heroSub": "Courses on Torah, Halacha, Talmud, history, Hebrew and more. Lifetime access.", "featured": "Featured courses", "results": "Results for", "noCourses": "No courses found.", "category": "Category", "level": "Level", "language": "Language", "all": "All", "instructorFilter": "Instructor", "addCart": "Add to cart", "inCart": "Already in cart", "buyNow": "Buy now", "haveCourse": "You already own this course", "goCourse": "Go to course", "willLearn": "What you'll learn", "content": "Course content", "description": "Description", "students": "students enrolled", "createdBy": "Created by", "cart": "Cart", "empty": "Your cart is empty.", "total": "Total", "checkout": "Checkout", "loginToContinue": "Log in to continue", "beginner": "Beginner", "intermediate": "Intermediate", "advanced": "Advanced", "markDone": "Mark as complete", "markUndone": "Mark as incomplete", "courseContent": "Course content", "completed": "completed", "resources": "Downloadable resources", "explore": "Explore courses", "noMine": "You don't have any courses yet.", "back": "Back", "catalog": "Catalog", "studentArea": "Student area", "instructorArea": "Instructor area", "createCourse": "Create course", "newCourse": "Create new course", "saveChanges": "Save changes", "publishCourse": "Publish course", "title": "Title", "priceLbl": "Price (R$)", "oldPriceLbl": "Old price (R$)", "onePerLine": "(one per line)", "sectionsLessons": "Sections and lessons", "lessonTitle": "Lesson title", "duration": "Duration", "videoLbl": "Video", "quizLbl": "Quiz", "resourcesLbl": "Resources", "addLesson": "+ Add lesson", "section": "Section", "addSection": "+ Add section", "removeSection": "Remove section", "sectionTitle": "Section title (optional)", "coverImage": "Cover image (thumbnail)", "chooseImage": "Choose image", "remove": "Remove", "noCover": "no cover", "name": "Name", "phone": "Phone", "cityLbl": "City where you live", "communityLbl": "Which community do you attend?", "changePhoto": "Change photo", "noConversations": "No conversations yet.", "writeMessage": "Write a message...", "send": "Send", "nextLesson": "Next lesson →", "studentQuestions": "Student questions (Q&A)", "askPlaceholder": "Ask a question about the course...", "ask": "Ask", "noQuestions": "No questions yet. Be the first!", "instructorAnswer": "Instructor's answer:", "chatWith": "Direct chat with the instructor", "firstMessage": "Send the first message.", "currentLesson": "Current lesson:", "instLoginTitle": "Instructor area", "instLoginSub": "Instructors only. Use the email and password of your instructor account.", "enterAsInstructor": "Log in as instructor", "instAccountsNote": "Instructor accounts are created by the administration.", "studentOnly": "This area is for students only.", "instructorOnly": "This area is for instructors only.", "goToCatalog": "Go to catalog", "noPublished": "You haven't published any courses yet.", "quizSubmit": "Submit answers", "quizScore": "Your score", "quizCorrect": "Correct answer", "quizRetry": "Retake quiz", "addQuestion": "+ Add question", "question": "Question", "correctAnswer": "Correct answer", "students2": "students", "lessons2": "lessons", "loginTitle": "Log in to Jewdemy", "signupTitle": "Create student account", "emailLbl": "Email", "passwordLbl": "Password", "googleLogin": "Log in with Google", "orEmail": "— or with email —", "createAccount": "Create account", "noAccount": "No account?", "signupLink": "Sign up", "haveAccount": "Already have an account?", "loginLink": "Log in", "areYouJewish": "Are you Jewish?", "yes": "Yes", "no": "No", "optional": "(optional)", "gender": "Gender", "male": "Male", "female": "Female", "womenOnly": "Women only", "openToNonJews": "Open to non-Jews", "instructorName": "Instructor", "applyTitle": "Become an instructor", "applyIntro": "Fill out the form below to apply to become an instructor. Our team will contact you.", "applyArea": "Teaching area", "applyExperience": "Experience and qualifications", "applySubmit": "Submit request", "applySuccess": "Request sent! We'll be in touch.","contactTitle":"Contact us","contactIntro":"Send us your message and we will get back to you.","contactMessage":"Message","lessonType":"Lesson type","textLbl":"Text","freeCourses":"Free courses","forgotPassword":"Forgot my password","recoverTitle":"Recover password","recoverIntro":"Enter your email and we will send instructions to recover your password.","recoverSubmit":"Send","recoverSent":"Recovery email sent!","recoverNotFound":"No account with that email.","errEmail":"Invalid email.","errPhone":"Invalid phone (digits only).","errPassword":"Password must be at least 6 characters.","errRequired":"Please fill in all fields.","exportStudents":"Export students (CSV)","exportInstructors":"Export instructors (CSV)","active":"Active","inactive":"Inactive","courseActive":"Course active","helpTitle":"Help center","helpIntro":"Find quick answers or send us your question.","faqTitle":"Frequently asked questions","helpFormTitle":"Need more help? Contact us","subject":"Subject","completeProfileTitle":"Complete your profile","completeProfileIntro":"To continue, we need a few details from you.","admTitle":"Administration","gCourses":"Courses","gUsers":"Users","gEmails":"Emails","gDesign":"Design","gSettings":"Settings","tabCourses":"Courses","tabCategories":"Categories","tabStudents":"Students","tabInstructors":"Instructors / Admin","tabRequests":"Instructor requests","tabTemplates":"Templates","tabSend":"Send","tabSent":"Sent","tabDesignSite":"Site design","tabHomePage":"Home page","tabFooter":"Footer","tabHelpCenter":"Help center","tabLangs":"Languages & translations","manageCats":"Manage categories","newCatPh":"New category","addBtn":"Add","bulkDiscount":"Global discount (all courses)","applyDiscountBtn":"Apply discount","removeDiscountsBtn":"Remove discounts","discountHint2":"The original price becomes the \"was\" price and the discount becomes the new price.","thAuthor":"Author","thCategory":"Category","thPrice":"Price","thLessons":"Lessons","thActive":"Active","thActions":"Actions","editCourseBtn":"Edit course","deleteBtn":"Delete","backToCourses":"← Back to course list","editingPrefix":"Editing","saveChangesBtn":"Save changes","coursesWord":"Courses","thTitle":"Title","thLevelH":"Level","thLangH":"Language","siteLogo":"Site logo","changeLogo":"Change logo","restoreDefault":"Restore default","colorsLbl":"Colors","mainColor":"Main site color","restoreWord":"Restore","saveDesignBtn":"Save design","errNeedTitle":"Give the course a title","errNeedLesson":"Add at least one titled lesson","phCourseTitle":"e.g. Introduction to Talmud","authorBioLbl":"Instructor bio","authorBioHint":"(shown on the course page)","introVideoLbl":"Intro video","introVideoHint":"(YouTube/Vimeo/Bunny — only on the course preview)","videoLinkLbl":"Video link (YouTube, Vimeo or MP4)","videoLinkHint":"Paste the video link. For free courses we recommend YouTube.","optionWord":"Option","phTopics":"Topic 1\nTopic 2","noStudents":"No students yet.","thName":"Name","thPhone":"Phone","thCity":"City","thCommunity":"Community","thJewish":"Jewish?","thStatus":"Status","blockedWord":"Blocked","activeWord":"Active","editBtn":"Edit","messageBtn":"Message","unblockBtn":"Unblock","blockBtn":"Block","confirmDeleteUser":"Delete this account permanently?","instructorsAdmins":"Instructors / Administrators","createAccountBtn":"+ Create account","noInstructors":"No instructors/admins yet. Use the Create account button to add one.","thType":"Type","roleAdmin":"Administrator","roleInstructor":"Instructor","reqTitle":"Requests to become an instructor","noRequests":"No requests yet.","areaLbl":"Area","reqApproved":"✓ Request approved — account created","createInstructorBtn":"Create instructor account","sentTitle":"Sent emails","noSent":"No emails sent yet.","toWord":"to","emailToPrefix":"Email to","msgToPrefix":"Message to","newTplTitle":"+ Create new email template","tplName":"Template name","tplNamePh":"e.g. Promotion, Reminder...","bodyLbl":"Body","useNameHint":"(use {name})","fillAll":"Fill in all fields","addTplBtn":"Add template","batchTitle":"Create and send a mass email","testHint":"Before sending to everyone, run a test (sends to your email and shows any error).","testBtn":"Send a test email to me","contentLbl":"Content","freeText":"Free text","tplPrefix":"Template","recipientsLbl":"Recipients","recAll":"All users","recStudents":"Students only","recInstructors":"Instructors only","recOne":"A specific user","recipientEmail":"Recipient email","msgLbl":"Message","usePersonalizeHint":"(use {name} to personalize)","fillSubjBody":"Fill in subject and message","invalidRecipient":"Invalid recipient email","sendEmailBtn":"Send email","fillNameEmailPw":"Fill in name, email and password","createAccountTitle":"Create account","welcomeTplLabel":"Welcome","enrollTplLabel":"Course enrollment","welcomeTplFull":"Welcome (on signing up)","deleteTplBtn":"Delete template","useNameCourseHint":"(use {name} and {course})","editUserTitle":"Edit user","editCourseTitle":"Edit course","photoLbl":"Photo","roleStudent":"Student","saveWord":"Save","oldPriceShort":"Old price","pwPh":"(password)","forLabel":"To","introText":"Intro text","faqsTitle":"Questions and answers","answerWord":"Answer","moveUp":"Move up","moveDown":"Move down","saveHelpBtn":"Save help center","footerIntro":"Edit the footer columns and links. Page-type links open their own page with the content you write. Catalog, Instructor and Admin types go to those areas.","newLink":"New link","newColumn":"New column","removeColumn":"Remove column","linkText":"Link text","ownPage":"Own page","pageContent":"Page content","addLinkBtn":"+ Add link","addColumnBtn":"+ Add column","homeIntro":"Customize the banner, hero texts and courses shown on the home page.","bannerTitle":"Hero banner","removeBanner":"Remove banner","noBanner":"No banner — using the default gradient","heroTextsTitle":"Hero texts","leaveEmptyHint":"(leave empty for default)","subtitleLbl":"Subtitle","mostWatchedTitle":"🔥 Most watched","suggestedTitle":"✨ Suggested for you","saveHomeBtn":"Save home page","selectedSuffix":"selected","noCoursesAvail":"No courses available.","langsIntro":"Choose the languages available on the site and edit the texts of each.","activeLangsTitle":"Active languages","selectOneLang":"Select at least one language.","editTransTitle":"Edit translations","searchTextPh":"Search text...","transHint":"Leave the same as default to avoid overriding. Changes apply to all visitors.","saveLangsBtn":"Save languages & translations","adminRestricted":"This area is restricted to administrators. Log in with an admin account to access it."},
+  es:{"search": "¿Qué quieres aprender?", "myCourses": "Mis cursos", "teach": "Enseñar", "login": "Entrar", "logout": "Salir", "wishlist": "Favoritos", "messages": "Mensajes", "profile": "Mi perfil", "admin": "Administración", "heroTitle": "Aprende cualquier cosa, a tu ritmo", "heroSub": "Cursos de Torá, Halajá, Talmud, historia, hebreo y más. Acceso de por vida.", "featured": "Cursos destacados", "results": "Resultados para", "noCourses": "No se encontraron cursos.", "category": "Categoría", "level": "Nivel", "language": "Idioma", "all": "Todos", "instructorFilter": "Instructor", "addCart": "Añadir al carrito", "inCart": "Ya está en el carrito", "buyNow": "Comprar ahora", "haveCourse": "Ya tienes este curso", "goCourse": "Ir al curso", "willLearn": "Lo que aprenderás", "content": "Contenido del curso", "description": "Descripción", "students": "estudiantes inscritos", "createdBy": "Creado por", "cart": "Carrito", "empty": "Tu carrito está vacío.", "total": "Total", "checkout": "Finalizar compra", "loginToContinue": "Inicia sesión para continuar", "beginner": "Principiante", "intermediate": "Intermedio", "advanced": "Avanzado", "markDone": "Marcar como completada", "markUndone": "Marcar como no completada", "courseContent": "Contenido del curso", "completed": "completado", "resources": "Recursos descargables", "explore": "Explorar cursos", "noMine": "Aún no tienes cursos.", "back": "Volver", "catalog": "Catálogo", "studentArea": "Área del estudiante", "instructorArea": "Área del instructor", "createCourse": "Crear curso", "newCourse": "Crear nuevo curso", "saveChanges": "Guardar cambios", "publishCourse": "Publicar curso", "title": "Título", "priceLbl": "Precio (R$)", "oldPriceLbl": "Precio anterior (R$)", "onePerLine": "(uno por línea)", "sectionsLessons": "Secciones y lecciones", "lessonTitle": "Título de la lección", "duration": "Duración", "videoLbl": "Video", "quizLbl": "Quiz", "resourcesLbl": "Recursos", "addLesson": "+ Añadir lección", "section": "Sección", "addSection": "+ Añadir sección", "removeSection": "Eliminar sección", "sectionTitle": "Título de la sección (opcional)", "coverImage": "Imagen de portada", "chooseImage": "Elegir imagen", "remove": "Eliminar", "noCover": "sin portada", "name": "Nombre", "phone": "Teléfono", "cityLbl": "Ciudad donde vives", "communityLbl": "¿Qué comunidad frecuentas?", "changePhoto": "Cambiar foto", "noConversations": "Aún no hay conversaciones.", "writeMessage": "Escribe un mensaje...", "send": "Enviar", "nextLesson": "Siguiente lección →", "studentQuestions": "Preguntas de los estudiantes (Q&A)", "askPlaceholder": "Haz una pregunta sobre el curso...", "ask": "Preguntar", "noQuestions": "Aún no hay preguntas. ¡Sé el primero!", "instructorAnswer": "Respuesta del instructor:", "chatWith": "Chat directo con el instructor", "firstMessage": "Envía el primer mensaje.", "currentLesson": "Lección actual:", "instLoginTitle": "Área del instructor", "instLoginSub": "Solo instructores. Usa el correo y la contraseña de tu cuenta de instructor.", "enterAsInstructor": "Entrar como instructor", "instAccountsNote": "Las cuentas de instructor se crean desde la administración.", "studentOnly": "Esta área es exclusiva para estudiantes.", "instructorOnly": "Esta área es exclusiva para instructores.", "goToCatalog": "Ir al catálogo", "noPublished": "Aún no has publicado cursos.", "quizSubmit": "Enviar respuestas", "quizScore": "Tu nota", "quizCorrect": "Respuesta correcta", "quizRetry": "Rehacer quiz", "addQuestion": "+ Añadir pregunta", "question": "Pregunta", "correctAnswer": "Respuesta correcta", "students2": "estudiantes", "lessons2": "lecciones", "loginTitle": "Entrar en Jewdemy", "signupTitle": "Crear cuenta de estudiante", "emailLbl": "Correo", "passwordLbl": "Contraseña", "googleLogin": "Entrar con Google", "orEmail": "— o con correo —", "createAccount": "Crear cuenta", "noAccount": "¿No tienes cuenta?", "signupLink": "Regístrate", "haveAccount": "¿Ya tienes cuenta?", "loginLink": "Entrar", "areYouJewish": "¿Eres judío?", "yes": "Sí", "no": "No", "optional": "(opcional)", "gender": "Género", "male": "Masculino", "female": "Femenino", "womenOnly": "Solo para mujeres", "openToNonJews": "Abierto a no judíos", "instructorName": "Instructor", "applyTitle": "Quiero ser instructor", "applyIntro": "Completa el formulario para solicitar ser instructor. Nuestro equipo te contactará.", "applyArea": "Área de enseñanza", "applyExperience": "Experiencia y calificaciones", "applySubmit": "Enviar solicitud", "applySuccess": "¡Solicitud enviada! Te contactaremos.","contactTitle":"Contáctanos","contactIntro":"Envíanos tu mensaje y te responderemos.","contactMessage":"Mensaje","lessonType":"Tipo de lección","textLbl":"Texto","freeCourses":"Cursos gratuitos","forgotPassword":"Olvidé mi contraseña","recoverTitle":"Recuperar contraseña","recoverIntro":"Ingresa tu correo y te enviaremos instrucciones para recuperar tu contraseña.","recoverSubmit":"Enviar","recoverSent":"¡Correo de recuperación enviado!","recoverNotFound":"No hay cuenta con ese correo.","errEmail":"Correo inválido.","errPhone":"Teléfono inválido (solo números).","errPassword":"La contraseña debe tener al menos 6 caracteres.","errRequired":"Completa todos los campos.","exportStudents":"Exportar estudiantes (CSV)","exportInstructors":"Exportar instructores (CSV)","active":"Activo","inactive":"Inactivo","courseActive":"Curso activo","helpTitle":"Centro de ayuda","helpIntro":"Encuentra respuestas rápidas o envíanos tu duda.","faqTitle":"Preguntas frecuentes","helpFormTitle":"¿Necesitas más ayuda? Contáctanos","subject":"Asunto","completeProfileTitle":"Completa tu registro","completeProfileIntro":"Para continuar, necesitamos algunos datos tuyos.","admTitle":"Administración","gCourses":"Cursos","gUsers":"Usuarios","gEmails":"Correos","gDesign":"Diseño","gSettings":"Configuración","tabCourses":"Cursos","tabCategories":"Categorías","tabStudents":"Alumnos","tabInstructors":"Instructores / Admin","tabRequests":"Solicitudes de instructor","tabTemplates":"Plantillas","tabSend":"Enviar","tabSent":"Enviados","tabDesignSite":"Diseño del sitio","tabHomePage":"Página de inicio","tabFooter":"Pie de página","tabHelpCenter":"Centro de ayuda","tabLangs":"Idiomas y traducciones","manageCats":"Gestionar categorías","newCatPh":"Nueva categoría","addBtn":"Añadir","bulkDiscount":"Descuento general (todos los cursos)","applyDiscountBtn":"Aplicar descuento","removeDiscountsBtn":"Quitar descuentos","discountHint2":"El precio original pasa a ser \"antes\" y el descuento es el nuevo precio.","thAuthor":"Autor","thCategory":"Categoría","thPrice":"Precio","thLessons":"Clases","thActive":"Activo","thActions":"Acciones","editCourseBtn":"Editar curso","deleteBtn":"Eliminar","backToCourses":"← Volver a la lista de cursos","editingPrefix":"Editando","saveChangesBtn":"Guardar cambios","coursesWord":"Cursos","thTitle":"Título","thLevelH":"Nivel","thLangH":"Idioma","siteLogo":"Logo del sitio","changeLogo":"Cambiar logo","restoreDefault":"Restaurar predeterminado","colorsLbl":"Colores","mainColor":"Color principal del sitio","restoreWord":"Restaurar","saveDesignBtn":"Guardar diseño","errNeedTitle":"Dale un título al curso","errNeedLesson":"Añade al menos una clase con título","phCourseTitle":"Ej.: Introducción al Talmud","authorBioLbl":"Descripción del instructor","authorBioHint":"(se muestra en la página del curso)","introVideoLbl":"Vídeo introductorio","introVideoHint":"(YouTube/Vimeo/Bunny — solo en la presentación del curso)","videoLinkLbl":"Enlace del vídeo (YouTube, Vimeo o MP4)","videoLinkHint":"Pega el enlace del vídeo. Para cursos gratis recomendamos YouTube.","optionWord":"Opción","phTopics":"Tema 1\nTema 2","noStudents":"Aún no hay alumnos.","thName":"Nombre","thPhone":"Teléfono","thCity":"Ciudad","thCommunity":"Comunidad","thJewish":"¿Judío?","thStatus":"Estado","blockedWord":"Bloqueado","activeWord":"Activo","editBtn":"Editar","messageBtn":"Mensaje","unblockBtn":"Desbloquear","blockBtn":"Bloquear","confirmDeleteUser":"¿Eliminar esta cuenta permanentemente?","instructorsAdmins":"Instructores / Administradores","createAccountBtn":"+ Crear cuenta","noInstructors":"No hay instructores/admins. Usa el botón Crear cuenta para añadir.","thType":"Tipo","roleAdmin":"Administrador","roleInstructor":"Instructor","reqTitle":"Solicitudes para ser instructor","noRequests":"Aún no hay solicitudes.","areaLbl":"Área","reqApproved":"✓ Solicitud aprobada — cuenta creada","createInstructorBtn":"Crear cuenta de instructor","sentTitle":"Correos enviados","noSent":"Aún no se han enviado correos.","toWord":"para","emailToPrefix":"Correo a","msgToPrefix":"Mensaje a","newTplTitle":"+ Crear nueva plantilla de correo","tplName":"Nombre de la plantilla","tplNamePh":"Ej.: Promoción, Recordatorio...","bodyLbl":"Cuerpo","useNameHint":"(usa {nombre})","fillAll":"Completa todos los campos","addTplBtn":"Añadir plantilla","batchTitle":"Crear y enviar correo masivo","testHint":"Antes de enviar a todos, haz una prueba (envía a tu correo y muestra el error, si lo hay).","testBtn":"Enviarme un correo de prueba","contentLbl":"Contenido","freeText":"Texto libre","tplPrefix":"Plantilla","recipientsLbl":"Destinatarios","recAll":"Todos los usuarios","recStudents":"Solo alumnos","recInstructors":"Solo instructores","recOne":"Un usuario específico","recipientEmail":"Correo del destinatario","msgLbl":"Mensaje","usePersonalizeHint":"(usa {nombre} para personalizar)","fillSubjBody":"Completa asunto y mensaje","invalidRecipient":"Correo del destinatario inválido","sendEmailBtn":"Enviar correo","fillNameEmailPw":"Completa nombre, correo y contraseña","createAccountTitle":"Crear cuenta","welcomeTplLabel":"Bienvenida","enrollTplLabel":"Inscripción al curso","welcomeTplFull":"Bienvenida (al registrarse)","deleteTplBtn":"Eliminar plantilla","useNameCourseHint":"(usa {nombre} y {curso})","editUserTitle":"Editar usuario","editCourseTitle":"Editar curso","photoLbl":"Foto","roleStudent":"Alumno","saveWord":"Guardar","oldPriceShort":"Precio anterior","pwPh":"(contraseña)","forLabel":"Para","introText":"Texto de introducción","faqsTitle":"Preguntas y respuestas","answerWord":"Respuesta","moveUp":"Subir","moveDown":"Bajar","saveHelpBtn":"Guardar centro de ayuda","footerIntro":"Edita las columnas y enlaces del pie. Los enlaces tipo Página abren una página propia con tu contenido. Catálogo, Instructor y Administración llevan a esas áreas.","newLink":"Nuevo enlace","newColumn":"Nueva columna","removeColumn":"Eliminar columna","linkText":"Texto del enlace","ownPage":"Página propia","pageContent":"Contenido de la página","addLinkBtn":"+ Añadir enlace","addColumnBtn":"+ Añadir columna","homeIntro":"Personaliza el banner, los textos destacados y los cursos de la página de inicio.","bannerTitle":"Banner destacado","removeBanner":"Quitar banner","noBanner":"Sin banner — usando el degradado predeterminado","heroTextsTitle":"Textos destacados","leaveEmptyHint":"(déjalo vacío para el predeterminado)","subtitleLbl":"Subtítulo","mostWatchedTitle":"🔥 Más vistos","suggestedTitle":"✨ Sugeridos para ti","saveHomeBtn":"Guardar página de inicio","selectedSuffix":"seleccionado(s)","noCoursesAvail":"No hay cursos disponibles.","langsIntro":"Elige los idiomas disponibles en el sitio y edita los textos de cada uno.","activeLangsTitle":"Idiomas activos","selectOneLang":"Selecciona al menos un idioma.","editTransTitle":"Editar traducciones","searchTextPh":"Buscar texto...","transHint":"Déjalo igual al predeterminado para no sobrescribir. Los cambios aplican a todos.","saveLangsBtn":"Guardar idiomas y traducciones","adminRestricted":"Esta área está restringida a administradores. Inicia sesión con una cuenta de administrador."},
+  he:{"search": "מה תרצה ללמוד?", "myCourses": "הקורסים שלי", "teach": "ללמד", "login": "כניסה", "logout": "יציאה", "wishlist": "מועדפים", "messages": "הודעות", "profile": "הפרופיל שלי", "admin": "ניהול", "heroTitle": "למד כל דבר, בקצב שלך", "heroSub": "קורסים בתורה, הלכה, תלמוד, היסטוריה, עברית ועוד. גישה לכל החיים.", "featured": "קורסים מומלצים", "results": "תוצאות עבור", "noCourses": "לא נמצאו קורסים.", "category": "קטגוריה", "level": "רמה", "language": "שפה", "all": "הכול", "instructorFilter": "מרצה", "addCart": "הוסף לעגלה", "inCart": "כבר בעגלה", "buyNow": "קנה עכשיו", "haveCourse": "הקורס כבר שלך", "goCourse": "מעבר לקורס", "willLearn": "מה תלמד", "content": "תוכן הקורס", "description": "תיאור", "students": "תלמידים רשומים", "createdBy": "נוצר על ידי", "cart": "עגלה", "empty": "העגלה ריקה.", "total": "סך הכול", "checkout": "לתשלום", "loginToContinue": "התחבר כדי להמשיך", "beginner": "מתחיל", "intermediate": "בינוני", "advanced": "מתקדם", "markDone": "סמן כהושלם", "markUndone": "בטל סימון השלמה", "courseContent": "תוכן הקורס", "completed": "הושלם", "resources": "קבצים להורדה", "explore": "עיין בקורסים", "noMine": "אין לך עדיין קורסים.", "back": "חזרה", "catalog": "קטלוג", "studentArea": "אזור התלמיד", "instructorArea": "אזור המרצה", "createCourse": "צור קורס", "newCourse": "צור קורס חדש", "saveChanges": "שמור שינויים", "publishCourse": "פרסם קורס", "title": "כותרת", "priceLbl": "מחיר (R$)", "oldPriceLbl": "מחיר קודם (R$)", "onePerLine": "(אחד בכל שורה)", "sectionsLessons": "מקטעים ושיעורים", "lessonTitle": "כותרת השיעור", "duration": "משך", "videoLbl": "וידאו", "quizLbl": "מבחן", "resourcesLbl": "קבצים", "addLesson": "+ הוסף שיעור", "section": "מקטע", "addSection": "+ הוסף מקטע", "removeSection": "הסר מקטע", "sectionTitle": "כותרת המקטע (רשות)", "coverImage": "תמונת שער", "chooseImage": "בחר תמונה", "remove": "הסר", "noCover": "אין תמונה", "name": "שם", "phone": "טלפון", "cityLbl": "עיר מגורים", "communityLbl": "לאיזו קהילה אתה משתייך?", "changePhoto": "החלף תמונה", "noConversations": "אין עדיין שיחות.", "writeMessage": "כתוב הודעה...", "send": "שלח", "nextLesson": "השיעור הבא →", "studentQuestions": "שאלות תלמידים (Q&A)", "askPlaceholder": "שאל שאלה על הקורס...", "ask": "שאל", "noQuestions": "אין עדיין שאלות. היה הראשון!", "instructorAnswer": "תשובת המרצה:", "chatWith": "צ'אט ישיר עם המרצה", "firstMessage": "שלח את ההודעה הראשונה.", "currentLesson": "השיעור הנוכחי:", "instLoginTitle": "אזור המרצה", "instLoginSub": "למרצים בלבד. השתמש באימייל ובסיסמה של חשבון המרצה שלך.", "enterAsInstructor": "כניסה כמרצה", "instAccountsNote": "חשבונות מרצה נוצרים על ידי ההנהלה.", "studentOnly": "אזור זה מיועד לתלמידים בלבד.", "instructorOnly": "אזור זה מיועד למרצים בלבד.", "goToCatalog": "לקטלוג", "noPublished": "עדיין לא פרסמת קורסים.", "quizSubmit": "שלח תשובות", "quizScore": "הציון שלך", "quizCorrect": "תשובה נכונה", "quizRetry": "נסה שוב", "addQuestion": "+ הוסף שאלה", "question": "שאלה", "correctAnswer": "תשובה נכונה", "students2": "תלמידים", "lessons2": "שיעורים", "loginTitle": "כניסה ל-Jewdemy", "signupTitle": "יצירת חשבון תלמיד", "emailLbl": "אימייל", "passwordLbl": "סיסמה", "googleLogin": "כניסה עם Google", "orEmail": "— או עם אימייל —", "createAccount": "צור חשבון", "noAccount": "אין לך חשבון?", "signupLink": "הרשמה", "haveAccount": "יש לך חשבון?", "loginLink": "כניסה", "areYouJewish": "האם אתה יהודי?", "yes": "כן", "no": "לא", "optional": "(רשות)", "gender": "מגדר", "male": "זכר", "female": "נקבה", "womenOnly": "לנשים בלבד", "openToNonJews": "פתוח ללא-יהודים", "instructorName": "מרצה", "applyTitle": "אני רוצה להיות מרצה", "applyIntro": "מלא את הטופס כדי לבקש להפוך למרצה. הצוות שלנו ייצור איתך קשר.", "applyArea": "תחום הוראה", "applyExperience": "ניסיון והסמכות", "applySubmit": "שלח בקשה", "applySuccess": "הבקשה נשלחה! ניצור איתך קשר.","contactTitle":"צור קשר","contactIntro":"שלח לנו הודעה ונחזור אליך.","contactMessage":"הודעה","lessonType":"סוג שיעור","textLbl":"טקסט","freeCourses":"קורסים חינם","forgotPassword":"שכחתי סיסמה","recoverTitle":"שחזור סיסמה","recoverIntro":"הזן את האימייל שלך ונשלח הוראות לשחזור הסיסמה.","recoverSubmit":"שלח","recoverSent":"אימייל שחזור נשלח!","recoverNotFound":"אין חשבון עם אימייל זה.","errEmail":"אימייל לא תקין.","errPhone":"טלפון לא תקין (ספרות בלבד).","errPassword":"הסיסמה חייבת להכיל לפחות 6 תווים.","errRequired":"מלא את כל השדות.","exportStudents":"ייצוא תלמידים (CSV)","exportInstructors":"ייצוא מרצים (CSV)","active":"פעיל","inactive":"לא פעיל","courseActive":"קורס פעיל","helpTitle":"מרכז עזרה","helpIntro":"מצא תשובות מהירות או שלח שאלה.","faqTitle":"שאלות נפוצות","helpFormTitle":"צריך עוד עזרה? צור קשר","subject":"נושא","completeProfileTitle":"השלמת ההרשמה","completeProfileIntro":"כדי להמשיך, נצטרך כמה פרטים.","admTitle":"ניהול","gCourses":"קורסים","gUsers":"משתמשים","gEmails":"אימיילים","gDesign":"עיצוב","gSettings":"הגדרות","tabCourses":"קורסים","tabCategories":"קטגוריות","tabStudents":"תלמידים","tabInstructors":"מדריכים / מנהל","tabRequests":"בקשות מדריך","tabTemplates":"תבניות","tabSend":"שליחה","tabSent":"נשלחו","tabDesignSite":"עיצוב האתר","tabHomePage":"דף הבית","tabFooter":"כותרת תחתונה","tabHelpCenter":"מרכז עזרה","tabLangs":"שפות ותרגומים","manageCats":"ניהול קטגוריות","newCatPh":"קטגוריה חדשה","addBtn":"הוספה","bulkDiscount":"הנחה כללית (כל הקורסים)","applyDiscountBtn":"החל הנחה","removeDiscountsBtn":"הסר הנחות","discountHint2":"המחיר המקורי הופך למחיר \"לפני\" וההנחה היא המחיר החדש.","thAuthor":"מחבר","thCategory":"קטגוריה","thPrice":"מחיר","thLessons":"שיעורים","thActive":"פעיל","thActions":"פעולות","editCourseBtn":"ערוך קורס","deleteBtn":"מחק","backToCourses":"← חזרה לרשימת הקורסים","editingPrefix":"עריכה","saveChangesBtn":"שמור שינויים","coursesWord":"קורסים","thTitle":"כותרת","thLevelH":"רמה","thLangH":"שפה","siteLogo":"לוגו האתר","changeLogo":"החלף לוגו","restoreDefault":"שחזר ברירת מחדל","colorsLbl":"צבעים","mainColor":"צבע ראשי של האתר","restoreWord":"שחזר","saveDesignBtn":"שמור עיצוב","errNeedTitle":"תן כותרת לקורס","errNeedLesson":"הוסף לפחות שיעור אחד עם כותרת","phCourseTitle":"לדוגמה: מבוא לתלמוד","authorBioLbl":"תיאור המדריך","authorBioHint":"(מופיע בעמוד הקורס)","introVideoLbl":"סרטון מבוא","introVideoHint":"(YouTube/Vimeo/Bunny — מופיע רק בעמוד הקורס)","videoLinkLbl":"קישור לסרטון (YouTube, Vimeo או MP4)","videoLinkHint":"הדבק את קישור הסרטון. לקורסים חינמיים מומלץ YouTube.","optionWord":"אפשרות","phTopics":"נושא 1\nנושא 2","noStudents":"אין תלמידים עדיין.","thName":"שם","thPhone":"טלפון","thCity":"עיר","thCommunity":"קהילה","thJewish":"יהודי?","thStatus":"סטטוס","blockedWord":"חסום","activeWord":"פעיל","editBtn":"ערוך","messageBtn":"הודעה","unblockBtn":"בטל חסימה","blockBtn":"חסום","confirmDeleteUser":"למחוק את החשבון לצמיתות?","instructorsAdmins":"מדריכים / מנהלים","createAccountBtn":"+ צור חשבון","noInstructors":"אין מדריכים/מנהלים. השתמש בכפתור צור חשבון.","thType":"סוג","roleAdmin":"מנהל","roleInstructor":"מדריך","reqTitle":"בקשות להפוך למדריך","noRequests":"אין בקשות עדיין.","areaLbl":"תחום","reqApproved":"✓ הבקשה אושרה — נוצר חשבון","createInstructorBtn":"צור חשבון מדריך","sentTitle":"אימיילים שנשלחו","noSent":"לא נשלחו אימיילים עדיין.","toWord":"אל","emailToPrefix":"אימייל אל","msgToPrefix":"הודעה אל","newTplTitle":"+ צור תבנית אימייל חדשה","tplName":"שם התבנית","tplNamePh":"לדוגמה: מבצע, תזכורת...","bodyLbl":"תוכן","useNameHint":"(השתמש ב-{nome})","fillAll":"מלא את כל השדות","addTplBtn":"הוסף תבנית","batchTitle":"יצירה ושליחת אימייל המוני","testHint":"לפני שליחה לכולם, בצע בדיקה (נשלח לאימייל שלך ומציג שגיאה, אם יש).","testBtn":"שלח לי אימייל בדיקה","contentLbl":"תוכן","freeText":"טקסט חופשי","tplPrefix":"תבנית","recipientsLbl":"נמענים","recAll":"כל המשתמשים","recStudents":"תלמידים בלבד","recInstructors":"מדריכים בלבד","recOne":"משתמש מסוים","recipientEmail":"אימייל הנמען","msgLbl":"הודעה","usePersonalizeHint":"(השתמש ב-{nome} להתאמה אישית)","fillSubjBody":"מלא נושא והודעה","invalidRecipient":"אימייל נמען לא תקין","sendEmailBtn":"שלח אימייל","fillNameEmailPw":"מלא שם, אימייל וסיסמה","createAccountTitle":"צור חשבון","welcomeTplLabel":"ברוך הבא","enrollTplLabel":"הרשמה לקורס","welcomeTplFull":"ברוך הבא (בעת ההרשמה)","deleteTplBtn":"מחק תבנית","useNameCourseHint":"(השתמש ב-{nome} ו-{curso})","editUserTitle":"ערוך משתמש","editCourseTitle":"ערוך קורס","photoLbl":"תמונה","roleStudent":"תלמיד","saveWord":"שמור","oldPriceShort":"מחיר קודם","pwPh":"(סיסמה)","forLabel":"אל","introText":"טקסט פתיחה","faqsTitle":"שאלות ותשובות","answerWord":"תשובה","moveUp":"העלה","moveDown":"הורד","saveHelpBtn":"שמור מרכז עזרה","footerIntro":"ערוך את העמודות והקישורים בכותרת התחתונה. קישורי עמוד פותחים עמוד עם התוכן שתכתוב. קטלוג, מדריך וניהול מובילים לאזורים שלהם.","newLink":"קישור חדש","newColumn":"עמודה חדשה","removeColumn":"הסר עמודה","linkText":"טקסט הקישור","ownPage":"עמוד נפרד","pageContent":"תוכן העמוד","addLinkBtn":"+ הוסף קישור","addColumnBtn":"+ הוסף עמודה","homeIntro":"התאם את הבאנר, טקסטי הדגשה והקורסים בדף הבית.","bannerTitle":"באנר ראשי","removeBanner":"הסר באנר","noBanner":"אין באנר — משתמש בגרדיאנט ברירת מחדל","heroTextsTitle":"טקסטי הדגשה","leaveEmptyHint":"(השאר ריק לברירת מחדל)","subtitleLbl":"כותרת משנה","mostWatchedTitle":"🔥 הנצפים ביותר","suggestedTitle":"✨ מומלצים עבורך","saveHomeBtn":"שמור דף בית","selectedSuffix":"נבחרו","noCoursesAvail":"אין קורסים זמינים.","langsIntro":"בחר את השפות הזמינות באתר וערוך את הטקסטים של כל שפה.","activeLangsTitle":"שפות פעילות","selectOneLang":"בחר לפחות שפה אחת.","editTransTitle":"עריכת תרגומים","searchTextPh":"חיפוש טקסט...","transHint":"השאר זהה לברירת המחדל כדי לא לדרוס. השינויים חלים על כל המבקרים.","saveLangsBtn":"שמור שפות ותרגומים","adminRestricted":"אזור זה מוגבל למנהלים. התחבר עם חשבון מנהל כדי לגשת."},
+  fr:{"search": "Que voulez-vous apprendre ?", "myCourses": "Mes cours", "teach": "Enseigner", "login": "Connexion", "logout": "Déconnexion", "wishlist": "Favoris", "messages": "Messages", "profile": "Mon profil", "admin": "Administration", "heroTitle": "Apprenez tout, à votre rythme", "heroSub": "Cours de Torah, Halakha, Talmud, histoire, hébreu et plus. Accès à vie.", "featured": "Cours en vedette", "results": "Résultats pour", "noCourses": "Aucun cours trouvé.", "category": "Catégorie", "level": "Niveau", "language": "Langue", "all": "Tous", "instructorFilter": "Formateur", "addCart": "Ajouter au panier", "inCart": "Déjà dans le panier", "buyNow": "Acheter", "haveCourse": "Vous avez déjà ce cours", "goCourse": "Aller au cours", "willLearn": "Ce que vous apprendrez", "content": "Contenu du cours", "description": "Description", "students": "étudiants inscrits", "createdBy": "Créé par", "cart": "Panier", "empty": "Votre panier est vide.", "total": "Total", "checkout": "Paiement", "loginToContinue": "Connectez-vous pour continuer", "beginner": "Débutant", "intermediate": "Intermédiaire", "advanced": "Avancé", "markDone": "Marquer comme terminé", "markUndone": "Marquer comme non terminé", "courseContent": "Contenu du cours", "completed": "terminé", "resources": "Ressources téléchargeables", "explore": "Explorer les cours", "noMine": "Vous n'avez pas encore de cours.", "back": "Retour", "catalog": "Catalogue", "studentArea": "Espace étudiant", "instructorArea": "Espace formateur", "createCourse": "Créer un cours", "newCourse": "Créer un nouveau cours", "saveChanges": "Enregistrer", "publishCourse": "Publier le cours", "title": "Titre", "priceLbl": "Prix (R$)", "oldPriceLbl": "Ancien prix (R$)", "onePerLine": "(un par ligne)", "sectionsLessons": "Sections et leçons", "lessonTitle": "Titre de la leçon", "duration": "Durée", "videoLbl": "Vidéo", "quizLbl": "Quiz", "resourcesLbl": "Ressources", "addLesson": "+ Ajouter une leçon", "section": "Section", "addSection": "+ Ajouter une section", "removeSection": "Supprimer la section", "sectionTitle": "Titre de la section (facultatif)", "coverImage": "Image de couverture", "chooseImage": "Choisir une image", "remove": "Supprimer", "noCover": "sans couverture", "name": "Nom", "phone": "Téléphone", "cityLbl": "Ville où vous vivez", "communityLbl": "Quelle communauté fréquentez-vous ?", "changePhoto": "Changer la photo", "noConversations": "Aucune conversation.", "writeMessage": "Écrivez un message...", "send": "Envoyer", "nextLesson": "Leçon suivante →", "studentQuestions": "Questions des étudiants (Q&A)", "askPlaceholder": "Posez une question sur le cours...", "ask": "Demander", "noQuestions": "Aucune question pour l'instant. Soyez le premier !", "instructorAnswer": "Réponse du formateur :", "chatWith": "Discussion directe avec le formateur", "firstMessage": "Envoyez le premier message.", "currentLesson": "Leçon actuelle :", "instLoginTitle": "Espace formateur", "instLoginSub": "Formateurs uniquement. Utilisez l'email et le mot de passe de votre compte formateur.", "enterAsInstructor": "Se connecter comme formateur", "instAccountsNote": "Les comptes formateurs sont créés par l'administration.", "studentOnly": "Cet espace est réservé aux étudiants.", "instructorOnly": "Cet espace est réservé aux formateurs.", "goToCatalog": "Aller au catalogue", "noPublished": "Vous n'avez pas encore publié de cours.", "quizSubmit": "Envoyer les réponses", "quizScore": "Votre note", "quizCorrect": "Bonne réponse", "quizRetry": "Refaire le quiz", "addQuestion": "+ Ajouter une question", "question": "Question", "correctAnswer": "Bonne réponse", "students2": "étudiants", "lessons2": "leçons", "loginTitle": "Connexion à Jewdemy", "signupTitle": "Créer un compte étudiant", "emailLbl": "Email", "passwordLbl": "Mot de passe", "googleLogin": "Se connecter avec Google", "orEmail": "— ou par email —", "createAccount": "Créer un compte", "noAccount": "Pas de compte ?", "signupLink": "S'inscrire", "haveAccount": "Vous avez déjà un compte ?", "loginLink": "Connexion", "areYouJewish": "Êtes-vous juif ?", "yes": "Oui", "no": "Non", "optional": "(facultatif)", "gender": "Genre", "male": "Masculin", "female": "Féminin", "womenOnly": "Femmes uniquement", "openToNonJews": "Ouvert aux non-juifs", "instructorName": "Formateur", "applyTitle": "Devenir formateur", "applyIntro": "Remplissez le formulaire pour demander à devenir formateur. Notre équipe vous contactera.", "applyArea": "Domaine d'enseignement", "applyExperience": "Expérience et qualifications", "applySubmit": "Envoyer la demande", "applySuccess": "Demande envoyée ! Nous vous contacterons.","contactTitle":"Contactez-nous","contactIntro":"Envoyez votre message et nous vous répondrons.","contactMessage":"Message","lessonType":"Type de leçon","textLbl":"Texte","freeCourses":"Cours gratuits","forgotPassword":"Mot de passe oublié","recoverTitle":"Récupérer le mot de passe","recoverIntro":"Entrez votre email et nous vous enverrons les instructions.","recoverSubmit":"Envoyer","recoverSent":"Email de récupération envoyé !","recoverNotFound":"Aucun compte avec cet email.","errEmail":"Email invalide.","errPhone":"Téléphone invalide (chiffres uniquement).","errPassword":"Le mot de passe doit comporter au moins 6 caractères.","errRequired":"Veuillez remplir tous les champs.","exportStudents":"Exporter étudiants (CSV)","exportInstructors":"Exporter formateurs (CSV)","active":"Actif","inactive":"Inactif","courseActive":"Cours actif","helpTitle":"Centre d'aide","helpIntro":"Trouvez des réponses rapides ou envoyez votre question.","faqTitle":"Questions fréquentes","helpFormTitle":"Besoin d'aide ? Contactez-nous","subject":"Sujet","completeProfileTitle":"Complétez votre profil","completeProfileIntro":"Pour continuer, nous avons besoin de quelques informations.","admTitle":"Administration","gCourses":"Cours","gUsers":"Utilisateurs","gEmails":"E-mails","gDesign":"Design","gSettings":"Paramètres","tabCourses":"Cours","tabCategories":"Catégories","tabStudents":"Étudiants","tabInstructors":"Formateurs / Admin","tabRequests":"Demandes de formateur","tabTemplates":"Modèles","tabSend":"Envoyer","tabSent":"Envoyés","tabDesignSite":"Design du site","tabHomePage":"Page d'accueil","tabFooter":"Pied de page","tabHelpCenter":"Centre d'aide","tabLangs":"Langues et traductions","manageCats":"Gérer les catégories","newCatPh":"Nouvelle catégorie","addBtn":"Ajouter","bulkDiscount":"Remise générale (tous les cours)","applyDiscountBtn":"Appliquer la remise","removeDiscountsBtn":"Supprimer les remises","discountHint2":"Le prix d'origine devient l'ancien prix et la remise le nouveau prix.","thAuthor":"Auteur","thCategory":"Catégorie","thPrice":"Prix","thLessons":"Leçons","thActive":"Actif","thActions":"Actions","editCourseBtn":"Modifier le cours","deleteBtn":"Supprimer","backToCourses":"← Retour à la liste des cours","editingPrefix":"Modification","saveChangesBtn":"Enregistrer les modifications","coursesWord":"Cours","thTitle":"Titre","thLevelH":"Niveau","thLangH":"Langue","siteLogo":"Logo du site","changeLogo":"Changer le logo","restoreDefault":"Réinitialiser","colorsLbl":"Couleurs","mainColor":"Couleur principale du site","restoreWord":"Réinitialiser","saveDesignBtn":"Enregistrer le design","errNeedTitle":"Donnez un titre au cours","errNeedLesson":"Ajoutez au moins une leçon avec un titre","phCourseTitle":"Ex. : Introduction au Talmud","authorBioLbl":"Bio du formateur","authorBioHint":"(affiché sur la page du cours)","introVideoLbl":"Vidéo d'introduction","introVideoHint":"(YouTube/Vimeo/Bunny — uniquement sur l'aperçu)","videoLinkLbl":"Lien vidéo (YouTube, Vimeo ou MP4)","videoLinkHint":"Collez le lien de la vidéo. Pour les cours gratuits, YouTube est recommandé.","optionWord":"Option","phTopics":"Sujet 1\nSujet 2","noStudents":"Aucun étudiant pour le moment.","thName":"Nom","thPhone":"Téléphone","thCity":"Ville","thCommunity":"Communauté","thJewish":"Juif ?","thStatus":"Statut","blockedWord":"Bloqué","activeWord":"Actif","editBtn":"Modifier","messageBtn":"Message","unblockBtn":"Débloquer","blockBtn":"Bloquer","confirmDeleteUser":"Supprimer ce compte définitivement ?","instructorsAdmins":"Formateurs / Administrateurs","createAccountBtn":"+ Créer un compte","noInstructors":"Aucun formateur/admin. Utilisez le bouton Créer un compte.","thType":"Type","roleAdmin":"Administrateur","roleInstructor":"Formateur","reqTitle":"Demandes pour devenir formateur","noRequests":"Aucune demande pour le moment.","areaLbl":"Domaine","reqApproved":"✓ Demande approuvée — compte créé","createInstructorBtn":"Créer un compte formateur","sentTitle":"E-mails envoyés","noSent":"Aucun e-mail envoyé.","toWord":"à","emailToPrefix":"E-mail à","msgToPrefix":"Message à","newTplTitle":"+ Créer un modèle d'e-mail","tplName":"Nom du modèle","tplNamePh":"Ex. : Promotion, Rappel...","bodyLbl":"Corps","useNameHint":"(utilisez {nom})","fillAll":"Remplissez tous les champs","addTplBtn":"Ajouter le modèle","batchTitle":"Créer et envoyer un e-mail groupé","testHint":"Avant d'envoyer à tous, faites un test (envoyé à votre e-mail, affiche l'erreur éventuelle).","testBtn":"M'envoyer un e-mail de test","contentLbl":"Contenu","freeText":"Texte libre","tplPrefix":"Modèle","recipientsLbl":"Destinataires","recAll":"Tous les utilisateurs","recStudents":"Étudiants seulement","recInstructors":"Formateurs seulement","recOne":"Un utilisateur précis","recipientEmail":"E-mail du destinataire","msgLbl":"Message","usePersonalizeHint":"(utilisez {nom} pour personnaliser)","fillSubjBody":"Remplissez l'objet et le message","invalidRecipient":"E-mail du destinataire invalide","sendEmailBtn":"Envoyer l'e-mail","fillNameEmailPw":"Remplissez nom, e-mail et mot de passe","createAccountTitle":"Créer un compte","welcomeTplLabel":"Bienvenue","enrollTplLabel":"Inscription au cours","welcomeTplFull":"Bienvenue (à l'inscription)","deleteTplBtn":"Supprimer le modèle","useNameCourseHint":"(utilisez {nom} et {cours})","editUserTitle":"Modifier l'utilisateur","editCourseTitle":"Modifier le cours","photoLbl":"Photo","roleStudent":"Étudiant","saveWord":"Enregistrer","oldPriceShort":"Ancien prix","pwPh":"(mot de passe)","forLabel":"À","introText":"Texte d'introduction","faqsTitle":"Questions et réponses","answerWord":"Réponse","moveUp":"Monter","moveDown":"Descendre","saveHelpBtn":"Enregistrer le centre d'aide","footerIntro":"Modifiez les colonnes et liens du pied. Les liens de type Page ouvrent une page avec votre contenu. Catalogue, Formateur et Admin mènent à ces zones.","newLink":"Nouveau lien","newColumn":"Nouvelle colonne","removeColumn":"Supprimer la colonne","linkText":"Texte du lien","ownPage":"Page dédiée","pageContent":"Contenu de la page","addLinkBtn":"+ Ajouter un lien","addColumnBtn":"+ Ajouter une colonne","homeIntro":"Personnalisez la bannière, les textes et les cours de la page d'accueil.","bannerTitle":"Bannière principale","removeBanner":"Supprimer la bannière","noBanner":"Aucune bannière — dégradé par défaut","heroTextsTitle":"Textes principaux","leaveEmptyHint":"(laisser vide pour la valeur par défaut)","subtitleLbl":"Sous-titre","mostWatchedTitle":"🔥 Les plus regardés","suggestedTitle":"✨ Suggérés pour vous","saveHomeBtn":"Enregistrer la page d'accueil","selectedSuffix":"sélectionné(s)","noCoursesAvail":"Aucun cours disponible.","langsIntro":"Choisissez les langues du site et modifiez les textes de chacune.","activeLangsTitle":"Langues actives","selectOneLang":"Sélectionnez au moins une langue.","editTransTitle":"Modifier les traductions","searchTextPh":"Rechercher un texte...","transHint":"Laissez identique au défaut pour ne pas écraser. Les changements s'appliquent à tous.","saveLangsBtn":"Enregistrer langues et traductions","adminRestricted":"Cette zone est réservée aux administrateurs. Connectez-vous avec un compte admin."},
 };
 
 const LEVELS = ["beginner","intermediate","advanced"];
@@ -522,6 +522,7 @@ function App(){
   const [adminTab,setAdminTab]=useState("cats");
   const [banner,setBanner]=useState(null);
   const [design,setDesign]=useState({ logo:LOGO, primary:"#5624d0", heroTitle:"", heroSub:"", siteName:"Jewdemy" });
+  const [designLoaded,setDesignLoaded]=useState(false);
   const setDesignField=(k,v)=>setDesign(d=>({...d,[k]:v}));
   const DEFAULT_HELP={ intro:"Encontre respostas rápidas ou envie sua dúvida.", faqs:[
     {q:"Como me inscrevo em um curso?", a:"Crie sua conta gratuita, abra o curso desejado e clique em inscrever-se. Cursos gratuitos liberam o acesso na hora."},
@@ -531,7 +532,7 @@ function App(){
   ]};
   const [helpContent,setHelpContent]=useState(DEFAULT_HELP);
   const [homeSections,setHomeSections]=useState({ mostWatched:[], suggested:[] });
-  const loadHome=async()=>{ if(!SB) return; try{
+  const loadHome=async()=>{ if(!SB){ setDesignLoaded(true); return; } try{
     const { data }=await SB.from("site_settings").select("design,banner,home_sections,active_langs,translations").eq("id",1).single();
     if(data){
       if(data.design && (data.design.logo||data.design.primary||data.design.heroTitle||data.design.siteName)) setDesign(d=>({...d,...data.design}));
@@ -540,7 +541,7 @@ function App(){
       if(Array.isArray(data.active_langs) && data.active_langs.length) setActiveLangs(data.active_langs);
       if(data.translations && typeof data.translations==="object") setTOverrides(data.translations);
     }
-  }catch(e){} };
+  }catch(e){} finally{ setDesignLoaded(true); } };
   const saveSite=async(over={})=>{ if(!SB) return;
     const payload={
       design: over.design||design,
@@ -1067,7 +1068,7 @@ function App(){
 
   useEffect(()=>{ try{ document.documentElement.dir = (lang==="he"?"rtl":"ltr"); document.documentElement.lang = lang; }catch(e){} },[lang]);
   useEffect(()=>{ if(activeLangs.length && !activeLangs.includes(lang)) setLang(activeLangs[0]); },[activeLangs]);
-  const headerProps={t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:design.logo,siteName:design.siteName};
+  const headerProps={t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo:(designLoaded?design.logo:null),siteName:design.siteName};
 
   // Após o 1º acesso (ex.: Google), exige completar o cadastro antes de usar o site
   if(user && needsProfile)
@@ -1237,7 +1238,7 @@ function Gate({t,msg,onLogin,btn}){
 function Header({t,lang,setLang,activeLangs,user,effRole,viewAsStudent,setViewAsStudent,view,navTo,setView,goHome,setCartOpen,cart,wishlist,requireAuth,menuOpen,setMenuOpen,setAuthOpen,logout,query,setQuery,adminUnlocked,setAdminTab,logo,siteName}){
   return (
     <header>
-      <div className="logo" onClick={goHome}><img src={logo||LOGO} alt={siteName||"Jewdemy"}/></div>
+      <div className="logo" onClick={goHome}>{logo ? <img src={logo} alt={siteName||"Jewdemy"}/> : <span style={{display:"inline-block",width:130,height:36}}/>}</div>
       <div className="search">
         <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.7.7l.27.28v.79l5 5 1.5-1.5-5-5zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14z"/></svg>
         <input placeholder={t("search")} value={query} onChange={e=>{setQuery(e.target.value); if(view.name!=="home") navTo("home");}}/>
@@ -1843,13 +1844,13 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
   const setOption=(si,li,qi,oi,val)=>updLesson(si,li,l=>({...l,quiz:(l.quiz||[]).map((q,j)=>j!==qi?q:{...q,options:q.options.map((o,k)=>k===oi?val:o)})}));
 
   const submit=()=>{
-    if(!title.trim()){alert("Dê um título ao curso");return;}
+    if(!title.trim()){alert(t("errNeedTitle"));return;}
     let lid=0;
     const outSections=sections.map(s=>({
       title:s.title.trim()||null,
       lessons:s.lessons.filter(l=>l.title.trim()).map(l=>({id:++lid,title:l.title,dur:l.dur||"5:00",type:l.type||"video",video:l.video,text:l.text||"",resources:l.resources,quiz:(l.quiz||[]).filter(q=>q.q.trim())}))
     })).filter(s=>s.lessons.length);
-    if(!outSections.length){alert("Adicione ao menos uma aula com título");return;}
+    if(!outSections.length){alert(t("errNeedLesson"));return;}
     const curriculum=outSections.flatMap(s=>s.lessons);
     onSubmit({ title, cat, level, lang:clang, price:parseFloat(price)||0, old:parseFloat(old)||0, thumb, womenOnly, openToNonJews, active,
       desc, authorBio, introVideo, learn:learn.split("\n").map(s=>s.trim()).filter(Boolean), sections:outSections, curriculum });
@@ -1857,7 +1858,7 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
 
   return (
     <div className="form-card">
-      <div className="field"><label>{t("title")}</label><input value={title} onChange={e=>setTitle(e.target.value)} placeholder="Ex: Curso de JavaScript do Zero"/></div>
+      <div className="field"><label>{t("title")}</label><input value={title} onChange={e=>setTitle(e.target.value)} placeholder={t("phCourseTitle")}/></div>
       <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
         <div className="field" style={{flex:1,minWidth:140}}><label>{t("category")}</label>
           <select value={cat} onChange={e=>setCat(e.target.value)}>{categories.map(c=><option key={c} value={c}>{catLabel(c,lang)}</option>)}</select></div>
@@ -1871,8 +1872,8 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
         <div className="field" style={{flex:1}}><label>{t("oldPriceLbl")}</label><input type="number" min="0" step="0.01" value={old} onChange={e=>setOld(e.target.value)}/></div>
       </div>
       <div className="field"><label>{t("description")}</label><textarea rows="3" value={desc} onChange={e=>setDesc(e.target.value)}></textarea></div>
-      <div className="field"><label>Descrição do instrutor <span className="hint">(aparece na página do curso)</span></label><textarea rows="3" value={authorBio} onChange={e=>setAuthorBio(e.target.value)} placeholder="Ex.: Rav David Cohen leciona Tanach há mais de 20 anos..."></textarea></div>
-      <div className="field"><label>Vídeo introdutório <span className="hint">(YouTube/Vimeo/Bunny — aparece só na apresentação do curso)</span></label><input value={introVideo} onChange={e=>setIntroVideo(e.target.value)} placeholder="https://www.youtube.com/watch?v=..."/></div>
+      <div className="field"><label>{t("authorBioLbl")} <span className="hint">{t("authorBioHint")}</span></label><textarea rows="3" value={authorBio} onChange={e=>setAuthorBio(e.target.value)}></textarea></div>
+      <div className="field"><label>{t("introVideoLbl")} <span className="hint">{t("introVideoHint")}</span></label><input value={introVideo} onChange={e=>setIntroVideo(e.target.value)} placeholder="https://www.youtube.com/watch?v=..."/></div>
       <div className="field"><label>{t("coverImage")}</label>
         <div style={{display:"flex",alignItems:"center",gap:12}}>
           <div style={{width:120,height:68,borderRadius:6,overflow:"hidden",background:"#eceaf6",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,color:"#6a6f73"}}>
@@ -1891,7 +1892,7 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
         <label className="chkrow"><input type="checkbox" checked={active} onChange={e=>setActive(e.target.checked)}/><span>{t("courseActive")}</span></label>
       </div>
       <div className="field"><label>{t("willLearn")} <span className="hint">{t("onePerLine")}</span></label>
-        <textarea rows="4" value={learn} onChange={e=>setLearn(e.target.value)} placeholder={"Tópico 1\nTópico 2"}></textarea></div>
+        <textarea rows="4" value={learn} onChange={e=>setLearn(e.target.value)} placeholder={t("phTopics")}></textarea></div>
 
       <label style={{fontWeight:700,display:"block",margin:"10px 0 8px"}}>{t("sectionsLessons")}</label>
       {sections.map((sec,si)=>(
@@ -1921,9 +1922,9 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
 
               {(l.type||"video")==="video" &&
                 <div style={{marginTop:8}}>
-                  <label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:4}}>Link do vídeo (YouTube, Vimeo ou MP4)</label>
+                  <label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:4}}>{t("videoLinkLbl")}</label>
                   <input style={{width:"100%",padding:9,border:"1px solid var(--line)",borderRadius:4}} value={l.video||""} onChange={e=>setLesson(si,li,{video:e.target.value})} placeholder="https://www.youtube.com/watch?v=..."/>
-                  <span style={{fontSize:11,color:"#6a6f73"}}>Cole o link do vídeo. Para cursos gratuitos, recomendamos YouTube.</span>
+                  <span style={{fontSize:11,color:"#6a6f73"}}>{t("videoLinkHint")}</span>
                 </div>}
 
               {l.type==="text" &&
@@ -1951,7 +1952,7 @@ function CourseEditor({t,lang,categories,initial,onSubmit,submitLabel}){
                               border:`1px solid ${q.correct===oi?"var(--green)":"var(--line)"}`,
                               background:q.correct===oi?"#e6f4ec":"#fff", color:q.correct===oi?"#1a7a44":"#6a6f73"}}>
                             {q.correct===oi?"✓ "+t("correctAnswer"):t("correctAnswer")+"?"}</button>
-                          <input style={{flex:1}} placeholder={`Opção ${oi+1}`} value={opt} onChange={e=>setOption(si,li,qi,oi,e.target.value)}/>
+                          <input style={{flex:1}} placeholder={t("optionWord")+" "+(oi+1)} value={opt} onChange={e=>setOption(si,li,qi,oi,e.target.value)}/>
                         </div>
                       ))}
                     </div>
@@ -2033,7 +2034,7 @@ function InstructorPanel({t,lang,categories,onPublish,onUpdate,myCourses,qaByCou
                   <div className="author">{co.students} {t("students2")} · {allLessons(co).length} {t("lessons2")}</div>
                   <label style={{display:"flex",alignItems:"center",gap:6,margin:"8px 0",fontSize:13,fontWeight:600,cursor:"pointer",color:co.active===false?"var(--red)":"var(--green)"}}>
                     <input type="checkbox" checked={co.active!==false} onChange={()=>onToggleActive(co.id)}/> {co.active===false?t("inactive"):t("active")}</label>
-                  <button className="btn-ghost" onClick={()=>setEditing(co)}>Editar curso</button>
+                  <button className="btn-ghost" onClick={()=>setEditing(co)}>{t("editCourseBtn")}</button>
                 </div>)}
               </div>
             : <p style={{color:"#6a6f73"}}>{t("noPublished")}</p>))}
@@ -2097,7 +2098,7 @@ function ProfilePage({user,t,onSave,onBack}){
             <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>onPhoto(e.target.files[0])}/></label>
         </div>
         <div className="field"><label>{t("name")}</label><input value={name} onChange={e=>setName(e.target.value)}/></div>
-        <div className="field"><label>Email</label><input value={user.email} disabled style={{background:"#f7f9fa"}}/></div>
+        <div className="field"><label>{t("emailLbl")}</label><input value={user.email} disabled style={{background:"#f7f9fa"}}/></div>
         <div className="field"><label>{t("phone")}</label><input value={phone} onChange={e=>setPhone(e.target.value)}/></div>
         <div className="field"><label>{t("cityLbl")}</label><input value={city} onChange={e=>setCity(e.target.value)}/></div>
         <div className="field"><label>{t("communityLbl")}</label><input value={community} onChange={e=>setCommunity(e.target.value)}/></div>
@@ -2159,10 +2160,10 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
   if(!unlocked){
     return (
       <div className="panel" style={{maxWidth:460}}>
-        <span className="back" onClick={onBack} style={{margin:"0 0 16px"}}>← Voltar</span>
+        <span className="back" onClick={onBack} style={{margin:"0 0 16px"}}>← {t("back")}</span>
         <h1>{t("admin")}</h1>
         <div className="form-card">
-          <p style={{color:"#3e4143"}}>Esta área é restrita a administradores. Faça login com uma conta de administrador para acessar.</p>
+          <p style={{color:"#3e4143"}}>{t("adminRestricted")}</p>
         </div>
       </div>
     );
@@ -2189,45 +2190,45 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
 
   return (
     <div className="panel">
-      <span className="back" onClick={onBack} style={{margin:"0 0 16px"}}>← Voltar</span>
+      <span className="back" onClick={onBack} style={{margin:"0 0 16px"}}>← {t("back")}</span>
       <h1>{t("admin")}</h1>
       <div className="admin-groups">
         <div className="admin-group">
-          <span className="admin-group-label">Cursos</span>
-          <button className={tab==="courses"?"on":""} onClick={()=>setTab("courses")}>Cursos</button>
-          <button className={tab==="cats"?"on":""} onClick={()=>setTab("cats")}>Categorias</button>
+          <span className="admin-group-label">{t("gCourses")}</span>
+          <button className={tab==="courses"?"on":""} onClick={()=>setTab("courses")}>{t("tabCourses")}</button>
+          <button className={tab==="cats"?"on":""} onClick={()=>setTab("cats")}>{t("tabCategories")}</button>
         </div>
         <div className="admin-group">
-          <span className="admin-group-label">Usuários</span>
-          <button className={tab==="students"?"on":""} onClick={()=>setTab("students")}>Alunos</button>
-          <button className={tab==="instructors"?"on":""} onClick={()=>setTab("instructors")}>Instrutores / Admin</button>
-          <button className={tab==="requests"?"on":""} onClick={()=>setTab("requests")}>Pedidos de instrutor</button>
+          <span className="admin-group-label">{t("gUsers")}</span>
+          <button className={tab==="students"?"on":""} onClick={()=>setTab("students")}>{t("tabStudents")}</button>
+          <button className={tab==="instructors"?"on":""} onClick={()=>setTab("instructors")}>{t("tabInstructors")}</button>
+          <button className={tab==="requests"?"on":""} onClick={()=>setTab("requests")}>{t("tabRequests")}</button>
         </div>
         <div className="admin-group">
-          <span className="admin-group-label">E-mails</span>
-          <button className={tab==="emails"?"on":""} onClick={()=>setTab("emails")}>Modelos</button>
-          <button className={tab==="batch"?"on":""} onClick={()=>setTab("batch")}>Enviar</button>
-          <button className={tab==="log"?"on":""} onClick={()=>setTab("log")}>Enviados</button>
+          <span className="admin-group-label">{t("gEmails")}</span>
+          <button className={tab==="emails"?"on":""} onClick={()=>setTab("emails")}>{t("tabTemplates")}</button>
+          <button className={tab==="batch"?"on":""} onClick={()=>setTab("batch")}>{t("tabSend")}</button>
+          <button className={tab==="log"?"on":""} onClick={()=>setTab("log")}>{t("tabSent")}</button>
         </div>
         <div className="admin-group">
-          <span className="admin-group-label">Design</span>
-          <button className={tab==="design"?"on":""} onClick={()=>setTab("design")}>Design Site</button>
-          <button className={tab==="home"?"on":""} onClick={()=>setTab("home")}>Página inicial</button>
-          <button className={tab==="footer"?"on":""} onClick={()=>setTab("footer")}>Rodapé</button>
-          <button className={tab==="help"?"on":""} onClick={()=>setTab("help")}>Central de ajuda</button>
+          <span className="admin-group-label">{t("gDesign")}</span>
+          <button className={tab==="design"?"on":""} onClick={()=>setTab("design")}>{t("tabDesignSite")}</button>
+          <button className={tab==="home"?"on":""} onClick={()=>setTab("home")}>{t("tabHomePage")}</button>
+          <button className={tab==="footer"?"on":""} onClick={()=>setTab("footer")}>{t("tabFooter")}</button>
+          <button className={tab==="help"?"on":""} onClick={()=>setTab("help")}>{t("tabHelpCenter")}</button>
         </div>
         <div className="admin-group">
-          <span className="admin-group-label">Configurações</span>
-          <button className={tab==="langs"?"on":""} onClick={()=>setTab("langs")}>Idiomas e traduções</button>
+          <span className="admin-group-label">{t("gSettings")}</span>
+          <button className={tab==="langs"?"on":""} onClick={()=>setTab("langs")}>{t("tabLangs")}</button>
         </div>
       </div>
 
       {tab==="cats" &&
         <div className="form-card">
-          <h2 style={{fontSize:18,marginBottom:14}}>Gerenciar categorias</h2>
+          <h2 style={{fontSize:18,marginBottom:14}}>{t("manageCats")}</h2>
           <div style={{display:"flex",gap:8,marginBottom:16}}>
-            <input style={{flex:1,padding:11,border:"1px solid var(--ink)",borderRadius:4}} placeholder="Nova categoria" value={newCat} onChange={e=>setNewCat(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){addCategory(newCat.trim());setNewCat("");}}}/>
-            <button className="btn-primary" onClick={()=>{addCategory(newCat.trim());setNewCat("");}}>Adicionar</button>
+            <input style={{flex:1,padding:11,border:"1px solid var(--ink)",borderRadius:4}} placeholder={t("newCatPh")} value={newCat} onChange={e=>setNewCat(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){addCategory(newCat.trim());setNewCat("");}}}/>
+            <button className="btn-primary" onClick={()=>{addCategory(newCat.trim());setNewCat("");}}>{t("addBtn")}</button>
           </div>
           <div>{categories.map((c,i)=>(
             <div key={c} style={{display:"flex",alignItems:"center",gap:8,padding:"8px 10px",border:"1px solid var(--line)",borderRadius:6,marginBottom:6}}>
@@ -2241,26 +2242,26 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
       {tab==="design" &&
         <div>
           <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Logo do site</h2>
+            <h2 style={{fontSize:18,marginBottom:14}}>{t("siteLogo")}</h2>
             <div style={{display:"flex",alignItems:"center",gap:16,marginBottom:14}}>
               <div style={{background:"#2d2f31",borderRadius:8,padding:"12px 16px"}}>
                 <img src={design.logo} alt="logo" style={{height:48,display:"block"}}/>
               </div>
               <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-                <label className="btn-primary" style={{cursor:"pointer"}}>Trocar logo
+                <label className="btn-primary" style={{cursor:"pointer"}}>{t("changeLogo")}
                   <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const f2=e.target.files[0]; if(f2){const r=new FileReader(); r.onload=()=>setDesignField("logo",r.result); r.readAsDataURL(f2);}}}/></label>
-                <button className="btn-ghost" onClick={()=>setDesignField("logo",LOGO)}>Restaurar padrão</button>
+                <button className="btn-ghost" onClick={()=>setDesignField("logo",LOGO)}>{t("restoreDefault")}</button>
               </div>
             </div>
           </div>
 
           <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Cores</h2>
-            <div className="field"><label>Cor principal do site</label>
+            <h2 style={{fontSize:18,marginBottom:14}}>{t("colorsLbl")}</h2>
+            <div className="field"><label>{t("mainColor")}</label>
               <div style={{display:"flex",alignItems:"center",gap:12}}>
                 <input type="color" value={design.primary} onChange={e=>setDesignField("primary",e.target.value)} style={{width:54,height:38,border:"1px solid var(--line)",borderRadius:6,padding:2,cursor:"pointer"}}/>
                 <span style={{fontFamily:"monospace"}}>{design.primary}</span>
-                <button className="btn-ghost" onClick={()=>setDesignField("primary","#5624d0")}>Restaurar</button>
+                <button className="btn-ghost" onClick={()=>setDesignField("primary","#5624d0")}>{t("restoreWord")}</button>
               </div>
             </div>
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:6}}>
@@ -2270,33 +2271,33 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
             </div>
           </div>
 
-          <button className="btn-primary" onClick={onSaveDesign}>Salvar design</button>
+          <button className="btn-primary" onClick={onSaveDesign}>{t("saveDesignBtn")}</button>
         </div>}
 
-      {tab==="home" && <HomeEditor courses={courses} sections={homeSections} banner={banner} heroTitle={design.heroTitle} heroSub={design.heroSub} onSave={onSaveHome}/>}
-      {tab==="langs" && <LangEditor activeLangs={activeLangs} tOverrides={tOverrides} onSave={onSaveLangs}/>}
+      {tab==="home" && <HomeEditor t={t} courses={courses} sections={homeSections} banner={banner} heroTitle={design.heroTitle} heroSub={design.heroSub} onSave={onSaveHome}/>}
+      {tab==="langs" && <LangEditor t={t} activeLangs={activeLangs} tOverrides={tOverrides} onSave={onSaveLangs}/>}
 
       {tab==="students" &&
         <div className="form-card">
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}>
-            <h2 style={{fontSize:18}}>Alunos ({students.length})</h2>
+            <h2 style={{fontSize:18}}>{t("tabStudents")} ({students.length})</h2>
             {students.length>0 && <button className="btn-ghost" onClick={exportStudents}>⬇ {t("exportStudents")}</button>}
           </div>
-          {students.length===0? <p style={{color:"#6a6f73"}}>Nenhum aluno cadastrado ainda.</p> :
-          <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>Nome</th><th>Email</th><th>Telefone</th><th>Cidade</th><th>Comunidade</th><th>Judeu?</th><th>Status</th><th>Ações</th></tr></thead>
+          {students.length===0? <p style={{color:"#6a6f73"}}>{t("noStudents")}</p> :
+          <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>{t("thName")}</th><th>{t("emailLbl")}</th><th>{t("thPhone")}</th><th>{t("thCity")}</th><th>{t("thCommunity")}</th><th>{t("thJewish")}</th><th>{t("thStatus")}</th><th>{t("thActions")}</th></tr></thead>
             <tbody>{students.map(u=>(
               <tr key={u.id}>
                 <td>{u.name}</td><td>{u.email}</td><td>{u.phone||"—"}</td><td>{u.city||"—"}</td><td>{u.community||"—"}</td>
-                <td>{u.isJewish===true?"Sim":u.isJewish===false?"Não":"—"}</td>
-                <td><span className={"pill "+(u.blocked?"blocked":"active")}>{u.blocked?"Bloqueado":"Ativo"}</span></td>
+                <td>{u.isJewish===true?t("yes"):u.isJewish===false?t("no"):"—"}</td>
+                <td><span className={"pill "+(u.blocked?"blocked":"active")}>{u.blocked?t("blockedWord"):t("activeWord")}</span></td>
                 <td style={{whiteSpace:"nowrap"}}>
-                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setEditTarget({type:"user",data:u})}>Editar</button>
-                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setComposeFor(u)}>E-mail</button>
-                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setMsgFor(u)}>Mensagem</button>
+                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setEditTarget({type:"user",data:u})}>{t("editBtn")}</button>
+                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setComposeFor(u)}>{t("gEmails")}</button>
+                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setMsgFor(u)}>{t("messageBtn")}</button>
                   {u.blocked
-                    ? <button className="btn-ghost" onClick={()=>blockUser(u.id,false)}>Desbloquear</button>
-                    : <button className="btn-danger" style={{marginRight:6}} onClick={()=>blockUser(u.id,true)}>Bloquear</button>}
-                  <button className="btn-danger" onClick={()=>{ if(confirm("Apagar esta conta permanentemente?")) onDeleteUser(u.id); }}>Apagar</button>
+                    ? <button className="btn-ghost" onClick={()=>blockUser(u.id,false)}>{t("unblockBtn")}</button>
+                    : <button className="btn-danger" style={{marginRight:6}} onClick={()=>blockUser(u.id,true)}>{t("blockBtn")}</button>}
+                  <button className="btn-danger" onClick={()=>{ if(confirm(t("confirmDeleteUser"))) onDeleteUser(u.id); }}>{t("deleteBtn")}</button>
                 </td>
               </tr>))}</tbody>
           </table></div>}
@@ -2305,24 +2306,24 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
       {tab==="instructors" &&
         <div className="form-card">
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14,flexWrap:"wrap",gap:8}}>
-            <h2 style={{fontSize:18}}>Instrutores / Administradores ({instructors.length})</h2>
+            <h2 style={{fontSize:18}}>{t("instructorsAdmins")} ({instructors.length})</h2>
             <div style={{display:"flex",gap:8}}>
               {instructors.length>0 && <button className="btn-ghost" onClick={exportInstructors}>⬇ {t("exportInstructors")}</button>}
-              <button className="btn-primary" onClick={()=>setShowCreate(true)}>+ Criar conta</button>
+              <button className="btn-primary" onClick={()=>setShowCreate(true)}>{t("createAccountBtn")}</button>
             </div>
           </div>
-          {instructors.length===0? <p style={{color:"#6a6f73"}}>Nenhum instrutor/admin cadastrado. Use "Criar conta" para adicionar.</p> :
-          <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>Nome</th><th>Email</th><th>Tipo</th><th>Telefone</th><th>Status</th><th>Ações</th></tr></thead>
+          {instructors.length===0? <p style={{color:"#6a6f73"}}>{t("noInstructors")}</p> :
+          <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>{t("thName")}</th><th>{t("emailLbl")}</th><th>{t("thType")}</th><th>{t("thPhone")}</th><th>{t("thStatus")}</th><th>{t("thActions")}</th></tr></thead>
             <tbody>{instructors.map(u=>(
               <tr key={u.id}>
-                <td>{u.name}</td><td>{u.email}</td><td>{u.role==="admin"?"Administrador":"Instrutor"}</td><td>{u.phone||"—"}</td>
-                <td><span className={"pill "+(u.blocked?"blocked":"active")}>{u.blocked?"Bloqueado":"Ativo"}</span></td>
+                <td>{u.name}</td><td>{u.email}</td><td>{u.role==="admin"?t("roleAdmin"):t("roleInstructor")}</td><td>{u.phone||"—"}</td>
+                <td><span className={"pill "+(u.blocked?"blocked":"active")}>{u.blocked?t("blockedWord"):t("activeWord")}</span></td>
                 <td style={{whiteSpace:"nowrap"}}>
-                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setEditTarget({type:"user",data:u})}>Editar</button>
+                  <button className="btn-ghost" style={{marginRight:6}} onClick={()=>setEditTarget({type:"user",data:u})}>{t("editBtn")}</button>
                   {u.blocked
-                    ? <button className="btn-ghost" onClick={()=>blockUser(u.id,false)}>Desbloquear</button>
-                    : <button className="btn-danger" style={{marginRight:6}} onClick={()=>blockUser(u.id,true)}>Bloquear</button>}
-                  <button className="btn-danger" onClick={()=>{ if(confirm("Apagar esta conta permanentemente?")) onDeleteUser(u.id); }}>Apagar</button>
+                    ? <button className="btn-ghost" onClick={()=>blockUser(u.id,false)}>{t("unblockBtn")}</button>
+                    : <button className="btn-danger" style={{marginRight:6}} onClick={()=>blockUser(u.id,true)}>{t("blockBtn")}</button>}
+                  <button className="btn-danger" onClick={()=>{ if(confirm(t("confirmDeleteUser"))) onDeleteUser(u.id); }}>{t("deleteBtn")}</button>
                 </td>
               </tr>))}</tbody>
           </table></div>}
@@ -2330,29 +2331,29 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
 
       {tab==="courses" && (editCourseTarget
         ? <div>
-            <span className="back" onClick={()=>setEditCourseTarget(null)} style={{margin:"0 0 12px"}}>← Voltar à lista de cursos</span>
-            <h2 style={{fontSize:18,marginBottom:12}}>Editando: {editCourseTarget.title}</h2>
-            <CourseEditor t={t} lang={lang} categories={categories} initial={editCourseTarget} submitLabel="Salvar alterações"
+            <span className="back" onClick={()=>setEditCourseTarget(null)} style={{margin:"0 0 12px"}}>{t("backToCourses")}</span>
+            <h2 style={{fontSize:18,marginBottom:12}}>{t("editingPrefix")}: {editCourseTarget.title}</h2>
+            <CourseEditor t={t} lang={lang} categories={categories} initial={editCourseTarget} submitLabel={t("saveChangesBtn")}
               onSubmit={(data)=>{ editCourse(editCourseTarget.id,data); setEditCourseTarget(null); }}/>
           </div>
         : <div className="form-card">
-            <h2 style={{fontSize:18,marginBottom:14}}>Cursos ({courses.length})</h2>
+            <h2 style={{fontSize:18,marginBottom:14}}>{t("coursesWord")} ({courses.length})</h2>
             <div style={{background:"#faf9fc",border:"1px solid var(--line)",borderRadius:8,padding:12,marginBottom:16}}>
-              <div style={{fontWeight:700,marginBottom:8}}>Desconto geral (todos os cursos)</div>
+              <div style={{fontWeight:700,marginBottom:8}}>{t("bulkDiscount")}</div>
               <div style={{display:"flex",gap:8,alignItems:"center",flexWrap:"wrap"}}>
                 <input type="number" min="0" max="95" value={discountPct} onChange={e=>setDiscountPct(e.target.value)} placeholder="% ex.: 20" style={{width:120,padding:8,border:"1px solid var(--line)",borderRadius:4}}/>
-                <button className="btn-primary" onClick={()=>{ if(discountPct){ onBulkDiscount(discountPct); } }}>Aplicar desconto</button>
-                <button className="btn-ghost" onClick={()=>onRemoveDiscount()}>Remover descontos</button>
+                <button className="btn-primary" onClick={()=>{ if(discountPct){ onBulkDiscount(discountPct); } }}>{t("applyDiscountBtn")}</button>
+                <button className="btn-ghost" onClick={()=>onRemoveDiscount()}>{t("removeDiscountsBtn")}</button>
               </div>
-              <div style={{fontSize:12,color:"#6a6f73",marginTop:6}}>O preço original vira "de" e o desconto vira o novo preço. "Remover" volta ao preço original.</div>
+              <div style={{fontSize:12,color:"#6a6f73",marginTop:6}}>{t("discountHint2")}</div>
             </div>
-            <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>Título</th><th>Autor</th><th>Categoria</th><th>Nível</th><th>Idioma</th><th>Preço</th><th>Aulas</th><th>Ativo</th><th>Ações</th></tr></thead>
+            <div style={{overflowX:"auto"}}><table className="admin"><thead><tr><th>{t("thTitle")}</th><th>{t("thAuthor")}</th><th>{t("thCategory")}</th><th>{t("thLevelH")}</th><th>{t("thLangH")}</th><th>{t("thPrice")}</th><th>{t("thLessons")}</th><th>{t("thActive")}</th><th>{t("thActions")}</th></tr></thead>
               <tbody>{courses.map(c=>(
                 <tr key={c.id}>
                   <td>{c.title}</td><td>{c.author}</td><td>{catLabel(c.cat,lang)}</td><td>{t(c.level)}</td><td>{c.lang}</td><td>R$ {c.price.toFixed(2)}</td><td>{allLessons(c).length}</td>
                   <td><input type="checkbox" checked={c.active!==false} onChange={()=>onToggleActive(c.id)} title={t("courseActive")}/></td>
-                  <td><button className="btn-ghost" onClick={()=>setEditCourseTarget(c)}>Editar curso</button>
-                    <button className="btn-danger" style={{marginLeft:6}} onClick={()=>{ if(confirm(`Apagar o curso "${c.title}"? Esta ação não pode ser desfeita.`)) onDeleteCourse(c.id); }}>Apagar</button></td>
+                  <td><button className="btn-ghost" onClick={()=>setEditCourseTarget(c)}>{t("editCourseBtn")}</button>
+                    <button className="btn-danger" style={{marginLeft:6}} onClick={()=>{ if(confirm(`Apagar o curso "${c.title}"?`)) onDeleteCourse(c.id); }}>{t("deleteBtn")}</button></td>
                 </tr>))}</tbody>
             </table></div>
           </div>)}
@@ -2362,12 +2363,12 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
           {Object.entries(emailTemplates).map(([key,tpl])=>(
             <div className="form-card" key={key}>
               <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-                <h2 style={{fontSize:16}}>{key==="welcome"?"Boas-vindas (ao se inscrever no site)":key==="enroll"?"Inscrição em curso":(tpl.label||key)}</h2>
+                <h2 style={{fontSize:16}}>{key==="welcome"?t("welcomeTplFull"):key==="enroll"?t("enrollTplLabel"):(tpl.label||key)}</h2>
                 {key!=="welcome"&&key!=="enroll" &&
-                  <button className="btn-danger" onClick={()=>setEmailTemplates(t=>{const n={...t};delete n[key];return n;})}>Apagar modelo</button>}
+                  <button className="btn-danger" onClick={()=>setEmailTemplates(tt=>{const n={...tt};delete n[key];return n;})}>{t("deleteTplBtn")}</button>}
               </div>
-              <div className="field"><label>Assunto</label><input value={tpl.subject} onChange={e=>updateTpl(key,"subject",e.target.value)}/></div>
-              <div className="field"><label>Corpo <span className="hint">(use {"{nome}"} e {"{curso}"})</span></label>
+              <div className="field"><label>{t("subject")}</label><input value={tpl.subject} onChange={e=>updateTpl(key,"subject",e.target.value)}/></div>
+              <div className="field"><label>{t("bodyLbl")} <span className="hint">{t("useNameCourseHint")}</span></label>
                 <textarea rows="3" value={tpl.body} onChange={e=>updateTpl(key,"body",e.target.value)}></textarea></div>
             </div>))}
           <NewTemplate onAdd={(label,subject,body)=>{
@@ -2378,32 +2379,32 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
 
       {tab==="batch" && <BatchEmail onBatch={onBatch} emailTemplates={emailTemplates} onTestEmail={onTestEmail}/>}
 
-      {tab==="footer" && <FooterEditor columns={footerColumns} setColumns={setFooterColumns}/>}
-      {tab==="help" && <HelpEditor content={helpContent} onSave={onSaveHelp}/>}
+      {tab==="footer" && <FooterEditor t={t} columns={footerColumns} setColumns={setFooterColumns}/>}
+      {tab==="help" && <HelpEditor t={t} content={helpContent} onSave={onSaveHelp}/>}
 
       {tab==="requests" &&
         <div className="form-card">
-          <h2 style={{fontSize:18,marginBottom:14}}>Pedidos para virar instrutor ({(instructorRequests||[]).length})</h2>
-          {(!instructorRequests||instructorRequests.length===0)? <p style={{color:"#6a6f73"}}>Nenhum pedido recebido ainda.</p> :
+          <h2 style={{fontSize:18,marginBottom:14}}>{t("reqTitle")} ({(instructorRequests||[]).length})</h2>
+          {(!instructorRequests||instructorRequests.length===0)? <p style={{color:"#6a6f73"}}>{t("noRequests")}</p> :
             instructorRequests.map((r,i)=>(
               <div key={i} style={{borderBottom:"1px solid var(--line)",padding:"12px 0"}}>
                 <div style={{fontSize:12,color:"#6a6f73"}}>{r.at}</div>
                 <b>{r.name}</b> · {r.email}
-                <div style={{fontSize:14,marginTop:4}}><b>Área:</b> {r.area}</div>
+                <div style={{fontSize:14,marginTop:4}}><b>{t("areaLbl")}:</b> {r.area}</div>
                 {r.experience && <div style={{fontSize:14,marginTop:2}}>{r.experience}</div>}
                 {r.approved
-                  ? <div style={{marginTop:8,display:"inline-block",background:"#e6f4ec",color:"#1a7a44",fontWeight:700,fontSize:13,padding:"6px 12px",borderRadius:6}}>✓ Pedido aprovado — conta criada</div>
-                  : <button className="btn-ghost" style={{marginTop:8}} onClick={async()=>{ const ok=await onCreateUser({name:r.name,email:r.email,password:"123456",phone:"",role:"instructor",city:"",community:"",isJewish:null}); if(ok!==false) onApproveRequest(r.id); }}>Criar conta de instrutor</button>}
+                  ? <div style={{marginTop:8,display:"inline-block",background:"#e6f4ec",color:"#1a7a44",fontWeight:700,fontSize:13,padding:"6px 12px",borderRadius:6}}>{t("reqApproved")}</div>
+                  : <button className="btn-ghost" style={{marginTop:8}} onClick={async()=>{ const ok=await onCreateUser({name:r.name,email:r.email,password:"123456",phone:"",role:"instructor",city:"",community:"",isJewish:null}); if(ok!==false) onApproveRequest(r.id); }}>{t("createInstructorBtn")}</button>}
               </div>))}
         </div>}
 
       {tab==="log" &&
         <div className="form-card">
-          <h2 style={{fontSize:18,marginBottom:14}}>E-mails enviados (simulado)</h2>
-          {sentEmails.length===0? <p style={{color:"#6a6f73"}}>Nenhum e-mail enviado ainda.</p> :
+          <h2 style={{fontSize:18,marginBottom:14}}>{t("sentTitle")}</h2>
+          {sentEmails.length===0? <p style={{color:"#6a6f73"}}>{t("noSent")}</p> :
             sentEmails.map((e,i)=>(
               <div key={i} style={{borderBottom:"1px solid var(--line)",padding:"10px 0"}}>
-                <div style={{fontSize:12,color:"#6a6f73"}}>{e.at} · para {e.to}</div>
+                <div style={{fontSize:12,color:"#6a6f73"}}>{e.at} · {t("toWord")} {e.to}</div>
                 <b>{e.subject}</b><div style={{fontSize:14}}>{e.body}</div>
               </div>))}
         </div>}
@@ -2412,10 +2413,10 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
         onClose={()=>setEditTarget(null)}
         onSave={(patch)=>{ editTarget.type==="user"?editUser(editTarget.data.id,patch):editCourse(editTarget.data.id,patch); setEditTarget(null); }}/>}
 
-      {composeFor && <ComposeModal title={`E-mail para ${composeFor.name}`} to={composeFor.email}
+      {composeFor && <ComposeModal t={t} title={t("emailToPrefix")+" "+composeFor.name} to={composeFor.email}
         onClose={()=>setComposeFor(null)} onSend={(subject,body)=>{ onDirectEmail(composeFor.email,subject,body); setComposeFor(null); }}/>}
 
-      {msgFor && <ComposeModal title={`Mensagem para ${msgFor.name}`} message
+      {msgFor && <ComposeModal t={t} title={t("msgToPrefix")+" "+msgFor.name} message
         onClose={()=>setMsgFor(null)} onSend={(_,body)=>{ onMessageStudent(msgFor,body); setMsgFor(null); }}/>}
 
       {showCreate && <CreateUserModal t={t} onClose={()=>setShowCreate(false)}
@@ -2424,11 +2425,11 @@ function Admin({t,lang,categories,addCategory,removeCategory,moveCategory,users,
   );
 }
 
-function HomePicker({title,courses,list,setList}){
+function HomePicker({t,title,courses,list,setList}){
   const toggle=(id)=> setList(list.includes(id)?list.filter(x=>x!==id):[...list,id]);
   return (
     <div style={{marginBottom:20}}>
-      <h3 style={{fontSize:15,marginBottom:8}}>{title} <span className="hint">({list.length} selecionado(s))</span></h3>
+      <h3 style={{fontSize:15,marginBottom:8}}>{title} <span className="hint">({list.length} {t("selectedSuffix")})</span></h3>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(220px,1fr))",gap:8,maxHeight:260,overflow:"auto",border:"1px solid var(--line)",borderRadius:8,padding:10}}>
         {courses.map(c=>(
           <label key={c.id} style={{display:"flex",gap:8,alignItems:"center",fontSize:14,cursor:"pointer",padding:"4px 6px",borderRadius:6,background:list.includes(c.id)?"#f0ebff":"transparent"}}>
@@ -2436,12 +2437,12 @@ function HomePicker({title,courses,list,setList}){
             <span style={{overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.title}</span>
           </label>
         ))}
-        {courses.length===0 && <span style={{color:"#6a6f73",fontSize:13}}>Nenhum curso disponível.</span>}
+        {courses.length===0 && <span style={{color:"#6a6f73",fontSize:13}}>{t("noCoursesAvail")}</span>}
       </div>
     </div>
   );
 }
-function HomeEditor({courses,sections,banner,heroTitle,heroSub,onSave}){
+function HomeEditor({t,courses,sections,banner,heroTitle,heroSub,onSave}){
   const [mw,setMw]=useState((sections&&sections.mostWatched)||[]);
   const [sg,setSg]=useState((sections&&sections.suggested)||[]);
   const [bnr,setBnr]=useState(banner||null);
@@ -2449,37 +2450,37 @@ function HomeEditor({courses,sections,banner,heroTitle,heroSub,onSave}){
   const [hS,setHS]=useState(heroSub||"");
   return (
     <div style={{maxWidth:760}}>
-      <h2 style={{fontSize:18,marginBottom:6}}>Página inicial</h2>
-      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>Personalize o banner, os textos de destaque e os cursos exibidos na página inicial.</p>
+      <h2 style={{fontSize:18,marginBottom:6}}>{t("tabHomePage")}</h2>
+      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>{t("homeIntro")}</p>
 
       <div className="form-card">
-        <h3 style={{fontSize:15,marginBottom:10}}>Banner do destaque</h3>
+        <h3 style={{fontSize:15,marginBottom:10}}>{t("bannerTitle")}</h3>
         <div style={{borderRadius:8,overflow:"hidden",marginBottom:12,background:"linear-gradient(120deg,#2d2f31,#5624d0)",minHeight:140,display:"flex",alignItems:"center",justifyContent:"center",color:"#fff"}}>
-          {bnr? <img src={bnr} alt="" style={{width:"100%",maxHeight:240,objectFit:"cover"}}/> : <span>Sem banner — usando o gradiente padrão</span>}
+          {bnr? <img src={bnr} alt="" style={{width:"100%",maxHeight:240,objectFit:"cover"}}/> : <span>{t("noBanner")}</span>}
         </div>
         <div style={{display:"flex",gap:10}}>
-          <label className="btn-primary" style={{cursor:"pointer"}}>Escolher imagem
+          <label className="btn-primary" style={{cursor:"pointer"}}>{t("chooseImage")}
             <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const f=e.target.files[0]; if(f){const r=new FileReader(); r.onload=()=>setBnr(r.result); r.readAsDataURL(f);}}}/></label>
-          {bnr && <button className="btn-danger" onClick={()=>setBnr(null)}>Remover banner</button>}
+          {bnr && <button className="btn-danger" onClick={()=>setBnr(null)}>{t("removeBanner")}</button>}
         </div>
       </div>
 
       <div className="form-card">
-        <h3 style={{fontSize:15,marginBottom:10}}>Textos do destaque</h3>
-        <div className="field"><label>Título <span className="hint">(deixe vazio p/ usar o padrão)</span></label>
+        <h3 style={{fontSize:15,marginBottom:10}}>{t("heroTextsTitle")}</h3>
+        <div className="field"><label>{t("thTitle")} <span className="hint">{t("leaveEmptyHint")}</span></label>
           <input value={hT} onChange={e=>setHT(e.target.value)} placeholder="Aprenda qualquer coisa, no seu ritmo"/></div>
-        <div className="field"><label>Subtítulo</label>
+        <div className="field"><label>{t("subtitleLbl")}</label>
           <textarea rows="2" value={hS} onChange={e=>setHS(e.target.value)} placeholder="Cursos de Torá, Halachá, Talmud..."></textarea></div>
       </div>
 
-      <HomePicker title="🔥 Mais assistidos" courses={courses} list={mw} setList={setMw}/>
-      <HomePicker title="✨ Sugeridos para você" courses={courses} list={sg} setList={setSg}/>
-      <button className="btn-primary" onClick={()=>onSave({ mostWatched:mw, suggested:sg, banner:bnr, heroTitle:hT, heroSub:hS })}>Salvar página inicial</button>
+      <HomePicker t={t} title={t("mostWatchedTitle")} courses={courses} list={mw} setList={setMw}/>
+      <HomePicker t={t} title={t("suggestedTitle")} courses={courses} list={sg} setList={setSg}/>
+      <button className="btn-primary" onClick={()=>onSave({ mostWatched:mw, suggested:sg, banner:bnr, heroTitle:hT, heroSub:hS })}>{t("saveHomeBtn")}</button>
     </div>
   );
 }
 
-function LangEditor({activeLangs,tOverrides,onSave}){
+function LangEditor({t,activeLangs,tOverrides,onSave}){
   const ALL=[{c:"pt",n:"Português"},{c:"en",n:"English"},{c:"es",n:"Español"},{c:"he",n:"עברית"},{c:"fr",n:"Français"}];
   const [active,setActive]=useState(activeLangs&&activeLangs.length?activeLangs:["pt","en","es","he","fr"]);
   const [editLang,setEditLang]=useState("pt");
@@ -2491,11 +2492,11 @@ function LangEditor({activeLangs,tOverrides,onSave}){
   const setVal=(k,v)=> setOv(o=>{ const n={...o, [editLang]:{...(o[editLang]||{})}}; if(v===""||v===(base[k]||"")) { delete n[editLang][k]; } else { n[editLang][k]=v; } return n; });
   return (
     <div style={{maxWidth:820}}>
-      <h2 style={{fontSize:18,marginBottom:6}}>Idiomas e traduções</h2>
-      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>Escolha os idiomas disponíveis no site e edite os textos de cada idioma.</p>
+      <h2 style={{fontSize:18,marginBottom:6}}>{t("tabLangs")}</h2>
+      <p style={{color:"#6a6f73",fontSize:14,marginBottom:16}}>{t("langsIntro")}</p>
 
       <div className="form-card">
-        <h3 style={{fontSize:15,marginBottom:10}}>Idiomas ativos</h3>
+        <h3 style={{fontSize:15,marginBottom:10}}>{t("activeLangsTitle")}</h3>
         <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
           {ALL.map(l=>(
             <label key={l.c} style={{display:"flex",gap:8,alignItems:"center",fontSize:14,cursor:"pointer"}}>
@@ -2503,16 +2504,16 @@ function LangEditor({activeLangs,tOverrides,onSave}){
             </label>
           ))}
         </div>
-        {active.length===0 && <p style={{color:"#b91c1c",fontSize:13,marginTop:8}}>Selecione ao menos um idioma.</p>}
+        {active.length===0 && <p style={{color:"#b91c1c",fontSize:13,marginTop:8}}>{t("selectOneLang")}</p>}
       </div>
 
       <div className="form-card">
-        <h3 style={{fontSize:15,marginBottom:10}}>Editar traduções</h3>
+        <h3 style={{fontSize:15,marginBottom:10}}>{t("editTransTitle")}</h3>
         <div style={{display:"flex",gap:10,marginBottom:12,flexWrap:"wrap"}}>
           <select value={editLang} onChange={e=>setEditLang(e.target.value)} style={{padding:9,border:"1px solid var(--line)",borderRadius:6}}>
             {ALL.map(l=><option key={l.c} value={l.c}>{l.n}</option>)}
           </select>
-          <input value={q} onChange={e=>setQ(e.target.value)} placeholder="Buscar texto..." style={{flex:1,minWidth:160,padding:9,border:"1px solid var(--line)",borderRadius:6}}/>
+          <input value={q} onChange={e=>setQ(e.target.value)} placeholder={t("searchTextPh")} style={{flex:1,minWidth:160,padding:9,border:"1px solid var(--line)",borderRadius:6}}/>
         </div>
         <div style={{maxHeight:420,overflow:"auto",border:"1px solid var(--line)",borderRadius:8}}>
           {keys.map(k=>{ const val=(ov[editLang]&&ov[editLang][k]!==undefined)?ov[editLang][k]:(base[k]||""); return (
@@ -2521,15 +2522,15 @@ function LangEditor({activeLangs,tOverrides,onSave}){
               <input value={val} onChange={e=>setVal(k,e.target.value)} style={{flex:1,padding:7,border:"1px solid var(--line)",borderRadius:5,fontSize:13}}/>
             </div>); })}
         </div>
-        <p style={{fontSize:12,color:"#6a6f73",marginTop:8}}>Deixe igual ao padrão para não sobrescrever. As alterações valem para todos os visitantes.</p>
+        <p style={{fontSize:12,color:"#6a6f73",marginTop:8}}>{t("transHint")}</p>
       </div>
 
-      <button className="btn-primary" disabled={active.length===0} onClick={()=>onSave(active,ov)}>Salvar idiomas e traduções</button>
+      <button className="btn-primary" disabled={active.length===0} onClick={()=>onSave(active,ov)}>{t("saveLangsBtn")}</button>
     </div>
   );
 }
 
-function HelpEditor({content,onSave}){
+function HelpEditor({t,content,onSave}){
   const [intro,setIntro]=useState((content&&content.intro)||"");
   const [faqs,setFaqs]=useState((content&&Array.isArray(content.faqs))?content.faqs.map(f=>({...f})):[]);
   const setFaq=(i,k,v)=>setFaqs(fs=>fs.map((f,j)=>j===i?{...f,[k]:v}:f));
@@ -2539,72 +2540,72 @@ function HelpEditor({content,onSave}){
   const save=()=>onSave({ intro, faqs: faqs.filter(f=>f.q.trim()||f.a.trim()) });
   return (
     <div style={{maxWidth:760}}>
-      <h2 style={{fontSize:18,marginBottom:12}}>Central de ajuda</h2>
+      <h2 style={{fontSize:18,marginBottom:12}}>{t("helpTitle")}</h2>
       <div className="field">
-        <label>Texto de introdução</label>
-        <textarea rows="2" value={intro} onChange={e=>setIntro(e.target.value)} placeholder="Encontre respostas rápidas ou envie sua dúvida."></textarea>
+        <label>{t("introText")}</label>
+        <textarea rows="2" value={intro} onChange={e=>setIntro(e.target.value)} placeholder={t("helpIntro")}></textarea>
       </div>
-      <h3 style={{fontSize:15,margin:"16px 0 8px"}}>Perguntas e respostas</h3>
+      <h3 style={{fontSize:15,margin:"16px 0 8px"}}>{t("faqsTitle")}</h3>
       {faqs.map((f,i)=>(
         <div key={i} style={{border:"1px solid var(--line)",borderRadius:8,padding:12,marginBottom:10}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:6}}>
-            <strong style={{fontSize:13,color:"#6a6f73"}}>Pergunta {i+1}</strong>
+            <strong style={{fontSize:13,color:"#6a6f73"}}>{t("question")} {i+1}</strong>
             <div style={{display:"flex",gap:6}}>
-              <button className="btn-ghost" onClick={()=>moveFaq(i,-1)} title="Subir">↑</button>
-              <button className="btn-ghost" onClick={()=>moveFaq(i,1)} title="Descer">↓</button>
-              <button className="btn-danger" onClick={()=>removeFaq(i)}>Remover</button>
+              <button className="btn-ghost" onClick={()=>moveFaq(i,-1)} title={t("moveUp")}>↑</button>
+              <button className="btn-ghost" onClick={()=>moveFaq(i,1)} title={t("moveDown")}>↓</button>
+              <button className="btn-danger" onClick={()=>removeFaq(i)}>{t("remove")}</button>
             </div>
           </div>
-          <div className="field"><label>Pergunta</label><input value={f.q} onChange={e=>setFaq(i,"q",e.target.value)}/></div>
-          <div className="field"><label>Resposta</label><textarea rows="3" value={f.a} onChange={e=>setFaq(i,"a",e.target.value)}></textarea></div>
+          <div className="field"><label>{t("question")}</label><input value={f.q} onChange={e=>setFaq(i,"q",e.target.value)}/></div>
+          <div className="field"><label>{t("answerWord")}</label><textarea rows="3" value={f.a} onChange={e=>setFaq(i,"a",e.target.value)}></textarea></div>
         </div>
       ))}
-      <button className="btn-ghost" onClick={addFaq}>+ Adicionar pergunta</button>
-      <div style={{marginTop:18}}><button className="btn-primary" onClick={save}>Salvar central de ajuda</button></div>
+      <button className="btn-ghost" onClick={addFaq}>{t("addQuestion")}</button>
+      <div style={{marginTop:18}}><button className="btn-primary" onClick={save}>{t("saveHelpBtn")}</button></div>
     </div>
   );
 }
 
-function FooterEditor({columns,setColumns}){
+function FooterEditor({t,columns,setColumns}){
   const update=(next)=>setColumns(next.map(c=>({...c,links:[...c.links]})));
   const setColHeading=(ci,v)=>{ const n=columns.map((c,i)=>i===ci?{...c,heading:v}:c); update(n); };
   const setLink=(ci,li,patch)=>{ const n=columns.map((c,i)=>i!==ci?c:{...c,links:c.links.map((l,j)=>j===li?{...l,...patch}:l)}); update(n); };
-  const addLink=(ci)=>{ const id=Date.now(); const n=columns.map((c,i)=>i===ci?{...c,links:[...c.links,{id,label:"Novo link",type:"page",content:""}]}:c); update(n); };
+  const addLink=(ci)=>{ const id=Date.now(); const n=columns.map((c,i)=>i===ci?{...c,links:[...c.links,{id,label:t("newLink"),type:"page",content:""}]}:c); update(n); };
   const removeLink=(ci,li)=>{ const n=columns.map((c,i)=>i===ci?{...c,links:c.links.filter((_,j)=>j!==li)}:c); update(n); };
-  const addColumn=()=>update([...columns,{id:Date.now(),heading:"Nova coluna",links:[]}]);
+  const addColumn=()=>update([...columns,{id:Date.now(),heading:t("newColumn"),links:[]}]);
   const removeColumn=(ci)=>update(columns.filter((_,i)=>i!==ci));
   return (
     <div>
-      <p style={{color:"#6a6f73",marginBottom:14,fontSize:14}}>Edite as colunas e os links do rodapé. Links do tipo "Página" abrem uma página própria com o conteúdo que você escrever (ex.: Política de privacidade). Os tipos Catálogo, Instrutor e Administração levam às respectivas áreas.</p>
+      <p style={{color:"#6a6f73",marginBottom:14,fontSize:14}}>{t("footerIntro")}</p>
       {columns.map((col,ci)=>(
         <div className="form-card" key={col.id}>
           <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:12}}>
             <input style={{flex:1,padding:10,border:"1px solid var(--ink)",borderRadius:4,fontWeight:700}} value={col.heading} onChange={e=>setColHeading(ci,e.target.value)}/>
-            <button className="btn-danger" onClick={()=>removeColumn(ci)}>Remover coluna</button>
+            <button className="btn-danger" onClick={()=>removeColumn(ci)}>{t("removeColumn")}</button>
           </div>
           {col.links.map((link,li)=>(
             <div className="lesson-edit" key={link.id}>
               <div className="row" style={{display:"flex",gap:8,alignItems:"center"}}>
-                <input style={{flex:1}} placeholder="Texto do link" value={link.label} onChange={e=>setLink(ci,li,{label:e.target.value})}/>
+                <input style={{flex:1}} placeholder={t("linkText")} value={link.label} onChange={e=>setLink(ci,li,{label:e.target.value})}/>
                 <select value={link.type} onChange={e=>setLink(ci,li,{type:e.target.value})}>
-                  <option value="page">Página própria</option>
-                  <option value="catalog">Catálogo</option>
-                  <option value="instrutor">Área do instrutor</option>
-                  <option value="admin">Administração</option>
+                  <option value="page">{t("ownPage")}</option>
+                  <option value="catalog">{t("catalog")}</option>
+                  <option value="instrutor">{t("instructorArea")}</option>
+                  <option value="admin">{t("admin")}</option>
                 </select>
                 <button className="btn-danger" onClick={()=>removeLink(ci,li)}>×</button>
               </div>
               {link.type==="page" &&
                 <div style={{marginTop:8}}>
-                  <label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:4}}>Conteúdo da página</label>
+                  <label style={{fontSize:12,fontWeight:600,display:"block",marginBottom:4}}>{t("pageContent")}</label>
                   <textarea rows="3" style={{width:"100%",padding:9,border:"1px solid var(--line)",borderRadius:4}} value={link.content} onChange={e=>setLink(ci,li,{content:e.target.value})}></textarea>
                 </div>}
             </div>
           ))}
-          <button className="btn-ghost" onClick={()=>addLink(ci)}>+ Adicionar link</button>
+          <button className="btn-ghost" onClick={()=>addLink(ci)}>{t("addLinkBtn")}</button>
         </div>
       ))}
-      <button className="btn-primary" onClick={addColumn}>+ Adicionar coluna</button>
+      <button className="btn-primary" onClick={addColumn}>{t("addColumnBtn")}</button>
     </div>
   );
 }
@@ -2613,12 +2614,12 @@ function NewTemplate({onAdd}){
   const [label,setLabel]=useState(""); const [subject,setSubject]=useState(""); const [body,setBody]=useState("");
   return (
     <div className="form-card" style={{borderStyle:"dashed"}}>
-      <h2 style={{fontSize:16,marginBottom:12}}>+ Criar novo modelo de e-mail</h2>
-      <div className="field"><label>Nome do modelo</label><input value={label} onChange={e=>setLabel(e.target.value)} placeholder="Ex: Promoção, Lembrete..."/></div>
-      <div className="field"><label>Assunto</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>
-      <div className="field"><label>Corpo <span className="hint">(use {"{nome}"})</span></label>
+      <h2 style={{fontSize:16,marginBottom:12}}>{t("newTplTitle")}</h2>
+      <div className="field"><label>{t("tplName")}</label><input value={label} onChange={e=>setLabel(e.target.value)} placeholder={t("tplNamePh")}/></div>
+      <div className="field"><label>{t("subject")}</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>
+      <div className="field"><label>{t("bodyLbl")} <span className="hint">{t("useNameHint")}</span></label>
         <textarea rows="3" value={body} onChange={e=>setBody(e.target.value)}></textarea></div>
-      <button className="btn-primary" onClick={()=>{ if(!label.trim()||!subject.trim()||!body.trim()){alert("Preencha todos os campos");return;} onAdd(label,subject,body); setLabel("");setSubject("");setBody(""); }}>Adicionar modelo</button>
+      <button className="btn-primary" onClick={()=>{ if(!label.trim()||!subject.trim()||!body.trim()){alert(t("fillAll"));return;} onAdd(label,subject,body); setLabel("");setSubject("");setBody(""); }}>{t("addTplBtn")}</button>
     </div>
   );
 }
@@ -2634,32 +2635,32 @@ function BatchEmail({onBatch,emailTemplates,onTestEmail}){
     if(key==="free"){ setSubject(""); setBody(""); }
     else { const tpl=emailTemplates[key]; if(tpl){ setSubject(tpl.subject); setBody(tpl.body); } }
   };
-  const tplLabel=(key,tpl)=> key==="welcome"?"Boas-vindas":key==="enroll"?"Inscrição em curso":(tpl.label||key);
+  const tplLabel=(key,tpl)=> key==="welcome"?t("welcomeTplLabel"):key==="enroll"?t("enrollTplLabel"):(tpl.label||key);
   return (
     <div className="form-card">
-      <h2 style={{fontSize:18,marginBottom:14}}>Criar e enviar e-mail em massa</h2>
+      <h2 style={{fontSize:18,marginBottom:14}}>{t("batchTitle")}</h2>
       <div style={{background:"#faf9fc",border:"1px solid var(--line)",borderRadius:8,padding:12,marginBottom:16,display:"flex",justifyContent:"space-between",alignItems:"center",gap:10,flexWrap:"wrap"}}>
-        <span style={{fontSize:13,color:"#3e4143"}}>Antes de enviar para todos, faça um <b>teste</b> (envia para o seu e-mail e mostra o erro, se houver).</span>
-        <button className="btn-ghost" onClick={()=>onTestEmail&&onTestEmail()}>Enviar e-mail de teste para mim</button>
+        <span style={{fontSize:13,color:"#3e4143"}}>{t("testHint")}</span>
+        <button className="btn-ghost" onClick={()=>onTestEmail&&onTestEmail()}>{t("testBtn")}</button>
       </div>
-      <div className="field"><label>Conteúdo</label>
+      <div className="field"><label>{t("contentLbl")}</label>
         <select value={chosen} onChange={e=>pick(e.target.value)}>
-          <option value="free">Texto livre</option>
-          {Object.entries(emailTemplates).map(([key,tpl])=><option key={key} value={key}>Modelo: {tplLabel(key,tpl)}</option>)}
+          <option value="free">{t("freeText")}</option>
+          {Object.entries(emailTemplates).map(([key,tpl])=><option key={key} value={key}>{t("tplPrefix")}: {tplLabel(key,tpl)}</option>)}
         </select></div>
-      <div className="field"><label>Destinatários</label>
+      <div className="field"><label>{t("recipientsLbl")}</label>
         <select value={recipients} onChange={e=>setRecipients(e.target.value)}>
-          <option value="all">Todos os usuários</option>
-          <option value="students">Apenas alunos</option>
-          <option value="instructors">Apenas instrutores</option>
-          <option value="one">Um usuário específico</option>
+          <option value="all">{t("recAll")}</option>
+          <option value="students">{t("recStudents")}</option>
+          <option value="instructors">{t("recInstructors")}</option>
+          <option value="one">{t("recOne")}</option>
         </select></div>
-      {recipients==="one" && <div className="field"><label>E-mail do destinatário</label>
+      {recipients==="one" && <div className="field"><label>{t("recipientEmail")}</label>
         <input type="email" value={oneEmail} onChange={e=>setOneEmail(e.target.value)} placeholder="usuario@email.com"/></div>}
-      <div className="field"><label>Assunto</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>
-      <div className="field"><label>Mensagem <span className="hint">(use {"{nome}"} para personalizar)</span></label>
+      <div className="field"><label>{t("subject")}</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>
+      <div className="field"><label>{t("msgLbl")} <span className="hint">{t("usePersonalizeHint")}</span></label>
         <textarea rows="5" value={body} onChange={e=>setBody(e.target.value)}></textarea></div>
-      <button className="btn-primary" onClick={()=>{ if(!subject.trim()||!body.trim()){alert("Preencha assunto e mensagem");return;} if(recipients==="one"){ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(oneEmail)){alert("E-mail do destinatário inválido");return;} onBatch("one",subject,body,oneEmail); } else { onBatch(recipients,subject,body); } setSubject("");setBody("");setChosen("free"); setOneEmail(""); }}>Enviar e-mail</button>
+      <button className="btn-primary" onClick={()=>{ if(!subject.trim()||!body.trim()){alert(t("fillSubjBody"));return;} if(recipients==="one"){ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(oneEmail)){alert(t("invalidRecipient"));return;} onBatch("one",subject,body,oneEmail); } else { onBatch(recipients,subject,body); } setSubject("");setBody("");setChosen("free"); setOneEmail(""); }}>{t("sendEmailBtn")}</button>
     </div>
   );
 }
@@ -2668,7 +2669,7 @@ function CreateUserModal({onClose,onCreate,t}){
   const [name,setName]=useState(""); const [email,setEmail]=useState(""); const [pw,setPw]=useState("");
   const [phone,setPhone]=useState(""); const [role,setRole]=useState("instructor");
   const submit=async()=>{
-    if(!name.trim()||!email.trim()||!pw.trim()){alert("Preencha nome, email e senha");return;}
+    if(!name.trim()||!email.trim()||!pw.trim()){alert(t("fillNameEmailPw"));return;}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert(t("errEmail"));return;}
     if(pw.length<6){alert(t("errPassword"));return;}
     const ok=await onCreate({name,email,password:pw,phone:phone.replace(/[^\d]/g,""),role,city:"",community:"",isJewish:null});
@@ -2678,16 +2679,16 @@ function CreateUserModal({onClose,onCreate,t}){
     <div className="modal" onClick={onClose}>
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
         <button className="close-x" style={{position:"absolute",top:12,right:16}} onClick={onClose}>×</button>
-        <h2>Criar conta</h2>
+        <h2>{t("createAccountTitle")}</h2>
         <div className="role-pick">
-          <button className={role==="instructor"?"sel":""} onClick={()=>setRole("instructor")}>Instrutor</button>
-          <button className={role==="admin"?"sel":""} onClick={()=>setRole("admin")}>Administrador</button>
+          <button className={role==="instructor"?"sel":""} onClick={()=>setRole("instructor")}>{t("roleInstructor")}</button>
+          <button className={role==="admin"?"sel":""} onClick={()=>setRole("admin")}>{t("roleAdmin")}</button>
         </div>
         <div className="field"><label>{t("name")}</label><input value={name} onChange={e=>setName(e.target.value)}/></div>
         <div className="field"><label>{t("emailLbl")}</label><input type="email" value={email} onChange={e=>setEmail(e.target.value)}/></div>
         <div className="field"><label>{t("phone")}</label><input type="tel" inputMode="numeric" value={phone} onChange={e=>setPhone(e.target.value)}/></div>
         <div className="field"><label>{t("passwordLbl")}</label><input type="password" value={pw} onChange={e=>setPw(e.target.value)}/></div>
-        <button className="submit" onClick={submit}>Criar conta</button>
+        <button className="submit" onClick={submit}>{t("createAccountTitle")}</button>
       </div>
     </div>
   );
@@ -2709,55 +2710,55 @@ function EditModal({target,categories,t,lang,onClose,onSave}){
     <div className="modal" onClick={onClose}>
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
         <button className="close-x" style={{position:"absolute",top:12,right:16}} onClick={onClose}>×</button>
-        <h2>{isUser?"Editar usuário":"Editar curso"}</h2>
+        <h2>{isUser?t("editUserTitle"):t("editCourseTitle")}</h2>
         {isUser ? <>
-          <div className="field"><label>Foto</label>
+          <div className="field"><label>{t("photoLbl")}</label>
             <div style={{display:"flex",alignItems:"center",gap:12}}>
               {f.photo ? <img src={f.photo} alt="" style={{width:56,height:56,borderRadius:"50%",objectFit:"cover"}}/>
                        : <div style={{width:56,height:56,borderRadius:"50%",background:"#5624d0",color:"#fff",display:"flex",alignItems:"center",justifyContent:"center",fontWeight:700}}>{(f.name||"?")[0]}</div>}
-              <label className="btn-ghost" style={{cursor:"pointer"}}>Trocar foto
+              <label className="btn-ghost" style={{cursor:"pointer"}}>{t("changePhoto")}
                 <input type="file" accept="image/*" style={{display:"none"}} onChange={e=>{const ph=e.target.files[0]; if(ph){const r=new FileReader(); r.onload=()=>set("photo",r.result); r.readAsDataURL(ph);}}}/></label>
-              {f.photo && <button className="btn-danger" style={{padding:"4px 10px"}} onClick={()=>set("photo","")}>Remover</button>}
+              {f.photo && <button className="btn-danger" style={{padding:"4px 10px"}} onClick={()=>set("photo","")}>{t("remove")}</button>}
             </div>
           </div>
-          <div className="field"><label>Nome</label><input value={f.name} onChange={e=>set("name",e.target.value)}/></div>
-          <div className="field"><label>Email</label><input value={f.email} onChange={e=>set("email",e.target.value)}/></div>
-          <div className="field"><label>{t("passwordLbl")}</label><input value={f.password} onChange={e=>set("password",e.target.value)} placeholder="(senha)"/></div>
-          <div className="field"><label>Telefone</label><input type="tel" inputMode="numeric" value={f.phone} onChange={e=>set("phone",e.target.value)}/></div>
-          <div className="field"><label>Cidade</label><input value={f.city} onChange={e=>set("city",e.target.value)}/></div>
-          <div className="field"><label>Comunidade</label><input value={f.community} onChange={e=>set("community",e.target.value)}/></div>
+          <div className="field"><label>{t("thName")}</label><input value={f.name} onChange={e=>set("name",e.target.value)}/></div>
+          <div className="field"><label>{t("emailLbl")}</label><input value={f.email} onChange={e=>set("email",e.target.value)}/></div>
+          <div className="field"><label>{t("passwordLbl")}</label><input value={f.password} onChange={e=>set("password",e.target.value)} placeholder={t("pwPh")}/></div>
+          <div className="field"><label>{t("phone")}</label><input type="tel" inputMode="numeric" value={f.phone} onChange={e=>set("phone",e.target.value)}/></div>
+          <div className="field"><label>{t("thCity")}</label><input value={f.city} onChange={e=>set("city",e.target.value)}/></div>
+          <div className="field"><label>{t("thCommunity")}</label><input value={f.community} onChange={e=>set("community",e.target.value)}/></div>
           <div style={{display:"flex",gap:10}}>
             <div className="field" style={{flex:1}}><label>{t("gender")}</label>
               <select value={f.gender} onChange={e=>set("gender",e.target.value)}><option value="">—</option><option value="male">{t("male")}</option><option value="female">{t("female")}</option></select></div>
             <div className="field" style={{flex:1}}><label>{t("areYouJewish")}</label>
               <select value={f.isJewish} onChange={e=>set("isJewish",e.target.value)}><option value="">—</option><option value="yes">{t("yes")}</option><option value="no">{t("no")}</option></select></div>
           </div>
-          <div className="field"><label>Tipo</label>
-            <select value={f.role} onChange={e=>set("role",e.target.value)}><option value="student">Aluno</option><option value="instructor">Instrutor</option><option value="admin">Administrador</option></select></div>
+          <div className="field"><label>{t("thType")}</label>
+            <select value={f.role} onChange={e=>set("role",e.target.value)}><option value="student">{t("roleStudent")}</option><option value="instructor">{t("roleInstructor")}</option><option value="admin">{t("roleAdmin")}</option></select></div>
         </> : <>
           <div className="field"><label>{t("title")}</label><input value={f.title} onChange={e=>set("title",e.target.value)}/></div>
-          <div className="field"><label>Autor</label><input value={f.author} onChange={e=>set("author",e.target.value)}/></div>
-          <div className="field"><label>Categoria</label>
+          <div className="field"><label>{t("thAuthor")}</label><input value={f.author} onChange={e=>set("author",e.target.value)}/></div>
+          <div className="field"><label>{t("category")}</label>
             <select value={f.cat} onChange={e=>set("cat",e.target.value)}>{categories.map(c=><option key={c} value={c}>{catLabel(c,lang)}</option>)}</select></div>
           <div style={{display:"flex",gap:10}}>
-            <div className="field" style={{flex:1}}><label>Nível</label>
+            <div className="field" style={{flex:1}}><label>{t("level")}</label>
               <select value={f.level} onChange={e=>set("level",e.target.value)}>{LEVELS.map(l=><option key={l} value={l}>{t(l)}</option>)}</select></div>
-            <div className="field" style={{flex:1}}><label>Idioma</label>
+            <div className="field" style={{flex:1}}><label>{t("language")}</label>
               <select value={f.lang} onChange={e=>set("lang",e.target.value)}>{COURSE_LANGS.map(l=><option key={l}>{l}</option>)}</select></div>
           </div>
           <div style={{display:"flex",gap:10}}>
-            <div className="field" style={{flex:1}}><label>Preço</label><input value={f.price} onChange={e=>set("price",e.target.value)}/></div>
-            <div className="field" style={{flex:1}}><label>Preço antigo</label><input value={f.old} onChange={e=>set("old",e.target.value)}/></div>
+            <div className="field" style={{flex:1}}><label>{t("thPrice")}</label><input value={f.price} onChange={e=>set("price",e.target.value)}/></div>
+            <div className="field" style={{flex:1}}><label>{t("oldPriceShort")}</label><input value={f.old} onChange={e=>set("old",e.target.value)}/></div>
           </div>
           <div className="field"><label>{t("description")}</label><textarea rows="3" value={f.desc} onChange={e=>set("desc",e.target.value)}></textarea></div>
         </>}
-        <button className="submit" onClick={save}>Salvar</button>
+        <button className="submit" onClick={save}>{t("saveWord")}</button>
       </div>
     </div>
   );
 }
 
-function ComposeModal({title,to,message,onClose,onSend}){
+function ComposeModal({t,title,to,message,onClose,onSend}){
   const [subject,setSubject]=useState("");
   const [body,setBody]=useState("");
   return (
@@ -2765,12 +2766,12 @@ function ComposeModal({title,to,message,onClose,onSend}){
       <div className="modal-box" onClick={e=>e.stopPropagation()}>
         <button className="close-x" style={{position:"absolute",top:12,right:16}} onClick={onClose}>×</button>
         <h2>{title}</h2>
-        {to && <p style={{fontSize:13,color:"#6a6f73",marginBottom:12,textAlign:"center"}}>Para: {to}</p>}
+        {to && <p style={{fontSize:13,color:"#6a6f73",marginBottom:12,textAlign:"center"}}>{t("forLabel")}: {to}</p>}
         {!message &&
-          <div className="field"><label>Assunto</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>}
-        <div className="field"><label>{message?"Mensagem":"Corpo"}</label>
+          <div className="field"><label>{t("subject")}</label><input value={subject} onChange={e=>setSubject(e.target.value)}/></div>}
+        <div className="field"><label>{message?t("msgLbl"):t("bodyLbl")}</label>
           <textarea rows="5" value={body} onChange={e=>setBody(e.target.value)}></textarea></div>
-        <button className="submit" onClick={()=>{ if(!body.trim()||(!message&&!subject.trim())){alert("Preencha os campos");return;} onSend(subject,body); }}>Enviar</button>
+        <button className="submit" onClick={()=>{ if(!body.trim()||(!message&&!subject.trim())){alert(t("fillAll"));return;} onSend(subject,body); }}>{t("send")}</button>
       </div>
     </div>
   );
